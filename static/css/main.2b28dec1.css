@@ -1,0 +1,2 @@
+@tailwind base;@tailwind components;@tailwind utilities;body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background-color:#000;color:#fff;margin:0;overflow-x:hidden}.gold-text{-webkit-text-fill-color:#0000;background:linear-gradient(135deg,#f3e5ab,#d4af37 50%,#aa771c);-webkit-background-clip:text}.glass{backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:#0a0a0acc;border:1px solid #d4af371a}
+/*# sourceMappingURL=main.2b28dec1.css.map*/
