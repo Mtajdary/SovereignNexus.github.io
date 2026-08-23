@@ -2,11 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>PRIME CROWN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PRIME CROWN | Sovereign Hub</title>
+    
+    <!-- تزریق مستقیم کتابخانه‌های گرافیکی برای اطمینان از نمایش صحیح -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { gold: '#D4AF37', card: '#0A0A0A' },
+            fontFamily: { serif: ['Cinzel', 'serif'], sans: ['Inter', 'sans-serif'] }
+          }
+        }
+      }
+    </script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;700&display=swap');
+      body { background-color: #000; color: #fff; margin: 0; }
+      .gold-text { background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #AA771C 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+      .glass { background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(20px); border: 1px solid rgba(212, 175, 55, 0.1); }
+    </style>
+
+    <!-- اتصال به فایل‌های بیلد شما -->
     <script defer="defer" src="./static/js/main.2c247c82.js"></script>
     <link href="./static/css/main.2b28dec1.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-black text-white">
     <div id="root"></div>
 </body>
 </html>
