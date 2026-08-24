@@ -1,6 +1,6 @@
  👑 PRIME CROWN | The Architecture of Elite Mindset
 
-![PRIME CROWN Banner](https://raw.githubusercontent.com/primecrown-co/assets/main/hero-bg.jpg)
+![PRIME CROWN Banner](https://github.com/primecrown-co/primecrown-co.github.io/blob/main/assets/hero-bg.jpg)
 
 > "Sovereignty is not given; it is engineered."
 
