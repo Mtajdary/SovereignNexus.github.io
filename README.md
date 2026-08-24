@@ -54,7 +54,7 @@ prime-crown-web/
  1. Clone the Sovereign Repository
 ```
 bash
-git clone https://github.com/primecrown-co/prime-crown-web.git
+git clone https://primecrown-co.github.io
 cd prime-crown-web
 ```json
  2. Install Dependencies
