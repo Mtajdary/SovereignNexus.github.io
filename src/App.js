@@ -4,6 +4,7 @@ import SovereignHeader from './components/layout/SovereignHeader';
 import Dashboard from './modules/Dashboard/Dashboard';
 import CivilToolsSuite from './modules/CivilTools/CivilToolsSuite';
 import AIVisionLab from './modules/AILab/AIVisionLab';
+import KnowledgeHub from './modules/KnowledgeHub/KnowledgeHub';
 import ProjectsSection from './modules/Projects/ProjectsSection';
 import TacticalJournal from './modules/Journal/TacticalJournal';
 import ArchitectProfile from './modules/Profile/ArchitectProfile';
@@ -29,6 +30,7 @@ export default function App() {
             {activeModule === 'dashboard' && <Dashboard onNavigate={setActiveModule} />}
             {activeModule === 'civil-tools' && <CivilToolsSuite />}
             {activeModule === 'ai-lab' && <AIVisionLab />}
+            {activeModule === 'knowledge' && <KnowledgeHub />}
             {activeModule === 'projects' && <ProjectsSection />}
             {activeModule === 'profile' && <ArchitectProfile />}
             {activeModule === 'journal' && <TacticalJournal />}
