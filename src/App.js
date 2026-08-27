@@ -9,6 +9,7 @@ import ProjectsSection from './modules/Projects/ProjectsSection';
 import ContactResumeSuite from './modules/Contact/ContactResumeSuite';
 import TacticalJournal from './modules/Journal/TacticalJournal';
 import ArchitectProfile from './modules/Profile/ArchitectProfile';
+import SystemDiagnostics from './components/SystemDiagnostics';
 import PWAInstallButton from './components/PWAInstallButton';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -19,7 +20,7 @@ export default function App() {
     <PuttyCanvas>
       <SovereignHeader currentModule={activeModule} onModuleChange={setActiveModule} />
       
-      <main className="pt-6 pb-24 min-h-[85vh]">
+      <main className="pt-6 pb-12 min-h-[85vh]">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeModule}
@@ -38,10 +39,13 @@ export default function App() {
             {activeModule === 'journal' && <TacticalJournal />}
           </motion.div>
         </AnimatePresence>
+
+        {/* ماژول پایش و پشتیبان‌گیری زنده داده‌ها */}
+        <SystemDiagnostics />
       </main>
 
       <footer className="py-6 text-center text-gray-400 text-[10px] font-mono tracking-widest uppercase border-t border-gray-200">
-        محمد تاجداری © ۱۴۰۵ • مهندسی عمران، هوش مصنوعی و نرم‌افزار
+        محمد تاجداری © ۱۴۰۵ • مهندسی عمران، بینایی ماشین و توسعه نرم‌افزار
       </footer>
 
       <PWAInstallButton />
