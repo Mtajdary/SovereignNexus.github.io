@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Activity, Layers, ShieldAlert, CheckCircle2, Sliders, TrendingUp, Info } from 'lucide-react';
+import { Activity, Layers, ShieldAlert, CheckCircle2, Sliders, TrendingUp } from 'lucide-react';
 
 export default function StructuralSimSuite() {
   const [b, setB] = useState(350); // عرض تیر (mm)
@@ -35,7 +35,7 @@ export default function StructuralSimSuite() {
             <span>FRACTURE &amp; STRESS SIMULATION ENGINE</span>
           </div>
           <h2 className="text-xl sm:text-2xl font-black text-gray-900">شبیه‌ساز تنش‌های کششی و لنگر ترک‌خوردگی مقطع</h2>
-          <p className="text-xs text-gray-500 mt-0.5">محاسبه ممان اینرسی مقطع، مدول گسیختگی ($f_r$) و آستانه آغاز ترک‌های سازه‌ای</p>
+          <p className="text-xs text-gray-500 mt-0.5">محاسبه ممان اینرسی مقطع، مدول گسیختگی (fr) و آستانه آغاز ترک‌های سازه‌ای</p>
         </div>
       </div>
 
@@ -69,7 +69,7 @@ export default function StructuralSimSuite() {
             </div>
 
             <div>
-              <label className="text-gray-700 block mb-1 font-bold">مقاومت فشاری مشخصه بتن ($f_c$ - مگاپاسکال):</label>
+              <label className="text-gray-700 block mb-1 font-bold">مقاومت فشاری مشخصه بتن (fc - مگاپاسکال):</label>
               <select
                 value={fc}
                 onChange={(e) => setFc(Number(e.target.value))}
@@ -83,7 +83,7 @@ export default function StructuralSimSuite() {
             </div>
 
             <div>
-              <label className="text-gray-700 block mb-1 font-bold">لنگر خمشی اعمالی ($M_u$ - کیلونیوتن در متر):</label>
+              <label className="text-gray-700 block mb-1 font-bold">لنگر خمشی اعمالی (Mu - کیلونیوتن در متر):</label>
               <input
                 type="number"
                 value={appliedMoment}
@@ -104,11 +104,11 @@ export default function StructuralSimSuite() {
 
             <div className="grid grid-cols-2 gap-3 text-center">
               <div className="p-3.5 rounded-2xl bg-gray-50 border border-gray-200">
-                <span className="text-[10px] text-gray-500 block">مدول گسیختگی بتن ($f_r$)</span>
+                <span className="text-[10px] text-gray-500 block">مدول گسیختگی بتن (fr)</span>
                 <span className="text-base font-black font-mono text-gray-900">{fr.toFixed(2)} MPa</span>
               </div>
               <div className="p-3.5 rounded-2xl bg-gray-50 border border-gray-200">
-                <span className="text-[10px] text-gray-500 block">لنگر ترک‌خوردگی ($M_{cr}$)</span>
+                <span className="text-[10px] text-gray-500 block">لنگر ترک‌خوردگی (Mcr)</span>
                 <span className="text-base font-black font-mono text-gray-900">{Mcr_kNm.toFixed(1)} kN.m</span>
               </div>
             </div>
@@ -125,12 +125,12 @@ export default function StructuralSimSuite() {
                 {isCracked ? (
                   <>
                     <ShieldAlert className="w-4 h-4 text-amber-600" />
-                    <span>لنگر اعمالی بیش از ظرفیت کششی بتن است ($M \ge M_{cr}$)</span>
+                    <span>لنگر اعمالی بیش از ظرفیت کششی بتن است (M &ge; Mcr)</span>
                   </>
                 ) : (
                   <>
                     <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                    <span>تنش کششی کمتر از مدول گسیختگی بتن است (ضریب اطمینان: {safetyFactor})</span>
+                    <span>تنش کششی کمتر از مدول گسیختگی است (ضریب اطمینان: {safetyFactor})</span>
                   </>
                 )}
               </div>
@@ -142,14 +142,14 @@ export default function StructuralSimSuite() {
                 <span className="font-mono font-bold text-gray-900">{actualTensileStress.toFixed(2)} MPa</span>
               </div>
               <div className="flex justify-between">
-                <span>ممان اینرسی ناخالص مقطع ($I_g$):</span>
+                <span>ممان اینرسی ناخالص مقطع (Ig):</span>
                 <span className="font-mono text-gray-700">{(I_gross / 1e6).toFixed(1)} &times; 10⁶ mm⁴</span>
               </div>
             </div>
           </div>
 
           <div className="text-[11px] text-gray-500 bg-gray-50 p-2.5 rounded-xl border border-gray-200 leading-relaxed font-mono">
-            فرمول: $M_{cr} = \frac{f_r \cdot I_g}{y_t}$ | $f_r = 0.62\sqrt{f_c}$ (مبحث نهم مقررات ملی ساختمان)
+            فرمول: Mcr = (fr &times; Ig) / yt | fr = 0.62 &times; &radic;fc (مبحث نهم مقررات ملی ساختمان)
           </div>
         </div>
       </div>
