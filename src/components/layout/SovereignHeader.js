@@ -1,45 +1,42 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Crown, Sparkles, User, Zap, BookOpen, Layers } from 'lucide-react';
+import { Crown, Sparkles } from 'lucide-react';
 
 export default function SovereignHeader({ currentModule, onModuleChange }) {
   const navItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: Zap },
-    { id: 'profile', label: 'Architect Dossier', icon: User },
-    { id: 'vault', label: 'Vault', icon: Layers },
-    { id: 'journal', label: 'Journal', icon: BookOpen },
+    { id: 'dashboard', label: 'Dashboard' },
+    { id: 'profile', label: 'Architect' },
+    { id: 'vault', label: 'Vault' },
+    { id: 'journal', label: 'Journal' },
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 backdrop-blur-md bg-white/70 border-b border-gray-200/80">
-      <div className="flex items-center gap-2">
-        <div className="w-8 h-8 rounded-full bg-emerald-400 flex items-center justify-center text-black font-black shadow-sm">
+    <header className="sticky top-0 z-50 flex items-center justify-between px-4 md:px-8 py-3.5 backdrop-blur-md bg-[#fafafa]/80 border-b border-gray-200/80">
+      <div className="flex items-center gap-2 cursor-pointer" onClick={() => onModuleChange('dashboard')}>
+        <div className="w-7 h-7 rounded-full bg-blue-500 flex items-center justify-center text-white shadow-sm">
           <Crown className="w-4 h-4" />
         </div>
-        <div className="flex items-center gap-2">
-          <span className="font-extrabold text-sm tracking-tight text-gray-900">PRIME CROWN</span>
-          <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-md bg-gray-100 text-gray-600 border border-gray-300/60">
-            Sovereign v2
+        <div className="flex items-center gap-1.5">
+          <span className="font-black text-sm tracking-tight text-gray-900">PRIME CROWN</span>
+          <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-gray-100 text-gray-500">
+            Labs
           </span>
         </div>
       </div>
 
-      <nav className="flex items-center gap-1 bg-gray-100/90 p-1 rounded-full border border-gray-200 shadow-inner">
+      <nav className="flex items-center gap-1 bg-gray-200/60 p-1 rounded-full border border-gray-300/50">
         {navItems.map((item) => {
-          const Icon = item.icon;
           const isActive = currentModule === item.id;
           return (
             <button
               key={item.id}
               onClick={() => onModuleChange(item.id)}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${
+              className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${
                 isActive
-                  ? 'bg-emerald-400 text-black shadow-sm scale-105'
-                  : 'text-gray-600 hover:text-gray-900 hover:bg-white/60'
+                  ? 'bg-emerald-500 text-white shadow-sm'
+                  : 'text-gray-600 hover:text-gray-900'
               }`}
             >
-              <Icon className="w-3.5 h-3.5" />
-              <span>{item.label}</span>
+              {item.label}
             </button>
           );
         })}

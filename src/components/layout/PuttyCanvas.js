@@ -1,45 +1,44 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MousePointer2, Sparkles, HardHat, Cpu, Eye } from 'lucide-react';
-
-const floatingCursors = [
-  { id: 1, name: 'Mohammad (Architect)', color: 'bg-emerald-400 text-black', icon: HardHat, x: ['15%', '22%', '18%'], y: ['20%', '28%', '22%'], duration: 6 },
-  { id: 2, name: 'AI Vision Bot', color: 'bg-cyan-400 text-black', icon: Eye, x: ['80%', '72%', '78%'], y: ['15%', '24%', '18%'], duration: 8 },
-  { id: 3, name: 'Prime Core', color: 'bg-amber-400 text-black', icon: Cpu, x: ['75%', '85%', '70%'], y: ['65%', '75%', '60%'], duration: 7 },
-];
+import { MousePointer2, Sparkles } from 'lucide-react';
 
 export default function PuttyCanvas({ children }) {
   return (
-    <div className="relative min-h-screen bg-[#fafafa] text-gray-900 overflow-x-hidden selection:bg-emerald-300">
-      {/* شبکه نقطه‌چین مهندسی مشابه Google Labs */}
+    <div className="relative min-h-screen bg-[#fafafa] text-gray-900 selection:bg-emerald-300 font-sans overflow-x-hidden">
+      {/* شبکه نقطه‌چین مهندسی Google Labs */}
       <div 
-        className="fixed inset-0 pointer-events-none opacity-40"
+        className="fixed inset-0 pointer-events-none opacity-40 z-0"
         style={{
-          backgroundImage: 'radial-gradient(#d1d5db 1.2px, transparent 1.2px)',
+          backgroundImage: 'radial-gradient(#9ca3af 1.2px, transparent 1.2px)',
           backgroundSize: '24px 24px'
         }}
       />
 
-      {/* کرسرها و شکلک‌های زنده چندنفره و تعاملی شناور */}
-      {floatingCursors.map((cursor) => {
-        const Icon = cursor.icon;
-        return (
-          <motion.div
-            key={cursor.id}
-            animate={{ x: cursor.x, y: cursor.y }}
-            transition={{ duration: cursor.duration, repeat: Infinity, ease: 'easeInOut' }}
-            className="fixed pointer-events-none z-30 hidden md:flex items-center gap-1.5"
-          >
-            <MousePointer2 className="w-5 h-5 text-gray-900 drop-shadow-sm fill-gray-900" />
-            <div className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold shadow-md ${cursor.color}`}>
-              <Icon className="w-3 h-3" />
-              <span>{cursor.name}</span>
-            </div>
-          </motion.div>
-        );
-      })}
+      {/* کرسر اول: بالا سمت چپ تیتر اصلی (مشابه کرسر Amit) */}
+      <motion.div
+        animate={{ x: [0, 15, -10, 0], y: [0, -12, 8, 0] }}
+        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute top-28 left-[10%] md:left-[22%] z-20 pointer-events-none flex items-center gap-1.5"
+      >
+        <MousePointer2 className="w-4 h-4 text-gray-900 fill-gray-900 -rotate-12" />
+        <div className="flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-[#facc15] text-gray-950 text-[11px] font-bold shadow-sm border border-black/10">
+          <span>Mohammad</span>
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+        </div>
+      </motion.div>
 
-      {/* کانتینر اصلی */}
+      {/* کرسر دوم: سمت راست پایین تیتر */}
+      <motion.div
+        animate={{ x: [0, -20, 10, 0], y: [0, 15, -10, 0] }}
+        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute top-64 right-[8%] md:right-[20%] z-20 pointer-events-none flex items-center gap-1.5"
+      >
+        <MousePointer2 className="w-4 h-4 text-gray-900 fill-gray-900 -rotate-12" />
+        <div className="flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-[#38bdf8] text-gray-950 text-[11px] font-bold shadow-sm border border-black/10">
+          <span>Vision Core</span>
+        </div>
+      </motion.div>
+
       <div className="relative z-10">
         {children}
       </div>
