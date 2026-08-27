@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { SovereignProvider } from './context/SovereignContext';
+import PuttyCanvas from './components/layout/PuttyCanvas';
 import SovereignHeader from './components/layout/SovereignHeader';
 import Dashboard from './modules/Dashboard/Dashboard';
 import VaultEngine from './modules/Vault/VaultEngine';
@@ -14,17 +15,17 @@ function App() {
 
   return (
     <SovereignProvider>
-      <div className="min-h-screen bg-black text-white selection:bg-amber-400 selection:text-black relative">
+      <PuttyCanvas>
         <SovereignHeader currentModule={activeModule} onModuleChange={setActiveModule} />
         
-        <main className="relative z-10 pt-28 pb-16">
+        <main className="pt-20 pb-12">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeModule}
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.25 }}
             >
               {activeModule === 'dashboard' && <Dashboard />}
               {activeModule === 'vault' && <VaultEngine />}
@@ -35,12 +36,12 @@ function App() {
           </AnimatePresence>
         </main>
 
-        <footer className="py-8 text-center opacity-30 text-[9px] tracking-[0.5em] uppercase font-mono border-t border-white/5">
-          PRIME CROWN © 2026 | ARCHITECT: MOHAMMAD TAJDARI
+        <footer className="py-6 text-center text-gray-400 text-[10px] font-mono tracking-widest uppercase border-t border-gray-200">
+          PRIME CROWN © 2026 • ARCHITECT: MOHAMMAD TAJDARI
         </footer>
 
         <PWAInstallButton />
-      </div>
+      </PuttyCanvas>
     </SovereignProvider>
   );
 }
