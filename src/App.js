@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PuttyCanvas from './components/layout/PuttyCanvas';
 import SovereignHeader from './components/layout/SovereignHeader';
 import Dashboard from './modules/Dashboard/Dashboard';
+import SiteCommandCenter from './modules/SiteCommand/SiteCommandCenter';
 import CivilToolsSuite from './modules/CivilTools/CivilToolsSuite';
 import StructuralSimSuite from './modules/StructuralSim/StructuralSimSuite';
 import AIVisionLab from './modules/AILab/AIVisionLab';
@@ -32,6 +33,7 @@ export default function App() {
             transition={{ duration: 0.18 }}
           >
             {activeModule === 'dashboard' && <Dashboard onNavigate={setActiveModule} />}
+            {activeModule === 'site-command' && <SiteCommandCenter />}
             {activeModule === 'civil-tools' && <CivilToolsSuite />}
             {activeModule === 'structural-sim' && <StructuralSimSuite />}
             {activeModule === 'ai-lab' && <AIVisionLab />}
