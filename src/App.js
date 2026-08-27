@@ -7,6 +7,7 @@ import VaultEngine from './modules/Vault/VaultEngine';
 import FocusEngine from './modules/Focus/FocusEngine';
 import TacticalJournal from './modules/Journal/TacticalJournal';
 import ArchitectProfile from './modules/Profile/ArchitectProfile';
+import PWAInstallButton from './components/PWAInstallButton';
 import { motion, AnimatePresence } from 'framer-motion';
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
     <SovereignProvider>
       <div className="min-h-screen bg-black text-white selection:bg-gold selection:text-black relative">
         <SovereignHeader currentModule={activeModule} onModuleChange={setActiveModule} />
-        
+
         <main className="relative z-10 pt-28 pb-16">
           <AnimatePresence mode="wait">
             <motion.div
@@ -39,6 +40,8 @@ function App() {
             </motion.div>
           </AnimatePresence>
         </main>
+
+        <PWAInstallButton />
 
         <footer className="py-8 text-center opacity-30 text-[9px] tracking-[0.5em] uppercase font-mono border-t border-white/5">
           PRIME CROWN © 2026 | ARCHITECT: MOHAMMAD TAJDARI

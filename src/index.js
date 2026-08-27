@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
 import './index.css';
+import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -9,3 +9,13 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+// ثبت PWA Service Worker
+if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
+      .register('/sw.js')
+      .then((reg) => console.log('ServiceWorker registered:', reg.scope))
+      .catch((err) => console.error('ServiceWorker failed:', err));
+  });
+}
