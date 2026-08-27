@@ -1,27 +1,19 @@
 import React, { useState } from 'react';
-import { MapPin, Truck, Thermometer, Droplets, Wind, AlertCircle, CheckCircle2, TrendingUp, Calendar, Clock, HardHat } from 'lucide-react';
+import { MapPin, Truck, Thermometer, AlertCircle, CheckCircle2, TrendingUp, HardHat } from 'lucide-react';
 
 export default function SiteCommandCenter() {
-  const [ambientTemp, setAmbientTemp] = useState(36); // دمای هوا (درجه سانتی‌گراد)
-  const [humidity, setHumidity] = useState(25); // رطوبت نسبی (%)
-  const [windSpeed, setWindSpeed] = useState(18); // سرعت باد (km/h)
-  const [concreteTemp, setConcreteTemp] = useState(30); // دمای بتن تازه (درجه سانتی‌گراد)
+  const [ambientTemp, setAmbientTemp] = useState(36);
+  const [humidity, setHumidity] = useState(25);
+  const [windSpeed, setWindSpeed] = useState(18);
+  const [concreteTemp, setConcreteTemp] = useState(30);
 
-  // محاسبه نرخ تبخیر سطحی بتن بر اساس نوموگرام ACI 305R / آبا (kg/m^2/h)
-  // رابطه تجربی تقریب نرخ تبخیر
   const Tc = concreteTemp;
   const Ta = ambientTemp;
   const r = humidity / 100;
   const V = windSpeed;
   
-  // فشار بخار اشباع
-  const es_c = 0.61078 * Math.exp((17.27 * Tc) / (Tc + 237.3));
-  const es_a = 0.61078 * Math.exp((17.27 * Ta) / (Ta + 237.3));
-  const ea = r * es_a;
-  
-  // نرخ تبخیر تقریبی (kg/m2/hr)
   const evaporationRate = Math.max(0, (Math.pow(Tc, 2.5) - r * Math.pow(Ta, 2.5)) * (1 + 0.4 * (V / 3.6)) * 1e-4 * 10);
-  const isEvaporationCritical = evaporationRate > 1.0; // حد بحرانی ۱ کیلوگرم بر مترمربع در ساعت
+  const isEvaporationCritical = evaporationRate > 1.0;
 
   const fleetStatus = [
     { id: 'FL-01', name: 'گریدر کوماتسو GD661', duty: 'پخش و تسطیح لایه زیراساس معبر اصلی', status: 'Active', fuel: '78%' },
@@ -39,7 +31,6 @@ export default function SiteCommandCenter() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 space-y-6 text-right font-sans" dir="rtl">
-      {/* سربرگ ماژول */}
       <div className="p-6 rounded-3xl bg-white border border-gray-200 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-800 text-xs font-bold border border-amber-200 mb-2">
@@ -56,7 +47,6 @@ export default function SiteCommandCenter() {
         </div>
       </div>
 
-      {/* بخش ارزیابی ریسک شرایط محیطی و بتن‌ریزی در هوای گرم */}
       <div className="p-6 rounded-3xl bg-white border border-gray-200 shadow-xs space-y-4">
         <div className="flex items-center justify-between border-b border-gray-100 pb-2">
           <h3 className="font-bold text-sm text-gray-900 flex items-center gap-2">
@@ -108,34 +98,31 @@ export default function SiteCommandCenter() {
           </div>
         </div>
 
-        {/* کارت ارزیابی نرخ تبخیر */}
         <div className={`p-4 rounded-2xl border flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-right ${
           isEvaporationCritical ? 'bg-red-50 border-red-300 text-red-950' : 'bg-emerald-50 border-emerald-300 text-emerald-950'
         }`}>
           <div>
             <span className="text-xs font-bold block">نرخ محاسبه‌شده تبخیر آب از سطح بتن:</span>
-            <span className="text-xl font-black font-mono mt-0.5 block">{evaporationRate.toFixed(2)} $kg/m^2/h$</span>
+            <span className="text-xl font-black font-mono mt-0.5 block">{evaporationRate.toFixed(2)} kg/m²/h</span>
           </div>
 
           <div className="text-xs font-bold flex items-center gap-1.5">
             {isEvaporationCritical ? (
               <>
                 <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
-                <span>هشدار بحرانی: نرخ تبخیر بیش از ۱.۰ است؛ خطر ایجاد ترک‌های خمیری پلاستیک (نیاز به کیورینگ فوری با گونی مرطوب یا ژل ترکیبات عمل‌آوری)</span>
+                <span>هشدار بحرانی: نرخ تبخیر بیش از ۱.۰ است؛ خطر ایجاد ترک‌های خمیری پلاستیک (نیاز به کیورینگ فوری با گونی مرطوب)</span>
               </>
             ) : (
               <>
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>شرایط مجاز: نرخ تبخیر در محدوده استاندارد است (عملیات بتن‌ریزی با رعایت زمان عمل‌آوری بلامانع است)</span>
+                <span>شرایط مجاز: نرخ تبخیر در محدوده استاندارد است (بتن‌ریزی با رعایت زمان عمل‌آوری بلامانع است)</span>
               </>
             )}
           </div>
         </div>
       </div>
 
-      {/* وضعیت ماشین‌آلات و پیشرفت فازها */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {/* وضعیت ناوگان ماشین‌آلات */}
         <div className="p-6 rounded-3xl bg-white border border-gray-200 shadow-xs space-y-3">
           <h3 className="font-bold text-sm text-gray-900 border-b border-gray-100 pb-2 flex items-center gap-2">
             <Truck className="w-4 h-4 text-blue-600" />
@@ -162,7 +149,6 @@ export default function SiteCommandCenter() {
           </div>
         </div>
 
-        {/* درصد پیشرفت فازهای اجرایی */}
         <div className="p-6 rounded-3xl bg-white border border-gray-200 shadow-xs space-y-3">
           <h3 className="font-bold text-sm text-gray-900 border-b border-gray-100 pb-2 flex items-center gap-2">
             <TrendingUp className="w-4 h-4 text-emerald-600" />

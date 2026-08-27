@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FileText, Copy, Printer, CheckCircle2, Sparkles, HardHat, Calendar, Clock, AlertTriangle } from 'lucide-react';
+import { FileText, Copy, Printer, CheckCircle2, Sparkles, HardHat } from 'lucide-react';
 
 export default function DailyReportGenerator() {
   const [reportDate, setReportDate] = useState('۱۴۰۵/۰۶/۰۶');
@@ -53,7 +53,6 @@ export default function DailyReportGenerator() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 space-y-6 text-right font-sans" dir="rtl">
-      {/* سربرگ */}
       <div className="p-6 rounded-3xl bg-white border border-gray-200 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200 mb-2">
@@ -83,7 +82,6 @@ export default function DailyReportGenerator() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {/* فرم ورودی پارامترهای کارگاهی */}
         <div className="p-6 rounded-3xl bg-white border border-gray-200 shadow-xs space-y-3.5 text-xs">
           <h3 className="font-bold text-sm text-gray-900 border-b border-gray-100 pb-2">
             ورودی‌های وضعیت اجرایی و فنی سایت
@@ -148,7 +146,6 @@ export default function DailyReportGenerator() {
           </div>
         </div>
 
-        {/* پیش‌نمایش برگه گزارش نظارت */}
         <div className="p-6 rounded-3xl bg-gray-50 border border-gray-200 shadow-xs flex flex-col justify-between space-y-4">
           <div className="space-y-3">
             <div className="flex items-center justify-between border-b border-gray-200 pb-2">
