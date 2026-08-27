@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { HardHat, Cpu, Eye, ArrowLeft, Sparkles, Activity, ShieldCheck, Zap } from 'lucide-react';
+import { HardHat, Cpu, Eye, ArrowLeft, Sparkles } from 'lucide-react';
 
 export default function Dashboard({ onNavigate }) {
   return (
@@ -9,7 +9,8 @@ export default function Dashboard({ onNavigate }) {
       <motion.div 
         initial={{ y: -10, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100/70 border border-emerald-300/80 text-emerald-950 text-xs font-bold mb-6 shadow-xs backdrop-blur-md"
+        whileHover={{ scale: 1.05 }}
+        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100/70 border border-emerald-300/80 text-emerald-950 text-xs font-bold mb-6 shadow-xs backdrop-blur-md cursor-default"
       >
         <Sparkles className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
         <span>پلتفرم تخصصی مهندسی عمران، بینایی ماشین و هوش مصنوعی</span>
@@ -46,26 +47,32 @@ export default function Dashboard({ onNavigate }) {
         و سامانه‌های خودگردان تمرکز دارد.
       </p>
 
-      {/* دکمه‌های کپسولی Clay با بازخورد فشاری */}
+      {/* دکمه‌های کپسولی Clay با فیزیک جهش */}
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 w-full max-w-xs sm:max-w-none mx-auto">
-        <button 
+        <motion.button 
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.96 }}
           onClick={() => onNavigate('projects')}
           className="clay-btn-emerald w-full sm:w-auto px-8 py-3.5 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2"
         >
           <span>مشاهده پروژه‌ها و مقالات فنی</span>
           <ArrowLeft className="w-4 h-4" />
-        </button>
-        <button 
+        </motion.button>
+        <motion.button 
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.96 }}
           onClick={() => onNavigate('profile')}
           className="clay-btn-white w-full sm:w-auto px-7 py-3.5 text-slate-800 font-bold text-xs sm:text-sm"
         >
           سوابق تحصیلی و کارنامه معمار
-        </button>
+        </motion.button>
       </div>
 
-      {/* کارت‌های سه‌گانه Claymorphic با آیکون‌های بالشتکی برجسته */}
+      {/* کارت‌های سه‌گانه Claymorphic با انیمیشن لمسی */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-right">
-        <div 
+        <motion.div 
+          whileHover={{ y: -6, scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
           onClick={() => onNavigate('civil-tools')}
           className="clay-card p-6 cursor-pointer space-y-4"
         >
@@ -76,9 +83,11 @@ export default function Dashboard({ onNavigate }) {
           <p className="text-xs text-slate-500 leading-relaxed">
             هدایت میدانی عملیات خاکی، تراکم ژئوتکنیک بستر و روسازی معابر منطبق بر مشخصات نشریه ۱۰۱.
           </p>
-        </div>
+        </motion.div>
 
-        <div 
+        <motion.div 
+          whileHover={{ y: -6, scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
           onClick={() => onNavigate('ai-lab')}
           className="clay-card p-6 cursor-pointer space-y-4"
         >
@@ -89,9 +98,11 @@ export default function Dashboard({ onNavigate }) {
           <p className="text-xs text-slate-500 leading-relaxed">
             تشخیص خودکار و طبقه‌بندی ترک‌های بتن با شبکه‌های عصبی عمیق در پایتورچ با دقت بالای ۹۸٪.
           </p>
-        </div>
+        </motion.div>
 
-        <div 
+        <motion.div 
+          whileHover={{ y: -6, scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
           onClick={() => onNavigate('projects')}
           className="clay-card p-6 cursor-pointer space-y-4"
         >
@@ -102,7 +113,7 @@ export default function Dashboard({ onNavigate }) {
           <p className="text-xs text-slate-500 leading-relaxed">
             سامانه مهندسی همراه ناظر با کشینگ کامل آفلاین جهت استفاده در محیط‌های بدون آنتن‌دهی کارگاهی.
           </p>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
