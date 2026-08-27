@@ -5,6 +5,7 @@ export default function SovereignHeader({ currentModule, onModuleChange }) {
   const navItems = [
     { id: 'dashboard', label: 'صفحه اصلی' },
     { id: 'civil-tools', label: 'محاسبات عمران' },
+    { id: 'structural-sim', label: 'شبیه‌ساز تنش سازه' },
     { id: 'ai-lab', label: 'بینایی ماشین' },
     { id: 'performance', label: 'پایش عملکرد' },
     { id: 'knowledge', label: 'پایگاه دانش' },

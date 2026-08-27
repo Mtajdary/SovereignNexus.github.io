@@ -3,6 +3,7 @@ import PuttyCanvas from './components/layout/PuttyCanvas';
 import SovereignHeader from './components/layout/SovereignHeader';
 import Dashboard from './modules/Dashboard/Dashboard';
 import CivilToolsSuite from './modules/CivilTools/CivilToolsSuite';
+import StructuralSimSuite from './modules/StructuralSim/StructuralSimSuite';
 import AIVisionLab from './modules/AILab/AIVisionLab';
 import PerformanceHub from './modules/Performance/PerformanceHub';
 import KnowledgeHub from './modules/KnowledgeHub/KnowledgeHub';
@@ -32,6 +33,7 @@ export default function App() {
           >
             {activeModule === 'dashboard' && <Dashboard onNavigate={setActiveModule} />}
             {activeModule === 'civil-tools' && <CivilToolsSuite />}
+            {activeModule === 'structural-sim' && <StructuralSimSuite />}
             {activeModule === 'ai-lab' && <AIVisionLab />}
             {activeModule === 'performance' && <PerformanceHub />}
             {activeModule === 'knowledge' && <KnowledgeHub />}
