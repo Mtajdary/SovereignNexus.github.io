@@ -3,8 +3,7 @@ import { motion } from 'framer-motion';
 import { MousePointer2, Sparkles, Heart } from 'lucide-react';
 
 export default function PuttyCanvas({ children }) {
-  const [mohammadClicks, setMohammadClicks] = useState(0);
-  const [visionClicks, setVisionClicks] = useState(0);
+  const [likes, setLikes] = useState(0);
 
   return (
     <div className="relative min-h-screen bg-[#fafafa] text-gray-900 selection:bg-emerald-300 font-sans overflow-x-hidden">
@@ -17,41 +16,34 @@ export default function PuttyCanvas({ children }) {
         }}
       />
 
-      {/* کرسر اول: محمد (معمار) - با قابلیت لمس، کشیدن و واکنش انیمیشنی */}
+      {/* کرسر اول: محمد (معمار) */}
       <motion.div
         drag
-        dragConstraints={{ left: -30, right: 300, top: -20, bottom: 400 }}
-        whileHover={{ scale: 1.15 }}
+        dragConstraints={{ left: -10, right: 260, top: 0, bottom: 450 }}
+        whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        onClick={() => setMohammadClicks(c => c + 1)}
-        className="absolute top-20 left-4 md:left-20 z-30 cursor-grab active:cursor-grabbing flex items-center gap-1.5 select-none"
+        onClick={() => setLikes(l => l + 1)}
+        className="absolute top-16 left-3 sm:left-16 z-30 cursor-grab active:cursor-grabbing flex items-center gap-1 select-none"
       >
-        <MousePointer2 className="w-4 h-4 text-gray-900 fill-gray-900 -rotate-12 drop-shadow-sm" />
-        <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#facc15] text-gray-950 text-xs font-black shadow-md border border-black/10 hover:shadow-lg transition-shadow">
+        <MousePointer2 className="w-3.5 h-3.5 text-gray-900 fill-gray-900 -rotate-12" />
+        <div className="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#facc15] text-gray-950 text-[10px] font-bold shadow-xs border border-black/10">
           <span>Mohammad</span>
-          {mohammadClicks > 0 ? (
-            <span className="flex items-center text-[10px] text-red-600 font-mono">
-              <Heart className="w-3 h-3 fill-red-500 inline" /> {mohammadClicks}
-            </span>
-          ) : (
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-          )}
+          {likes > 0 && <span className="text-red-600 flex items-center gap-0.5"><Heart className="w-2.5 h-2.5 fill-red-500" />{likes}</span>}
         </div>
       </motion.div>
 
-      {/* کرسر دوم: هوش مصنوعی - تعاملی و دارای قابلیت کشیدن */}
+      {/* کرسر دوم: هوش مصنوعی */}
       <motion.div
         drag
-        dragConstraints={{ left: -250, right: 40, top: -20, bottom: 400 }}
-        whileHover={{ scale: 1.15 }}
+        dragConstraints={{ left: -260, right: 10, top: 0, bottom: 450 }}
+        whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        onClick={() => setVisionClicks(c => c + 1)}
-        className="absolute top-24 right-4 md:right-20 z-30 cursor-grab active:cursor-grabbing flex items-center gap-1.5 select-none"
+        className="absolute top-16 right-3 sm:right-16 z-30 cursor-grab active:cursor-grabbing flex items-center gap-1 select-none"
       >
-        <MousePointer2 className="w-4 h-4 text-gray-900 fill-gray-900 -rotate-12 drop-shadow-sm" />
-        <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#38bdf8] text-gray-950 text-xs font-black shadow-md border border-black/10 hover:shadow-lg transition-shadow">
+        <MousePointer2 className="w-3.5 h-3.5 text-gray-900 fill-gray-900 -rotate-12" />
+        <div className="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#38bdf8] text-gray-950 text-[10px] font-bold shadow-xs border border-black/10">
           <span>Vision AI</span>
-          <Sparkles className="w-3 h-3 text-blue-800 animate-spin" />
+          <Sparkles className="w-2.5 h-2.5 text-blue-900" />
         </div>
       </motion.div>
 
