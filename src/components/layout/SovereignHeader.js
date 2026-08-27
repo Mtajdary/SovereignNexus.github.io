@@ -4,9 +4,10 @@ import { Crown } from 'lucide-react';
 export default function SovereignHeader({ currentModule, onModuleChange }) {
   const navItems = [
     { id: 'dashboard', label: 'صفحه اصلی' },
-    { id: 'civil-tools', label: 'ابزارهای محاسباتی عمران' },
+    { id: 'civil-tools', label: 'محاسبات عمران' },
+    { id: 'ai-lab', label: 'آزمایشگاه بینایی ماشین' },
     { id: 'projects', label: 'پروژه‌ها و مقالات' },
-    { id: 'profile', label: 'درباره من و مهارت‌ها' },
+    { id: 'profile', label: 'درباره من' },
     { id: 'journal', label: 'دفترچه یادداشت' },
   ];
 
