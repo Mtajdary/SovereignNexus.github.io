@@ -6,6 +6,7 @@ export default function SovereignHeader({ currentModule, onModuleChange }) {
     { id: 'dashboard', label: 'صفحه اصلی' },
     { id: 'civil-tools', label: 'محاسبات عمران' },
     { id: 'ai-lab', label: 'بینایی ماشین' },
+    { id: 'performance', label: 'پایش عملکرد' },
     { id: 'knowledge', label: 'پایگاه دانش' },
     { id: 'projects', label: 'پروژه‌ها' },
     { id: 'profile', label: 'درباره من' },

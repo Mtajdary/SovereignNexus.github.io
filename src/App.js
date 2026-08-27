@@ -4,6 +4,7 @@ import SovereignHeader from './components/layout/SovereignHeader';
 import Dashboard from './modules/Dashboard/Dashboard';
 import CivilToolsSuite from './modules/CivilTools/CivilToolsSuite';
 import AIVisionLab from './modules/AILab/AIVisionLab';
+import PerformanceHub from './modules/Performance/PerformanceHub';
 import KnowledgeHub from './modules/KnowledgeHub/KnowledgeHub';
 import ProjectsSection from './modules/Projects/ProjectsSection';
 import ContactResumeSuite from './modules/Contact/ContactResumeSuite';
@@ -32,6 +33,7 @@ export default function App() {
             {activeModule === 'dashboard' && <Dashboard onNavigate={setActiveModule} />}
             {activeModule === 'civil-tools' && <CivilToolsSuite />}
             {activeModule === 'ai-lab' && <AIVisionLab />}
+            {activeModule === 'performance' && <PerformanceHub />}
             {activeModule === 'knowledge' && <KnowledgeHub />}
             {activeModule === 'projects' && <ProjectsSection />}
             {activeModule === 'profile' && <ArchitectProfile />}
@@ -40,7 +42,6 @@ export default function App() {
           </motion.div>
         </AnimatePresence>
 
-        {/* ماژول پایش و پشتیبان‌گیری زنده داده‌ها */}
         <SystemDiagnostics />
       </main>
 
