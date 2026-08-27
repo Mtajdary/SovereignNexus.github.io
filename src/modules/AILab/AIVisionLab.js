@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Eye, Cpu, Activity, CheckCircle2, AlertTriangle, Layers, Play, RefreshCw, BarChart2 } from 'lucide-react';
+import { Eye, Cpu, Activity, CheckCircle2, RefreshCw } from 'lucide-react';
 
 export default function AIVisionLab() {
   const [selectedSample, setSelectedSample] = useState(1);
@@ -8,7 +8,7 @@ export default function AIVisionLab() {
     label: 'ترک سازه‌ای فعال (Positive - Cracked)',
     confidence: 98.4,
     crackWidth: '1.8 mm',
-    severity: 'متوسط رو به شدید (نیاز به تزریق رزین اپوکسی)',
+    severity: 'متوسط رو به شدید (نیازمند ترمیم تخصصی)',
     inferenceTime: '14.2 ms',
     features: ['انشعاب طولی', 'عرض متغیر', 'افت چسبندگی سنگدانه']
   });
@@ -16,7 +16,7 @@ export default function AIVisionLab() {
   const samples = [
     { id: 1, name: 'نمونه ۱: ترک برشی تیر بتنی', type: 'cracked', desc: 'شکستگی مایل ناشی از تنش‌های برشی' },
     { id: 2, name: 'نمونه ۲: سطح بتن سالم و یکنواخت', type: 'intact', desc: 'بدون ناپیوستگی سطحی یا میکروترک' },
-    { id: 3, name: 'نمونه ۳: میکروترک‌های حرارتی/جمع‌شدگی', type: 'cracked', desc: 'ترک‌های شبکه‌ای مویی ناشی از هیدراتاسیون' }
+    { id: 3, name: 'نمونه ۳: میکروترک‌های جمع‌شدگی', type: 'cracked', desc: 'ترک‌های شبکه‌ای مویی ناشی از هیدراتاسیون' }
   ];
 
   const handleRunInference = (sampleId) => {
@@ -58,43 +58,40 @@ export default function AIVisionLab() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 space-y-6 text-right font-sans" dir="rtl">
-      {/* سربرگ ماژول */}
-      <div className="p-6 rounded-3xl bg-white border border-gray-200 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-50 text-sky-800 text-xs font-bold border border-sky-200 mb-2">
-            <Eye className="w-3.5 h-3.5 text-sky-600" />
-            <span>STRUCTURAL HEALTH MONITORING (SHM)</span>
-          </div>
-          <h2 className="text-xl sm:text-2xl font-black text-gray-900">آزمایشگاه بینایی ماشین و تشخیص خودکار آسیب بتن</h2>
-          <p className="text-xs text-gray-500 mt-0.5">پایپ‌لاین یادگیری عمیق ResNet-18 آموزش‌دیده در PyTorch جهت طبقه‌بندی تصاویر سازه‌ای</p>
+      {/* سربرگ */}
+      <div className="clay-card p-6 sm:p-8 space-y-2">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-100/80 border border-sky-300 text-sky-900 text-xs font-bold shadow-xs">
+          <Eye className="w-4 h-4 text-sky-600" />
+          <span>SHM AI INFERENCE PIPELINE</span>
         </div>
+        <h2 className="text-xl sm:text-2xl font-black text-slate-900">آزمایشگاه بینایی ماشین و پایش سلامت سازه</h2>
+        <p className="text-xs text-slate-500 leading-relaxed">استنتاج بلادرنگ مدل ResNet-18 آموزش‌دیده در PyTorch جهت طبقه‌بندی خودکار ترک‌های بتن</p>
       </div>
 
-      {/* بخش شبیه‌ساز استنتاج هوش مصنوعی */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {/* پنل انتخاب نمونه و تصویر ورودی */}
-        <div className="p-6 rounded-3xl bg-white border border-gray-200 shadow-xs space-y-4">
-          <h3 className="font-bold text-sm text-gray-900 border-b border-gray-100 pb-2">
-            انتخاب ورودی تصویر جهت استنتاج مدل (Inference)
+        {/* انتخاب تصویر و نمونه */}
+        <div className="clay-card p-6 space-y-4">
+          <h3 className="font-bold text-sm text-slate-900 border-b border-slate-100 pb-2">
+            انتخاب ورودی تصویر جهت تحلیل
           </h3>
 
-          <div className="space-y-2">
+          <div className="space-y-2.5">
             {samples.map((s) => (
               <button
                 key={s.id}
                 onClick={() => handleRunInference(s.id)}
-                className={`w-full p-3 rounded-2xl text-right transition-all border flex items-center justify-between ${
+                className={`w-full p-3.5 rounded-2xl text-right transition-all border flex items-center justify-between ${
                   selectedSample === s.id
-                    ? 'border-sky-400 bg-sky-50/70'
-                    : 'border-gray-200 bg-gray-50 hover:bg-gray-100/60'
+                    ? 'border-sky-400 bg-sky-50/90 shadow-sm'
+                    : 'border-slate-200 bg-white/70 hover:bg-slate-50'
                 }`}
               >
                 <div>
-                  <h4 className="font-bold text-xs text-gray-900">{s.name}</h4>
-                  <p className="text-[11px] text-gray-500 mt-0.5">{s.desc}</p>
+                  <h4 className="font-bold text-xs text-slate-900">{s.name}</h4>
+                  <p className="text-[11px] text-slate-500 mt-0.5">{s.desc}</p>
                 </div>
-                <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                  selectedSample === s.id ? 'bg-sky-600 text-white' : 'bg-gray-200 text-gray-600'
+                <div className={`w-7 h-7 rounded-xl flex items-center justify-center text-xs font-bold ${
+                  selectedSample === s.id ? 'bg-sky-600 text-white shadow-xs' : 'bg-slate-100 text-slate-600'
                 }`}>
                   {s.id}
                 </div>
@@ -102,41 +99,36 @@ export default function AIVisionLab() {
             ))}
           </div>
 
-          <div className="p-4 rounded-2xl bg-gray-900 text-white space-y-2 font-mono text-xs">
-            <div className="flex items-center justify-between text-gray-400 border-b border-gray-800 pb-1.5">
-              <span>MODEL ARCHITECTURE</span>
-              <span className="text-sky-400 font-bold">ResNet-18 Pretrained</span>
+          <div className="p-4 rounded-2xl bg-slate-900 text-white space-y-2 font-mono text-xs shadow-inner">
+            <div className="flex items-center justify-between text-slate-400 border-b border-slate-800 pb-1.5">
+              <span>BACKBONE</span>
+              <span className="text-sky-400 font-bold">ResNet-18 Transfer</span>
             </div>
-            <div className="flex items-center justify-between text-gray-300">
-              <span>Input Resolution:</span>
-              <span>224 x 224 x 3 (Normalized)</span>
-            </div>
-            <div className="flex items-center justify-between text-gray-300">
-              <span>Framework:</span>
-              <span className="text-emerald-400">PyTorch 2.x & CUDA</span>
+            <div className="flex items-center justify-between text-slate-300">
+              <span>Resolution:</span>
+              <span>224 × 224 × 3</span>
             </div>
           </div>
         </div>
 
-        {/* پنل نتایج پردازش و ویژگی‌های استخراج‌شده */}
-        <div className="p-6 rounded-3xl bg-white border border-gray-200 shadow-xs flex flex-col justify-between space-y-4">
+        {/* نتایج استنتاج هوش مصنوعی */}
+        <div className="clay-card p-6 flex flex-col justify-between space-y-4">
           <div className="space-y-4">
-            <div className="flex items-center justify-between border-b border-gray-100 pb-2">
-              <h3 className="font-bold text-sm text-gray-900">خروجی استنتاج شبکه عصبی</h3>
+            <div className="flex items-center justify-between border-b border-slate-100 pb-2">
+              <h3 className="font-bold text-sm text-slate-900">خروجی استنتاج شبکه عصبی</h3>
               {isProcessing && (
                 <span className="text-[11px] font-mono font-bold text-sky-600 flex items-center gap-1 animate-pulse">
-                  <RefreshCw className="w-3 h-3 animate-spin" /> در حال پردازش تنسور...
+                  <RefreshCw className="w-3 h-3 animate-spin" /> در حال پردازش...
                 </span>
               )}
             </div>
 
-            {/* کارت نتیجه نهایی */}
             <div className={`p-4 rounded-2xl border text-center space-y-2 ${
               analysisResult.label.includes('Negative')
                 ? 'bg-emerald-50 border-emerald-300 text-emerald-950'
                 : 'bg-amber-50 border-amber-300 text-amber-950'
             }`}>
-              <span className="text-xs font-bold block text-gray-600">کلاس پیش‌بینی‌شده (Prediction):</span>
+              <span className="text-xs font-bold block text-slate-600">کلاس شناسایی‌شده:</span>
               <h4 className="text-base sm:text-lg font-black">{analysisResult.label}</h4>
               <div className="flex items-center justify-center gap-4 pt-1 font-mono text-xs">
                 <span>اطمینان مدل: <strong>{analysisResult.confidence}%</strong></span>
@@ -145,32 +137,20 @@ export default function AIVisionLab() {
               </div>
             </div>
 
-            {/* مشخصات مهندسی استخراج‌شده */}
             <div className="grid grid-cols-2 gap-3 text-center">
-              <div className="p-3 rounded-2xl bg-gray-50 border border-gray-200">
-                <span className="text-[10px] text-gray-500 block">تخمین عرض بازشدگی ترک</span>
-                <span className="text-sm font-black font-mono text-gray-900">{analysisResult.crackWidth}</span>
+              <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200">
+                <span className="text-[10px] text-slate-500 block">عرض بازشدگی ترک</span>
+                <span className="text-sm font-black font-mono text-slate-900">{analysisResult.crackWidth}</span>
               </div>
-              <div className="p-3 rounded-2xl bg-gray-50 border border-gray-200">
-                <span className="text-[10px] text-gray-500 block">سطح ریسک مهندسی</span>
-                <span className="text-xs font-bold text-gray-900">{analysisResult.severity}</span>
-              </div>
-            </div>
-
-            <div>
-              <span className="text-xs font-bold text-gray-700 block mb-1.5">الگوهای بصری شناسایی‌شده:</span>
-              <div className="flex flex-wrap gap-1.5">
-                {analysisResult.features.map((f, i) => (
-                  <span key={i} className="px-2.5 py-1 rounded-lg bg-gray-100 border border-gray-200 text-gray-700 text-[11px]">
-                    {f}
-                  </span>
-                ))}
+              <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200">
+                <span className="text-[10px] text-slate-500 block">سطح ریسک مهندسی</span>
+                <span className="text-xs font-bold text-slate-900">{analysisResult.severity}</span>
               </div>
             </div>
           </div>
 
-          <div className="text-[11px] text-gray-500 bg-gray-50 p-2.5 rounded-xl border border-gray-200 leading-relaxed font-mono">
-            Pipeline: Convolutional Feature Extractor &rarr; Global Average Pool &rarr; Softmax Classifier
+          <div className="text-[11px] text-slate-500 bg-slate-50 p-2.5 rounded-xl border border-slate-200 leading-relaxed font-mono">
+            Pipeline: Convolutional Feature Extractor &rarr; GAP &rarr; Softmax
           </div>
         </div>
       </div>
