@@ -4,6 +4,7 @@ import { Crown } from 'lucide-react';
 export default function SovereignHeader({ currentModule, onModuleChange }) {
   const navItems = [
     { id: 'dashboard', label: 'صفحه اصلی' },
+    { id: 'daily-report', label: 'گزارش‌ساز کارگاه' },
     { id: 'site-command', label: 'پایش کارگاه' },
     { id: 'civil-tools', label: 'محاسبات عمران' },
     { id: 'structural-sim', label: 'شبیه‌ساز سازه' },
