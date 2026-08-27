@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Menu, X, LayoutGrid, Cpu, User, Send, BookOpen } from 'lucide-react';
+import { Sparkles, Menu, X, LayoutGrid, Cpu, Send, BookOpen, Layers } from 'lucide-react';
 
 export default function SovereignHeader({ currentModule, onModuleChange }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { id: 'dashboard', label: 'خدمات و راهکارها (Services)', icon: LayoutGrid },
-    { id: 'engineering-lab', label: 'آزمایشگاه ابزارها (Tools Lab)', icon: Cpu },
-    { id: 'knowledge', label: 'پایگاه دانش (Specs)', icon: BookOpen },
-    { id: 'profile', label: 'درباره و سوابق (About)', icon: User },
-    { id: 'contact', label: 'درخواست همکاری (Hire / Contact)', icon: Send },
+    { id: 'dashboard', label: 'خدمات مهندسی (Services)', icon: LayoutGrid },
+    { id: 'engineering-lab', label: 'موتور ابزارها و محاسبات (Tools Lab)', icon: Cpu },
+    { id: 'knowledge', label: 'مشخصات فنی و استانداردها (Specs)', icon: BookOpen },
+    { id: 'contact', label: 'استعلام پروژه و همکاری (Inquiries)', icon: Send },
   ];
 
   const handleSelect = (id) => {
@@ -22,7 +21,7 @@ export default function SovereignHeader({ currentModule, onModuleChange }) {
     <>
       <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-slate-200/80 px-4 sm:px-8 py-3">
         <div className="max-w-5xl mx-auto flex items-center justify-between gap-3" dir="rtl">
-          {/* لوگوی انگلیسی و مینیمال برند */}
+          {/* نشان برند مهندسی بدون نام شخصی */}
           <div 
             className="flex items-center gap-2.5 cursor-pointer shrink-0"
             onClick={() => handleSelect('dashboard')}
@@ -35,7 +34,7 @@ export default function SovereignHeader({ currentModule, onModuleChange }) {
                 Prime Crown <span className="text-slate-400 font-normal">| Labs</span>
               </span>
               <span className="text-[9px] text-slate-500 font-mono">
-                Mohammad Tajdari
+                Civil &amp; AI Engineering Suite
               </span>
             </div>
           </div>
@@ -121,7 +120,7 @@ export default function SovereignHeader({ currentModule, onModuleChange }) {
               </div>
 
               <div className="text-[10px] text-slate-400 text-center font-mono border-t border-slate-100 pt-3">
-                M. Tajdari &bull; Civil &amp; AI
+                Prime Crown &bull; Automated Systems
               </div>
             </motion.div>
           </>

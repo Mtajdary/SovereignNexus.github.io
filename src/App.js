@@ -4,7 +4,6 @@ import SovereignHeader from './components/layout/SovereignHeader';
 import Dashboard from './modules/Dashboard/Dashboard';
 import EngineeringSuite from './modules/EngineeringLab/EngineeringSuite';
 import KnowledgeHub from './modules/KnowledgeHub/KnowledgeHub';
-import ArchitectProfile from './modules/Profile/ArchitectProfile';
 import ContactResumeSuite from './modules/Contact/ContactResumeSuite';
 import TacticalJournal from './modules/Journal/TacticalJournal';
 import SystemDiagnostics from './components/SystemDiagnostics';
@@ -30,7 +29,6 @@ export default function App() {
             {activeModule === 'dashboard' && <Dashboard onNavigate={setActiveModule} />}
             {activeModule === 'engineering-lab' && <EngineeringSuite />}
             {activeModule === 'knowledge' && <KnowledgeHub />}
-            {activeModule === 'profile' && <ArchitectProfile />}
             {activeModule === 'contact' && <ContactResumeSuite />}
             {activeModule === 'journal' && <TacticalJournal />}
           </motion.div>
@@ -40,7 +38,7 @@ export default function App() {
       </main>
 
       <footer className="py-6 text-center text-slate-400 text-[10px] font-mono tracking-widest uppercase border-t border-slate-200/60">
-        PRIME CROWN LABS &bull; CIVIL &amp; AI ENGINEERING &bull; ۲۰۲۶
+        PRIME CROWN ENGINEERING LABS &bull; CIVIL &amp; AI SYSTEMS &bull; ۲۰۲۶
       </footer>
 
       <PWAInstallButton />
