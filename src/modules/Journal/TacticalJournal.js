@@ -1,43 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import { useSovereign } from '../../context/SovereignContext';
-import { Plus, Trash2, FileText } from 'lucide-react';
+import { Plus, Trash2, FileText, CheckCircle2 } from 'lucide-react';
 
 export default function TacticalJournal() {
-  const { setPoints } = useSovereign() || {};
   const [logs, setLogs] = useState(() => {
     try {
-      return JSON.parse(localStorage.getItem('pc_tactical_logs')) || [
-        { id: 1, date: '2026-08-28', title: 'بررسی لایه‌های اساس و پایش ترک‌های کارگاهی', category: 'عمران و نظارت' },
-        { id: 2, date: '2026-08-27', title: 'توسعه معماری PWA و اتصال لایه کشینگ آفلاین', category: 'توسعه نرم‌افزار' }
+      return JSON.parse(localStorage.getItem('mt_engineering_logs')) || [
+        { id: 1, date: '۱۴۰۵/۰۶/۰۶', title: 'بررسی نتایج آزمایش تراکم نسبی لایه زیراساس (بستر معابر)', category: 'عمران و نظارت' },
+        { id: 2, date: '۱۴۰۵/۰۶/۰۵', title: 'بهینه‌سازی لایه Service Worker در PWA جهت افزایش سرعت لود آفلاین', category: 'توسعه نرم‌افزار' }
       ];
     } catch {
       return [];
     }
   });
 
-  const [newTitle, setNewTitle] = useState('');
-  const [newCategory, setNewCategory] = useState('عمران و نظارت');
+  const [title, setTitle] = useState('');
+  const [category, setCategory] = useState('عمران و نظارت');
 
   useEffect(() => {
     try {
-      localStorage.setItem('pc_tactical_logs', JSON.stringify(logs));
+      localStorage.setItem('mt_engineering_logs', JSON.stringify(logs));
     } catch (e) {}
   }, [logs]);
 
-  const handleAddLog = (e) => {
+  const handleAdd = (e) => {
     e.preventDefault();
-    if (!newTitle.trim()) return;
+    if (!title.trim()) return;
 
-    const newEntry = {
+    const newLog = {
       id: Date.now(),
-      date: new Date().toISOString().split('T')[0],
-      title: newTitle.trim(),
-      category: newCategory
+      date: new Intl.DateTimeFormat('fa-IR').format(new Date()),
+      title: title.trim(),
+      category
     };
 
-    setLogs([newEntry, ...logs]);
-    setNewTitle('');
-    if (setPoints) setPoints(p => p + 50);
+    setLogs([newLog, ...logs]);
+    setTitle('');
   };
 
   const handleDelete = (id) => {
@@ -46,50 +43,42 @@ export default function TacticalJournal() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 space-y-4 text-right" dir="rtl">
-      {/* کارت سربرگ ژورنال */}
-      <div className="p-5 sm:p-6 rounded-3xl bg-white border border-gray-200 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-        <div>
-          <h2 className="text-xl sm:text-2xl font-black text-gray-900">ژورنال عملیاتی و گزارش‌ها</h2>
-          <p className="text-xs text-gray-500 mt-0.5">ثبت مستندات کارگاهی، آزمون‌ها و لاگ‌های توسعه</p>
-        </div>
-        <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200 self-start sm:self-auto">
-          +50 امتیاز به ازای هر گزارش
-        </span>
+      <div className="p-5 sm:p-6 rounded-3xl bg-white border border-gray-200 shadow-xs">
+        <h2 className="text-xl sm:text-2xl font-black text-gray-900">دفترچه یادداشت و گزارش‌های مهندسی</h2>
+        <p className="text-xs text-gray-500 mt-0.5">ثبت سریع رخدادهای کارگاهی، آزمون‌ها و ایده‌های فنی</p>
       </div>
 
-      {/* فرم ثبت گزارش ریسپانسیو */}
-      <form onSubmit={handleAddLog} className="p-4 rounded-3xl bg-white border border-gray-200 shadow-xs space-y-3">
+      <form onSubmit={handleAdd} className="p-4 rounded-3xl bg-white border border-gray-200 shadow-xs space-y-3">
         <input
           type="text"
-          value={newTitle}
-          onChange={(e) => setNewTitle(e.target.value)}
-          placeholder="عنوان گزارش یا اقدام انجام‌شده..."
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="عنوان گزارش یا یادداشت فنی جدید را بنویسید..."
           className="w-full px-4 py-2.5 rounded-2xl bg-gray-50 border border-gray-200 text-xs text-gray-900 focus:outline-none focus:border-emerald-500"
         />
         
         <div className="flex flex-col sm:flex-row gap-2">
           <select
-            value={newCategory}
-            onChange={(e) => setNewCategory(e.target.value)}
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
             className="w-full sm:w-auto px-4 py-2 rounded-2xl bg-gray-50 border border-gray-200 text-xs text-gray-700 focus:outline-none"
           >
-            <option value="عمران و نظارت">عمران و نظارت میدانی</option>
+            <option value="عمران و نظارت">عمران و نظارت کارگاهی</option>
             <option value="بینایی ماشین">هوش مصنوعی و بینایی ماشین</option>
-            <option value="توسعه نرم‌افزار">توسعه نرم‌افزار و سیستم‌ها</option>
+            <option value="توسعه نرم‌افزار">توسعه نرم‌افزار و وب</option>
           </select>
           
           <button
             type="submit"
-            className="w-full sm:w-auto px-6 py-2.5 rounded-2xl bg-[#22c55e] hover:bg-[#16a34a] text-white text-xs font-bold shadow-xs transition-all flex items-center justify-center gap-1.5 shrink-0"
+            className="w-full sm:w-auto px-6 py-2 rounded-2xl bg-[#22c55e] hover:bg-[#16a34a] text-white text-xs font-bold shadow-xs transition-all flex items-center justify-center gap-1.5"
           >
             <Plus className="w-4 h-4" />
-            <span>ثبت گزارش</span>
+            <span>ثبت در دفترچه</span>
           </button>
         </div>
       </form>
 
-      {/* لیست لاگ‌ها */}
-      <div className="space-y-2.5">
+      <div className="space-y-2">
         {logs.map((log) => (
           <div key={log.id} className="p-3.5 rounded-2xl bg-white border border-gray-200 shadow-xs flex items-center justify-between gap-3">
             <div className="flex items-center gap-3 min-w-0">
