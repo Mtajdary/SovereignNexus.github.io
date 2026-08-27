@@ -4,13 +4,10 @@ import { MousePointer2, Sparkles, Heart } from 'lucide-react';
 
 export default function PuttyCanvas({ children, activeModule }) {
   const [likes, setLikes] = useState(0);
-
-  // نمایش کرسرها فقط در صفحه اصلی یا روی دسکتاپ
   const showCursors = activeModule === 'dashboard';
 
   return (
     <div className="relative min-h-screen bg-[#fafafa] text-gray-900 selection:bg-emerald-300 font-sans overflow-x-hidden">
-      {/* شبکه نقطه‌چین Google Labs */}
       <div 
         className="fixed inset-0 pointer-events-none opacity-40 z-0"
         style={{
@@ -19,7 +16,6 @@ export default function PuttyCanvas({ children, activeModule }) {
         }}
       />
 
-      {/* کرسر اول: محمد */}
       {showCursors && (
         <motion.div
           drag
@@ -37,7 +33,6 @@ export default function PuttyCanvas({ children, activeModule }) {
         </motion.div>
       )}
 
-      {/* کرسر دوم: هوش مصنوعی */}
       {showCursors && (
         <motion.div
           drag

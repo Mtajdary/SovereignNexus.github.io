@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Wifi, WifiOff, HardDrive, Download, Trash2, CheckCircle2 } from 'lucide-react';
+import { Wifi, WifiOff, HardDrive, Download } from 'lucide-react';
 
 export default function SystemDiagnostics() {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
@@ -12,7 +12,6 @@ export default function SystemDiagnostics() {
     window.addEventListener('online', handleOnline);
     window.addEventListener('offline', handleOffline);
 
-    // محاسبه حجم تقریبی حافظه محلی
     try {
       let total = 0;
       for (let x in localStorage) {
@@ -47,7 +46,6 @@ export default function SystemDiagnostics() {
   return (
     <div className="max-w-4xl mx-auto px-4 mt-8" dir="rtl">
       <div className="p-4 rounded-3xl bg-white border border-gray-200 shadow-xs flex flex-wrap items-center justify-between gap-3 text-xs">
-        {/* وضعیت اتصال شبکه */}
         <div className="flex items-center gap-2">
           {isOnline ? (
             <span className="flex items-center gap-1.5 text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full font-bold border border-emerald-200">
@@ -67,7 +65,6 @@ export default function SystemDiagnostics() {
           </span>
         </div>
 
-        {/* دکمه دانلود بک‌آپ */}
         <button
           onClick={handleExportAllData}
           className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold transition-all"

@@ -21,7 +21,6 @@ export default function EngineeringSuite({ initialTool = 'civil-tools' }) {
 
   return (
     <div className="space-y-6">
-      {/* زیرمنوی کپسولی انتخاب ابزار مهندسی */}
       <div className="max-w-4xl mx-auto px-4" dir="rtl">
         <div className="p-1.5 rounded-full bg-gray-200/80 border border-gray-300/60 flex items-center gap-1 overflow-x-auto no-scrollbar shadow-inner">
           {tools.map((t) => {
@@ -45,7 +44,6 @@ export default function EngineeringSuite({ initialTool = 'civil-tools' }) {
         </div>
       </div>
 
-      {/* نمایش کامپوننت فعال */}
       {activeTool === 'civil-tools' && <CivilToolsSuite />}
       {activeTool === 'structural-sim' && <StructuralSimSuite />}
       {activeTool === 'ai-lab' && <AIVisionLab />}
