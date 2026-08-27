@@ -2,17 +2,11 @@ import React, { useState } from 'react';
 import PuttyCanvas from './components/layout/PuttyCanvas';
 import SovereignHeader from './components/layout/SovereignHeader';
 import Dashboard from './modules/Dashboard/Dashboard';
-import DailyReportGenerator from './modules/DailyReport/DailyReportGenerator';
-import SiteCommandCenter from './modules/SiteCommand/SiteCommandCenter';
-import CivilToolsSuite from './modules/CivilTools/CivilToolsSuite';
-import StructuralSimSuite from './modules/StructuralSim/StructuralSimSuite';
-import AIVisionLab from './modules/AILab/AIVisionLab';
-import PerformanceHub from './modules/Performance/PerformanceHub';
-import KnowledgeHub from './modules/KnowledgeHub/KnowledgeHub';
+import EngineeringSuite from './modules/EngineeringLab/EngineeringSuite';
 import ProjectsSection from './modules/Projects/ProjectsSection';
+import KnowledgeHub from './modules/KnowledgeHub/KnowledgeHub';
 import ContactResumeSuite from './modules/Contact/ContactResumeSuite';
 import TacticalJournal from './modules/Journal/TacticalJournal';
-import ArchitectProfile from './modules/Profile/ArchitectProfile';
 import SystemDiagnostics from './components/SystemDiagnostics';
 import PWAInstallButton from './components/PWAInstallButton';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -21,10 +15,10 @@ export default function App() {
   const [activeModule, setActiveModule] = useState('dashboard');
 
   return (
-    <PuttyCanvas>
+    <PuttyCanvas activeModule={activeModule}>
       <SovereignHeader currentModule={activeModule} onModuleChange={setActiveModule} />
       
-      <main className="pt-6 pb-12 min-h-[85vh]">
+      <main className="pt-6 pb-16 min-h-[85vh]">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeModule}
@@ -33,17 +27,24 @@ export default function App() {
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.18 }}
           >
-            {activeModule === 'dashboard' && <Dashboard onNavigate={setActiveModule} />}
-            {activeModule === 'daily-report' && <DailyReportGenerator />}
-            {activeModule === 'site-command' && <SiteCommandCenter />}
-            {activeModule === 'civil-tools' && <CivilToolsSuite />}
-            {activeModule === 'structural-sim' && <StructuralSimSuite />}
-            {activeModule === 'ai-lab' && <AIVisionLab />}
-            {activeModule === 'performance' && <PerformanceHub />}
-            {activeModule === 'knowledge' && <KnowledgeHub />}
-            {activeModule === 'projects' && <ProjectsSection />}
-            {activeModule === 'profile' && <ArchitectProfile />}
-            {activeModule === 'contact' && <ContactResumeSuite />}
+            {activeModule === 'dashboard' && (
+              <Dashboard 
+                onNavigate={(dest) => {
+                  if (dest === 'projects') setActiveModule('projects-hub');
+                  else if (dest === 'profile') setActiveModule('profile-resume');
+                  else if (dest === 'vault' || dest === 'civil-tools') setActiveModule('engineering-lab');
+                  else setActiveModule(dest);
+                }} 
+              />
+            )}
+            {activeModule === 'engineering-lab' && <EngineeringSuite />}
+            {activeModule === 'projects-hub' && (
+              <div className="space-y-8">
+                <ProjectsSection />
+                <KnowledgeHub />
+              </div>
+            )}
+            {activeModule === 'profile-resume' && <ContactResumeSuite />}
             {activeModule === 'journal' && <TacticalJournal />}
           </motion.div>
         </AnimatePresence>
