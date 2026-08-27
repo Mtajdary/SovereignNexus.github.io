@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { SovereignProvider } from './context/SovereignContext';
-import BiometricGate from './modules/Auth/BiometricGate';
 import SovereignHeader from './components/layout/SovereignHeader';
 import Dashboard from './modules/Dashboard/Dashboard';
 import VaultEngine from './modules/Vault/VaultEngine';
@@ -11,18 +10,13 @@ import PWAInstallButton from './components/PWAInstallButton';
 import { motion, AnimatePresence } from 'framer-motion';
 
 function App() {
-  const [isAuthorized, setIsAuthorized] = useState(false);
   const [activeModule, setActiveModule] = useState('dashboard');
-
-  if (!isAuthorized) {
-    return <BiometricGate onAccessGranted={() => setIsAuthorized(true)} />;
-  }
 
   return (
     <SovereignProvider>
-      <div className="min-h-screen bg-black text-white selection:bg-gold selection:text-black relative">
+      <div className="min-h-screen bg-black text-white selection:bg-amber-400 selection:text-black relative">
         <SovereignHeader currentModule={activeModule} onModuleChange={setActiveModule} />
-
+        
         <main className="relative z-10 pt-28 pb-16">
           <AnimatePresence mode="wait">
             <motion.div
@@ -30,7 +24,7 @@ function App() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.3 }}
             >
               {activeModule === 'dashboard' && <Dashboard />}
               {activeModule === 'vault' && <VaultEngine />}
@@ -41,11 +35,11 @@ function App() {
           </AnimatePresence>
         </main>
 
-        <PWAInstallButton />
-
         <footer className="py-8 text-center opacity-30 text-[9px] tracking-[0.5em] uppercase font-mono border-t border-white/5">
           PRIME CROWN © 2026 | ARCHITECT: MOHAMMAD TAJDARI
         </footer>
+
+        <PWAInstallButton />
       </div>
     </SovereignProvider>
   );
