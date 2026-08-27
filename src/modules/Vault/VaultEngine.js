@@ -1,154 +1,176 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSovereign } from '../../context/SovereignContext';
-import { Lock, Unlock, Download, ShieldAlert, Zap, Globe, Cpu, CheckCircle2, X } from 'lucide-react';
-
-const INTEL_ASSETS = [
-  {
-    id: `v1`,
-    title: `80/20 MENTAL ARCHITECTURE`,
-    cost: 450,
-    tier: `STRATEGIST`,
-    desc: `چارچوب تفکر استراتژیک برای اولویت‌بندی تسک‌های حیاتی و حذف ۸۰٪ هدررفت انرژی ذهنی.`,
-    content: `پروتکل اجرایی:
-۱. هر صبح تنها ۲ تسک حیاتی با بالاترین اهرم ارزش را مشخص کنید.
-۲. ورود به شبکه‌های اجتماعی و پیام‌ها را تا اتمام تسک اول ممنوع کنید.
-۳. شاخص پیشرفت را فقط با خروجی‌های ملموس اندازه‌گیری نمایید.`,
-    icon: Zap
-  },
-  {
-    id: `v2`,
-    title: `BIO-CIRCADIAN CODES`,
-    cost: 750,
-    tier: `STRATEGIST`,
-    desc: `مهندسی زمان‌بندی بیولوژیک، بهینه‌سازی ریتم خواب و اوج ترشح انتقال‌دهنده‌های عصبی.`,
-    content: `کدهای بیولوژیک:
-- دریافت نور مستقیم خورشید ظرف ۳۰ دقیقه پس از بیداری
-- عدم مصرف کافئین تا ۹۰ دقیقه پس از بیدار شدن برای تثبیت آدنوزین
-- بلوک تمرکز ۹۰ دقیقه‌ای در اوج نوسان دمای بدن.`,
-    icon: Globe
-  },
-  {
-    id: `v3`,
-    title: `SOVEREIGN WEALTH & LEVERAGE`,
-    cost: 1500,
-    tier: `ARCHITECT`,
-    desc: `پروتکل‌های ایجاد دارایی‌های دیجیتال، مهارت‌های فنی دارای اهرم و استقلال مالی.`,
-    content: `نقشه راه ثروت حاکمیتی:
-- کدنویسی و ابزارهای نرم‌افزاری به عنوان اهرم بدون نیاز به نیروی انسانی
-- انتشار محتوا و ساخت برند شخصی تخصصی
-- سرمایه‌گذاری پیوسته در یادگیری مهارت‌های کمیاب.`,
-    icon: ShieldAlert
-  }
-];
+import { Lock, Unlock, CheckCircle2, Sparkles, BookOpen, Shield, Zap, Eye, HardHat } from 'lucide-react';
 
 export default function VaultEngine() {
-  const { points = 0, unlockVaultItem, unlockedItems = [] } = useSovereign() || {};
-  const [selectedAsset, setSelectedAsset] = useState(null);
+  const { points = 1250, setPoints } = useSovereign() || {};
+  const [unlockedItems, setUnlockedItems] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem('pc_unlocked_vault')) || [1];
+    } catch {
+      return [1];
+    }
+  });
 
-  const handleUnlock = (asset) => {
-    if (points >= asset.cost && unlockVaultItem) {
-      unlockVaultItem(asset.id, asset.cost);
+  const [activeProtocol, setActiveProtocol] = useState(null);
+
+  const protocols = [
+    {
+      id: 1,
+      cost: 0,
+      role: 'FOUNDATION',
+      title: 'پروتکل نظارت و مدیریت میدانی کارگاه',
+      icon: HardHat,
+      desc: 'اصول مستندسازی روزانه، آزمون‌های کنترل تراکم ژئوتکنیک و تطبیق صورت‌جلسات با استانداردهای نظام مهندسی و راه‌سازی.',
+      content: 'مراحل بازرسی لایه‌های زیرسازی: ۱. تعیین درصد رطوبت بهینه و حداکثر وزن مخصوص خشک خاک ۲. اجرای لایه متراکم با ضخامت حداکثر ۱۵ سانتی‌متر ۳. انجام تست مخروط ماسه و آزمایش تراکم نسبی (حداقل ۹۵٪ الی ۱۰۰٪ طبق مشخصات نشریه ۱۰۱).'
+    },
+    {
+      id: 2,
+      cost: 450,
+      role: 'AI VISION',
+      title: 'الگوریتم پایش هوشمند ترک‌های بتن (ResNet-18)',
+      icon: Eye,
+      desc: 'پروتکل پردازش تصویر و استفاده از شبکه‌های عصبی عمیق جهت طبقه‌بندی خودکار و شناسایی ابعاد آسیب‌های سازه‌ای.',
+      content: 'مدل‌سازی با PyTorch: تصاویر برش‌خورده بتن با ابعاد ۲۲۴x۲۲۴ نرمال‌سازی شده و از طریق ترنسفر لرنینگ بر روی مدل ResNet-18 آموزش داده می‌شوند تا دقت تشخیص ترک‌های مویی به بیش از ۹۸٪ برسد.'
+    },
+    {
+      id: 3,
+      cost: 750,
+      role: 'SYSTEMS',
+      title: 'معماری سامانه‌های خودگردان و آفلاین (PWA Architecture)',
+      icon: Zap,
+      desc: 'الگوی توسعه نرم‌افزارهای مهندسی با قابلیت کشینگ هوشمند Service Worker و ذخیره‌سازی محلی بدون نیاز به اتصال شبکه.',
+      content: 'استراتژی کشینگ: استقرار لایه Cache-First برای استایل‌ها و استراکچر برنامه، و Network-First برای همگام‌سازی لاگ‌ها و داده‌های ابری با IndexedDB و LocalStorage.'
+    }
+  ];
+
+  const handleUnlock = (item) => {
+    if (unlockedItems.includes(item.id)) {
+      setActiveProtocol(item);
+      return;
+    }
+    if (points >= item.cost) {
+      const nextPoints = points - item.cost;
+      const nextUnlocked = [...unlockedItems, item.id];
+      setPoints(nextPoints);
+      setUnlockedItems(nextUnlocked);
+      localStorage.setItem('pc_unlocked_vault', JSON.stringify(nextUnlocked));
+      setActiveProtocol(item);
+    } else {
+      alert('امتیاز هوشمندی کافی نیست!');
     }
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center bg-gray-800/60 p-4 rounded-xl border border-gray-700">
+    <div className="max-w-4xl mx-auto px-4 space-y-6 text-right" dir="rtl">
+      {/* هدر بخش خزانه */}
+      <div className="p-6 md:p-8 rounded-3xl bg-white border border-gray-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold text-white">خزانه دانش و پروتکل‌ها</h2>
-          <p className="text-sm text-gray-400">دارایی‌های فکری استراتژیک برای ارتقای رتبه</p>
+          <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-blue-50 text-blue-700 text-xs font-bold border border-blue-200 mb-2">
+            <Sparkles className="w-3 h-3" />
+            <span>KNOWLEDGE VAULT</span>
+          </div>
+          <h2 className="text-2xl font-black text-gray-900">خزانه دانش و پروتکل‌های عملیاتی</h2>
+          <p className="text-xs text-gray-500 mt-1">پروتکل‌های راهبردی مهندسی، بینایی ماشین و سیستم‌سازی</p>
         </div>
-        <div className="bg-amber-500/20 text-amber-400 px-4 py-2 rounded-lg font-mono font-bold">
-          امتیاز شما: {points}
+        <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-center sm:text-right shrink-0">
+          <span className="text-[10px] font-mono font-bold text-emerald-800 uppercase block">امتیاز در دسترس</span>
+          <span className="text-2xl font-black font-mono text-emerald-700">{points} PTS</span>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {INTEL_ASSETS.map((asset) => {
-          const Icon = asset.icon;
-          const isUnlocked = unlockedItems.includes(asset.id);
+      {/* لیست پروتکل‌ها با عملکرد واقعی بازگشایی */}
+      <div className="grid grid-cols-1 gap-4">
+        {protocols.map((item) => {
+          const isUnlocked = unlockedItems.includes(item.id);
+          const Icon = item.icon;
 
           return (
             <div
-              key={asset.id}
-              className={`p-5 rounded-2xl border transition-all ${
-                isUnlocked
-                  ? 'bg-gray-800/80 border-cyan-500/40'
-                  : 'bg-gray-900/60 border-gray-800'
+              key={item.id}
+              className={`p-6 rounded-3xl bg-white border transition-all ${
+                isUnlocked ? 'border-emerald-300 shadow-sm' : 'border-gray-200'
               }`}
             >
-              <div className="flex justify-between items-start mb-4">
-                <div className="p-3 bg-gray-800 rounded-xl text-cyan-400">
-                  <Icon size={24} />
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div className="flex items-start gap-4">
+                  <div className={`p-3 rounded-2xl ${isUnlocked ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-100 text-gray-600'}`}>
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-gray-100 text-gray-600">
+                        {item.role}
+                      </span>
+                      {isUnlocked && (
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 flex items-center gap-1">
+                          <CheckCircle2 className="w-3 h-3" /> در دسترس
+                        </span>
+                      )}
+                    </div>
+                    <h3 className="font-bold text-base text-gray-900">{item.title}</h3>
+                    <p className="text-xs text-gray-500 leading-relaxed max-w-xl">{item.desc}</p>
+                  </div>
                 </div>
-                <span className="text-xs px-2 py-1 bg-gray-700 text-gray-300 rounded font-mono">
-                  {asset.tier}
-                </span>
-              </div>
 
-              <h3 className="font-bold text-white mb-2">{asset.title}</h3>
-              <p className="text-xs text-gray-400 mb-4 leading-relaxed line-clamp-2">
-                {asset.desc}
-              </p>
-
-              {isUnlocked ? (
                 <button
-                  onClick={() => setSelectedAsset(asset)}
-                  className="w-full py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white rounded-xl text-sm font-medium flex items-center justify-center gap-2"
-                >
-                  <Unlock size={16} /> مشاهده محتوا
-                </button>
-              ) : (
-                <button
-                  onClick={() => handleUnlock(asset)}
-                  disabled={points < asset.cost}
-                  className={`w-full py-2.5 rounded-xl text-sm font-medium flex items-center justify-center gap-2 ${
-                    points >= asset.cost
-                      ? 'bg-amber-600 hover:bg-amber-500 text-white'
-                      : 'bg-gray-800 text-gray-500 cursor-not-allowed'
+                  onClick={() => handleUnlock(item)}
+                  className={`w-full sm:w-auto px-5 py-2.5 rounded-full font-bold text-xs transition-all flex items-center justify-center gap-2 shrink-0 ${
+                    isUnlocked
+                      ? 'bg-gray-900 hover:bg-black text-white shadow-sm'
+                      : 'bg-[#22c55e] hover:bg-[#16a34a] text-white shadow-[0_4px_12px_rgba(34,197,94,0.3)]'
                   }`}
                 >
-                  <Lock size={16} /> آزادسازی ({asset.cost} امتیاز)
+                  {isUnlocked ? (
+                    <>
+                      <BookOpen className="w-3.5 h-3.5" />
+                      <span>مطالعه سند</span>
+                    </>
+                  ) : (
+                    <>
+                      <Lock className="w-3.5 h-3.5" />
+                      <span>آزادسازی ({item.cost} امتیاز)</span>
+                    </>
+                  )}
                 </button>
-              )}
+              </div>
             </div>
           );
         })}
       </div>
 
+      {/* مدال مطالعه محتوای بازگشایی‌شده */}
       <AnimatePresence>
-        {selectedAsset && (
+        {activeProtocol && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+            className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4"
           >
             <motion.div
-              initial={{ scale: 0.95 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.95 }}
-              className="bg-gray-900 border border-cyan-500/40 rounded-2xl p-6 max-w-lg w-full max-h-[80vh] overflow-y-auto"
+              initial={{ scale: 0.95, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 20 }}
+              className="bg-white rounded-3xl p-6 md:p-8 max-w-lg w-full border border-gray-200 shadow-2xl space-y-4"
             >
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="font-bold text-lg text-cyan-400">{selectedAsset.title}</h3>
+              <div className="flex items-center justify-between pb-3 border-b border-gray-100">
+                <span className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">
+                  DOCUMENT ACCESS
+                </span>
                 <button
-                  onClick={() => setSelectedAsset(null)}
-                  className="text-gray-400 hover:text-white"
+                  onClick={() => setActiveProtocol(null)}
+                  className="text-gray-400 hover:text-gray-800 text-sm font-bold"
                 >
-                  <X size={20} />
+                  بستن ✕
                 </button>
               </div>
-              <div className="bg-gray-800/60 p-4 rounded-xl text-sm leading-relaxed text-gray-200 whitespace-pre-line font-mono mb-4">
-                {selectedAsset.content}
+
+              <h3 className="font-bold text-base text-gray-900">{activeProtocol.title}</h3>
+              <div className="p-4 rounded-2xl bg-gray-50 border border-gray-200 text-xs text-gray-700 leading-relaxed whitespace-pre-wrap font-sans">
+                {activeProtocol.content}
               </div>
-              <button
-                onClick={() => setSelectedAsset(null)}
-                className="w-full py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-xl text-sm"
-              >
-                بستن
-              </button>
             </motion.div>
           </motion.div>
         )}

@@ -1,128 +1,105 @@
-import React, { useState } from 'react';
-import { PenTool, Trash2, Plus, Tag, Calendar, Download, Sparkles } from 'lucide-react';
-import { audioEngine } from '../../services/audioEngine';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { useSovereign } from '../../context/SovereignContext';
+import { Plus, Trash2, Calendar, FileText, CheckCircle } from 'lucide-react';
 
-const TAGS = ['استراتژی', 'عمران و مهندسی', 'تکنولوژی و هوش مصنوعی', 'مدیریت مالی', 'یادداشت روزانه'];
-
-const TacticalJournal = () => {
-  const [notes, setNotes] = useState(() => {
+export default function TacticalJournal() {
+  const { setPoints } = useSovereign() || {};
+  const [logs, setLogs] = useState(() => {
     try {
-      return JSON.parse(localStorage.getItem('pc_notes')) || [
-        {
-          id: 1,
-          t: 'تمرکز بر یادگیری عمیق Computer Vision و پیاده‌سازی مدل‌های PyTorch برای زیرساخت‌های مهندسی.',
-          tag: 'تکنولوژی و هوش مصنوعی',
-          date: '۱۴۰۵/۰۶/۰۵'
-        },
-        {
-          id: 2,
-          t: 'اجرای اصل ۲۰/۸۰ در نظارت پروژه‌های راهسازی: تمرکز بر کیفیت مصالح دانه‌بندی و تراکم بستر.',
-          tag: 'عمران و مهندسی',
-          date: '۱۴۰۵/۰۶/۰۲'
-        }
+      return JSON.parse(localStorage.getItem('pc_tactical_logs')) || [
+        { id: 1, date: '2026-08-28', title: 'بررسی لایه‌های اساس و پایش ترک‌های کارگاهی', category: 'Civil & QC' },
+        { id: 2, date: '2026-08-27', title: 'توسعه معماری PWA و اتصال لایه کشینگ آفلاین', category: 'Software' }
       ];
     } catch {
       return [];
     }
   });
 
-  const [val, setVal] = useState('');
-  const [selectedTag, setSelectedTag] = useState('استراتژی');
+  const [newTitle, setNewTitle] = useState('');
+  const [newCategory, setNewCategory] = useState('Civil & Ops');
 
-  const addNote = () => {
-    if (val.trim()) {
-      audioEngine.playSfx('reward');
-      const newNotes = [
-        {
-          id: Date.now(),
-          t: val.trim(),
-          tag: selectedTag,
-          date: new Date().toLocaleDateString('fa-IR')
-        },
-        ...notes
-      ];
-      setNotes(newNotes);
-      localStorage.setItem('pc_notes', JSON.stringify(newNotes));
-      setVal('');
-    }
+  useEffect(() => {
+    try {
+      localStorage.setItem('pc_tactical_logs', JSON.stringify(logs));
+    } catch (e) {}
+  }, [logs]);
+
+  const handleAddLog = (e) => {
+    e.preventDefault();
+    if (!newTitle.trim()) return;
+
+    const newEntry = {
+      id: Date.now(),
+      date: new Date().toISOString().split('T')[0],
+      title: newTitle.trim(),
+      category: newCategory
+    };
+
+    setLogs([newEntry, ...logs]);
+    setNewTitle('');
+    if (setPoints) setPoints(p => p + 50); // پاداش ثبت گزارش
   };
 
-  const delNote = (id) => {
-    audioEngine.playSfx('click');
-    const newNotes = notes.filter((n) => n.id !== id);
-    setNotes(newNotes);
-    localStorage.setItem('pc_notes', JSON.stringify(newNotes));
+  const handleDelete = (id) => {
+    setLogs(logs.filter(l => l.id !== id));
   };
 
   return (
-    <div className="max-w-3xl mx-auto px-6 text-right space-y-8">
-      <div>
-        <span className="text-gold text-[10px] tracking-[0.4em] font-mono uppercase block mb-2">TACTICAL LOG</span>
-        <h2 className="font-serif text-3xl sm:text-5xl text-white font-bold">ژورنال تاکتیکی و بصیرت‌ها</h2>
-        <p className="text-white/50 text-xs mt-2 font-light">ثبت تصمیمات، درس‌آموخته‌های پروژه‌ها و ایده‌های استراتژیک</p>
-      </div>
-
-      {/* Input Box */}
-      <div className="glass p-6 rounded-3xl border border-gold/20 space-y-4">
-        <textarea
-          value={val}
-          onChange={(e) => setVal(e.target.value)}
-          placeholder="ثبت بصیرت استراتژیک جدید یا نتیجه‌گیری مهم..."
-          rows={3}
-          className="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:outline-none focus:border-gold text-white font-sans text-sm resize-none"
-        />
-
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <Tag className="w-4 h-4 text-gold" />
-            <select
-              value={selectedTag}
-              onChange={(e) => setSelectedTag(e.target.value)}
-              className="bg-black/60 border border-white/10 text-white text-xs px-3 py-2 rounded-xl focus:outline-none focus:border-gold"
-            >
-              {TAGS.map((t) => (
-                <option key={t} value={t}>
-                  {t}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <button
-            onClick={addNote}
-            className="px-8 py-3 bg-gold text-black font-bold text-xs rounded-xl gold-glow hover:bg-gold-light transition-all flex items-center gap-2"
-          >
-            <Plus className="w-4 h-4" />
-            ثبت در حافظه تاکتیکی
-          </button>
+    <div className="max-w-4xl mx-auto px-4 space-y-6 text-right" dir="rtl">
+      <div className="p-6 md:p-8 rounded-3xl bg-white border border-gray-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <h2 className="text-2xl font-black text-gray-900">ژورنال عملیاتی و گزارش‌های مهندسی</h2>
+          <p className="text-xs text-gray-500 mt-1">ثبت مستندات کارگاهی، رصدهای ژئوتکنیک و تسک‌های استراتژیک</p>
         </div>
+        <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">
+          +50 امتیاز به ازای هر لاگ
+        </span>
       </div>
 
-      {/* Notes List */}
-      <div className="space-y-4">
-        {notes.map((n) => (
-          <div
-            key={n.id}
-            className="glass p-6 rounded-2xl border border-white/10 hover:border-gold/30 flex justify-between items-start gap-4 transition-all group"
-          >
-            <div className="space-y-2 flex-1">
-              <div className="flex items-center gap-3">
-                <span className="text-[9px] font-mono text-gold bg-gold/10 px-2.5 py-0.5 rounded-full border border-gold/20">
-                  {n.tag}
-                </span>
-                <span className="text-[10px] text-white/40 font-mono flex items-center gap-1">
-                  <Calendar className="w-3 h-3" />
-                  {n.date}
-                </span>
-              </div>
-              <p className="text-sm text-white/90 leading-relaxed font-light">{n.t}</p>
-            </div>
+      <form onSubmit={handleAddLog} className="p-5 rounded-3xl bg-white border border-gray-200 shadow-sm flex flex-col sm:flex-row gap-3">
+        <input
+          type="text"
+          value={newTitle}
+          onChange={(e) => setNewTitle(e.target.value)}
+          placeholder="عنوان گزارش یا لاگ عملیاتی جدید را وارد کنید..."
+          className="flex-1 px-4 py-2.5 rounded-full bg-gray-50 border border-gray-300 text-xs text-gray-900 focus:outline-none focus:border-emerald-500"
+        />
+        <select
+          value={newCategory}
+          onChange={(e) => setNewCategory(e.target.value)}
+          className="px-4 py-2.5 rounded-full bg-gray-50 border border-gray-300 text-xs text-gray-700 focus:outline-none"
+        >
+          <option value="Civil & Ops">عمران و نظارت میدانی</option>
+          <option value="Vision AI">هوش مصنوعی و بینایی ماشین</option>
+          <option value="Software">توسعه نرم‌افزار و سیستم‌ها</option>
+        </select>
+        <button
+          type="submit"
+          className="px-6 py-2.5 rounded-full bg-[#22c55e] hover:bg-[#16a34a] text-white text-xs font-bold shadow-sm transition-all flex items-center justify-center gap-1.5"
+        >
+          <Plus className="w-4 h-4" />
+          <span>ثبت گزارش</span>
+        </button>
+      </form>
 
-            <button
-              onClick={() => delNote(n.id)}
-              className="text-white/20 group-hover:text-red-400 p-2 transition-colors"
-              title="حذف"
-            >
+      <div className="space-y-3">
+        {logs.map((log) => (
+          <div key={log.id} className="p-4 rounded-2xl bg-white border border-gray-200 shadow-xs flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="p-2 rounded-xl bg-gray-100 text-gray-600">
+                <FileText className="w-4 h-4" />
+              </div>
+              <div>
+                <h4 className="font-bold text-xs text-gray-900">{log.title}</h4>
+                <div className="flex items-center gap-2 mt-0.5 text-[10px] text-gray-400 font-mono">
+                  <span>{log.date}</span>
+                  <span>&bull;</span>
+                  <span className="text-emerald-700 font-semibold">{log.category}</span>
+                </div>
+              </div>
+            </div>
+            <button onClick={() => handleDelete(log.id)} className="text-gray-400 hover:text-red-500 transition-colors p-1">
               <Trash2 className="w-4 h-4" />
             </button>
           </div>
@@ -130,6 +107,4 @@ const TacticalJournal = () => {
       </div>
     </div>
   );
-};
-
-export default TacticalJournal;
+}
