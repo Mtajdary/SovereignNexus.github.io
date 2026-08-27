@@ -1,64 +1,54 @@
 import React from 'react';
-import { Shield, HardHat, Eye, Cpu, Award, GraduationCap, CheckCircle } from 'lucide-react';
+import { Award, BookOpen, Layers, Code2, HardHat, Mail, CheckCircle2 } from 'lucide-react';
 
 export default function ArchitectProfile() {
   return (
-    <div className="max-w-3xl mx-auto px-4 space-y-6 text-right" dir="rtl">
-      {/* کارت معرفی اصلی */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-white border border-gray-200 shadow-xs space-y-4">
-        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
-          <div className="w-16 h-16 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 shrink-0">
-            <Shield className="w-8 h-8" />
-          </div>
-          <div className="space-y-1 text-center sm:text-right">
-            <h2 className="text-2xl font-black text-gray-900">محمد تاجداری</h2>
-            <p className="text-xs font-mono text-gray-500">کارشناس مهندسی عمران &bull; پژوهشگر بینایی ماشین و توسعه‌دهنده نرم‌افزار</p>
-          </div>
-        </div>
-
-        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed pt-2 border-t border-gray-100">
-          متولد ۱۳۷۱، دانش‌آموخته مهندسی عمران از دانشگاه ولایت و دارای پذیرش پژوهشی در دانشگاه پوترا مالزی (UPM). علاقه‌مند به ترکیب مهندسی سنتی ژئوتکنیک و سازه با فناوری‌های یادگیری عمیق برای ارتقای استانداردهای کنترل کیفیت در صنعت ساخت‌وساز.
-        </p>
+    <div className="max-w-3xl mx-auto px-4 space-y-6 text-right font-sans" dir="rtl">
+      {/* سربرگ شناسنامه */}
+      <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs space-y-2">
+        <span className="text-[10px] font-mono text-slate-400 block uppercase">ENGINEERING PROFILE &amp; BIO</span>
+        <h2 className="text-xl sm:text-2xl font-black text-slate-900">درباره و سوابق تخصصی</h2>
+        <p className="text-xs text-slate-500 leading-relaxed">خلاصه پیشینه تحصیلی، تجارب نظارت کارگاهی و پژوهش‌های یادگیری عمیق</p>
       </div>
 
-      {/* مهارت‌های اصلی */}
-      <div className="space-y-3">
-        <h3 className="text-base font-bold text-gray-900">زمینه‌های تخصصی و تسلط فنی</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div className="p-4 rounded-2xl bg-white border border-gray-200 space-y-2">
-            <div className="flex items-center gap-2 text-amber-700 font-bold text-xs">
-              <HardHat className="w-4 h-4" />
-              <span>مهندسی عمران</span>
+      {/* کارت سوابق تحصیلی */}
+      <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs space-y-3">
+        <h3 className="font-bold text-sm text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-2">
+          <BookOpen className="w-4 h-4 text-blue-600" />
+          <span>سوابق تحصیلی و دانشگاهی</span>
+        </h3>
+        <div className="space-y-2 text-xs text-slate-700 leading-relaxed">
+          <div className="flex items-start gap-2">
+            <span className="text-emerald-500 font-bold mt-0.5">&bull;</span>
+            <div>
+              <strong>کارشناسی مهندسی عمران</strong> - دانشگاه ولایت
+              <p className="text-[11px] text-slate-500 mt-0.5">تمرکز بر محاسبات سازه، مکانیک خاک و روسازی معابر</p>
             </div>
-            <ul className="text-[11px] text-gray-600 space-y-1.5 leading-relaxed">
-              <li>• نظارت مقیم کارگاهی و کنترل لایه‌های خاکی</li>
-              <li>• آزمایش‌های مکانیک خاک و تراکم نسبی</li>
-              <li>• بررسی نقشه‌ها و صورت‌جلسات فنی کارگاه</li>
-            </ul>
           </div>
-
-          <div className="p-4 rounded-2xl bg-white border border-gray-200 space-y-2">
-            <div className="flex items-center gap-2 text-sky-700 font-bold text-xs">
-              <Eye className="w-4 h-4" />
-              <span>بینایی ماشین و هوش مصنوعی</span>
+          <div className="flex items-start gap-2 pt-1 border-t border-slate-100">
+            <span className="text-emerald-500 font-bold mt-0.5">&bull;</span>
+            <div>
+              <strong>پذیرش پژوهشی مقطع کارشناسی ارشد</strong> - Universiti Putra Malaysia (UPM)
+              <p className="text-[11px] text-slate-500 mt-0.5">پژوهش در زمینه بینایی ماشین و پایش سلامت سازه‌ها</p>
             </div>
-            <ul className="text-[11px] text-gray-600 space-y-1.5 leading-relaxed">
-              <li>• مدل‌سازی یادگیری عمیق با PyTorch</li>
-              <li>• سیستم‌های پایش سلامت سازه (SHM)</li>
-              <li>• طبقه‌بندی و تشخیص خودکار ترک‌های بتن</li>
-            </ul>
           </div>
+        </div>
+      </div>
 
-          <div className="p-4 rounded-2xl bg-white border border-gray-200 space-y-2">
-            <div className="flex items-center gap-2 text-emerald-700 font-bold text-xs">
-              <Cpu className="w-4 h-4" />
-              <span>توسعه نرم‌افزار</span>
-            </div>
-            <ul className="text-[11px] text-gray-600 space-y-1.5 leading-relaxed">
-              <li>• فرانت‌اند مدرن با React.js و Tailwind</li>
-              <li>• مهندسی وب‌اپلیکیشن‌های پیش‌رونده (PWA)</li>
-              <li>• برنامه‌نویسی و اسکریپت‌نویسی پایتون</li>
-            </ul>
+      {/* مهارت‌های فنی و ابزارها */}
+      <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs space-y-3">
+        <h3 className="font-bold text-sm text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-2">
+          <Code2 className="w-4 h-4 text-emerald-600" />
+          <span>مهارت‌ها و ابزارهای تخصصی</span>
+        </h3>
+        <div className="grid grid-cols-2 gap-3 text-xs">
+          <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/70 space-y-1">
+            <span className="font-bold text-slate-900 block">مهندسی عمران و نظارت</span>
+            <span className="text-[11px] text-slate-500 block">نشریه ۱۰۱، آیین‌نامه آبا، آزمایش‌های تراکم خاک، کنترل کیفیت بتن</span>
+          </div>
+          <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/70 space-y-1">
+            <span className="font-bold text-slate-900 block">هوش مصنوعی و نرم‌افزار</span>
+            <span className="text-[11px] text-slate-500 block">PyTorch، بینایی ماشین، مدل ResNet-18، جاوااسکریپت، React و PWA</span>
           </div>
         </div>
       </div>

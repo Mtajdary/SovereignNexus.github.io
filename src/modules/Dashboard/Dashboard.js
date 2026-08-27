@@ -1,92 +1,132 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { HardHat, Cpu, Eye, ArrowLeft, Sparkles } from 'lucide-react';
+import { Eye, Cpu, HardHat, ArrowLeft, CheckCircle2, Zap, ShieldCheck, FileSpreadsheet, ArrowUpRight } from 'lucide-react';
 
 export default function Dashboard({ onNavigate }) {
+  const services = [
+    {
+      id: 'ai-vision',
+      title: 'پایش هوشمند سازه و پردازش تصویر بتن (AI SHM)',
+      badge: 'پژوهش و استقرار مدل',
+      price: 'پروژه‌ای / سفارشی',
+      desc: 'پیاده‌سازی مدل‌های یادگیری عمیق (PyTorch ResNet) جهت اسکن و طبقه‌بندی خودکار ترک‌ها و آسیب‌های سطحی سازه‌های بتنی و پل‌ها.',
+      features: ['دقت تشخیص بالای ۹۸٪', 'کاهش هزینه‌های بازرسی دستی', 'خروجی‌های تحلیلی قابل ادغام با نرم‌افزارهای سازه'],
+      actionText: 'تست در آزمایشگاه',
+      target: 'ai-lab',
+      color: 'border-sky-200 bg-sky-50/40 text-sky-700'
+    },
+    {
+      id: 'custom-pwa',
+      title: 'توسعه نرم‌افزارها و سامانه‌های مهندسی (PWA)',
+      badge: 'طراحی نرم‌افزار کارگاهی',
+      price: 'قرارداد توسعه اختصاصی',
+      desc: 'توسعه وب‌اپلیکیشن‌های سبک و سریع مهندسی با کارکرد کاملاً آفلاین (IndexedDB) جهت ثبت گزارش‌های روزانه و محاسبات کارگاهی.',
+      features: ['همگام‌سازی ابری خودکار', 'قابلیت نصب روی موبایل و سیستم', 'حذف کامل خطاهای محاسباتی کارگاه'],
+      actionText: 'مشاهده معماری نرم‌افزار',
+      target: 'knowledge',
+      color: 'border-emerald-200 bg-emerald-50/40 text-emerald-700'
+    },
+    {
+      id: 'civil-qc',
+      title: 'مشاوره نظارت مقیم و کنترل کیفیت ژئوتکنیک',
+      badge: 'مشاوره فنی و نظارت',
+      price: 'نظارت میدانی / استعلام',
+      desc: 'راستی‌آزمایی آزمایش‌های تراکم خاک (مخروط ماسه و پروکتور)، محاسبات احجام عملیات خاکی و کنترل کیفیت لایه‌های روسازی معابر.',
+      features: ['منطبق بر ضوابط نشریه ۱۰۱', 'برآورد دقیق تناژ مصالح اساس', 'کاهش ریسک نشست‌های نامتقارن'],
+      actionText: 'ورود به ماشین‌حساب عمران',
+      target: 'civil-tools',
+      color: 'border-amber-200 bg-amber-50/40 text-amber-700'
+    }
+  ];
+
   return (
-    <div className="max-w-4xl mx-auto px-4 pt-10 pb-20 text-center" dir="rtl">
-      {/* نشان بالای صفحه */}
-      <motion.div 
-        initial={{ y: -8, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-800 text-xs font-bold mb-6 shadow-xs"
-      >
-        <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-        <span>پلتفرم تخصصی مهندسی عمران، بینایی ماشین و هوش مصنوعی</span>
-      </motion.div>
+    <div className="max-w-4xl mx-auto px-4 pt-8 pb-20 text-right" dir="rtl">
+      {/* بخش Hero مینیمال */}
+      <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-mono mb-2">
+          <span>ENGINEERING &amp; AI SOLUTIONS LAB</span>
+        </div>
+        <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+          توسعه سامانه‌های مهندسی؛ <br className="hidden sm:inline" />
+          از پایش سازه تا نرم‌افزارهای خودگردان
+        </h1>
+        <p className="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-xl mx-auto">
+          ارائه راهکارهای نوین مهندسی عمران، بینایی ماشین در پایش سلامت سازه‌ها (SHM) و طراحی سامانه‌های نرم‌افزاری آفلاین‌محور.
+        </p>
 
-      {/* عنوان اصلی با فونت شارپ شبنم */}
-      <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 tracking-tight leading-[1.3] mb-6">
-        خلق سیستم‌های پایدار؛ <br className="hidden sm:inline" />
-        <span className="text-emerald-600 bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 via-teal-600 to-sky-600">
-          از بتن تا الگوریتم‌های هوشمند
-        </span>
-      </h1>
-
-      {/* متن معرفی با خوانایی بالا */}
-      <p className="text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed mb-10 font-normal">
-        سلام، من <strong className="text-slate-900 font-bold">محمد تاجداری</strong> هستم. فعالیت‌های من بر پیوند{' '}
-        <span className="font-bold text-slate-800">نظارت مقیم بر پروژه‌های زیرساخت و راه‌سازی</span> با{' '}
-        <span className="font-bold text-slate-800">مدل‌سازی بینایی ماشین در پایش سلامت سازه (SHM)</span> و توسعه نرم‌افزارهای مهندسی تمرکز دارد.
-      </p>
-
-      {/* دکمه‌های اصلی مدرن */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-16 w-full max-w-xs sm:max-w-none mx-auto">
-        <button 
-          onClick={() => onNavigate('projects')}
-          className="btn-emerald-pro w-full sm:w-auto px-8 py-3.5 text-xs sm:text-sm flex items-center justify-center gap-2"
-        >
-          <span>مشاهده پروژه‌ها و مقالات فنی</span>
-          <ArrowLeft className="w-4 h-4" />
-        </button>
-        <button 
-          onClick={() => onNavigate('profile')}
-          className="btn-white-pro w-full sm:w-auto px-7 py-3.5 text-xs sm:text-sm"
-        >
-          سوابق تحصیلی و تجارب
-        </button>
+        <div className="pt-2 flex items-center justify-center gap-3">
+          <button 
+            onClick={() => onNavigate('contact')}
+            className="px-6 py-2.5 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-bold shadow-xs transition-all flex items-center gap-2"
+          >
+            <span>ثبت سفارش / درخواست مشاوره</span>
+            <ArrowLeft className="w-3.5 h-3.5" />
+          </button>
+          <button 
+            onClick={() => onNavigate('engineering-lab')}
+            className="px-5 py-2.5 rounded-full bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-bold shadow-2xs transition-all"
+          >
+            دموی زنده ابزارها
+          </button>
+        </div>
       </div>
 
-      {/* کارت‌های ۳ گانه با ظاهر چشم‌نواز و تراز */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 text-right">
-        <div 
-          onClick={() => onNavigate('civil-tools')}
-          className="pro-card p-6 cursor-pointer space-y-3.5"
-        >
-          <div className="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200/60 flex items-center justify-center text-amber-700">
-            <HardHat className="w-6 h-6" />
-          </div>
-          <h3 className="font-bold text-slate-900 text-sm sm:text-base">نظارت و مدیریت پروژه‌های عمرانی</h3>
-          <p className="text-xs text-slate-500 leading-relaxed">
-            هدایت میدانی عملیات خاکی، تراکم ژئوتکنیک بستر و روسازی معابر منطبق بر مشخصات نشریه ۱۰۱.
-          </p>
+      {/* پکیج‌های خدمات و کارت‌های درآمدزا */}
+      <div className="space-y-4 mb-16">
+        <div className="flex items-center justify-between border-b border-slate-200 pb-2">
+          <h2 className="font-bold text-sm text-slate-900">خدمات تخصصی و راهکارهای قابل استقرار</h2>
+          <span className="text-[11px] font-mono text-slate-400">CORE SERVICES</span>
         </div>
 
-        <div 
-          onClick={() => onNavigate('ai-lab')}
-          className="pro-card p-6 cursor-pointer space-y-3.5"
-        >
-          <div className="w-12 h-12 rounded-2xl bg-sky-50 border border-sky-200/60 flex items-center justify-center text-sky-700">
-            <Eye className="w-6 h-6" />
-          </div>
-          <h3 className="font-bold text-slate-900 text-sm sm:text-base">هوش مصنوعی و پردازش تصویر (SHM)</h3>
-          <p className="text-xs text-slate-500 leading-relaxed">
-            تشخیص خودکار و طبقه‌بندی ترک‌های بتن با شبکه‌های عصبی عمیق در پایتورچ با دقت ۹۸.۴٪.
-          </p>
-        </div>
+        <div className="grid grid-cols-1 gap-4">
+          {services.map((s) => (
+            <div 
+              key={s.id}
+              className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:border-slate-300 transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5"
+            >
+              <div className="space-y-2 max-w-xl">
+                <div className="flex items-center gap-2">
+                  <span className={`text-[10px] font-bold px-2.5 py-0.5 rounded-md border ${s.color}`}>
+                    {s.badge}
+                  </span>
+                  <span className="text-xs font-mono font-bold text-slate-400">{s.price}</span>
+                </div>
+                <h3 className="font-bold text-sm sm:text-base text-slate-900">{s.title}</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">{s.desc}</p>
+                <div className="flex flex-wrap gap-x-4 gap-y-1 pt-1 text-[11px] text-slate-500">
+                  {s.features.map((f, i) => (
+                    <span key={i} className="flex items-center gap-1">
+                      <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                      <span>{f}</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
 
-        <div 
-          onClick={() => onNavigate('projects')}
-          className="pro-card p-6 cursor-pointer space-y-3.5"
-        >
-          <div className="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-200/60 flex items-center justify-center text-emerald-700">
-            <Cpu className="w-6 h-6" />
-          </div>
-          <h3 className="font-bold text-slate-900 text-sm sm:text-base">توسعه وب‌اپلیکیشن و PWA</h3>
-          <p className="text-xs text-slate-500 leading-relaxed">
-            سامانه مهندسی همراه ناظر با کشینگ کامل آفلاین جهت استفاده در محیط‌های بدون اینترنت کارگاهی.
-          </p>
+              <button
+                onClick={() => onNavigate(s.target)}
+                className="w-full sm:w-auto px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition-all shrink-0 flex items-center justify-center gap-1.5"
+              >
+                <span>{s.actionText}</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-slate-500" />
+              </button>
+            </div>
+          ))}
         </div>
+      </div>
+
+      {/* بنر اقدام نهایی مینیمال */}
+      <div className="p-6 rounded-3xl bg-slate-900 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
+        <div>
+          <h3 className="font-bold text-sm sm:text-base">نیاز به راهکار سفارشی یا مشاوره در پروژه دارید؟</h3>
+          <p className="text-xs text-slate-400 mt-0.5">امکان همکاری با مهندسین مشاور، پیمانکاران و آزمایشگاه‌های فنی</p>
+        </div>
+        <button
+          onClick={() => onNavigate('contact')}
+          className="px-5 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold shadow-xs transition-all shrink-0"
+        >
+          شروع گفتگو و استعلام
+        </button>
       </div>
     </div>
   );
