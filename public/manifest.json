@@ -21,9 +21,9 @@
       "purpose": "any maskable"
     }
   ],
-  "start_url": ".",
+  "start_url": "./",
   "display": "standalone",
-  "theme_color": "#090d16",
+  "theme_color": "#05070c",
   "background_color": "#05070c",
   "orientation": "portrait"
 }
