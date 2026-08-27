@@ -10,12 +10,16 @@ root.render(
   </React.StrictMode>
 );
 
-// ثبت PWA Service Worker
-if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
+// ثبت سرویس‌ورکر به‌صورت قطعی در تمام محیط‌ها
+if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker
-      .register('/sw.js')
-      .then((reg) => console.log('ServiceWorker registered:', reg.scope))
-      .catch((err) => console.error('ServiceWorker failed:', err));
+      .register('./sw.js')
+      .then((reg) => {
+        console.log('PWA ServiceWorker Active:', reg.scope);
+      })
+      .catch((err) => {
+        console.error('ServiceWorker Error:', err);
+      });
   });
 }
