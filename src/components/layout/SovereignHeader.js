@@ -5,11 +5,12 @@ export default function SovereignHeader({ currentModule, onModuleChange }) {
   const navItems = [
     { id: 'dashboard', label: 'صفحه اصلی' },
     { id: 'civil-tools', label: 'محاسبات عمران' },
-    { id: 'ai-lab', label: 'آزمایشگاه بینایی ماشین' },
-    { id: 'knowledge', label: 'پایگاه دانش و استانداردها' },
+    { id: 'ai-lab', label: 'بینایی ماشین' },
+    { id: 'knowledge', label: 'پایگاه دانش' },
     { id: 'projects', label: 'پروژه‌ها' },
     { id: 'profile', label: 'درباره من' },
-    { id: 'journal', label: 'دفترچه یادداشت' },
+    { id: 'contact', label: 'رزومه و تماس' },
+    { id: 'journal', label: 'یادداشت‌ها' },
   ];
 
   return (

@@ -6,6 +6,7 @@ import CivilToolsSuite from './modules/CivilTools/CivilToolsSuite';
 import AIVisionLab from './modules/AILab/AIVisionLab';
 import KnowledgeHub from './modules/KnowledgeHub/KnowledgeHub';
 import ProjectsSection from './modules/Projects/ProjectsSection';
+import ContactResumeSuite from './modules/Contact/ContactResumeSuite';
 import TacticalJournal from './modules/Journal/TacticalJournal';
 import ArchitectProfile from './modules/Profile/ArchitectProfile';
 import PWAInstallButton from './components/PWAInstallButton';
@@ -33,6 +34,7 @@ export default function App() {
             {activeModule === 'knowledge' && <KnowledgeHub />}
             {activeModule === 'projects' && <ProjectsSection />}
             {activeModule === 'profile' && <ArchitectProfile />}
+            {activeModule === 'contact' && <ContactResumeSuite />}
             {activeModule === 'journal' && <TacticalJournal />}
           </motion.div>
         </AnimatePresence>
