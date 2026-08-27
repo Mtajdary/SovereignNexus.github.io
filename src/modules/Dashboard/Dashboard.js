@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { HardHat, Cpu, Eye, ArrowLeft, Sparkles } from 'lucide-react';
+import { HardHat, Cpu, Eye, ArrowLeft, Sparkles, Activity, ShieldCheck, Zap } from 'lucide-react';
 
 export default function Dashboard({ onNavigate }) {
   return (
-    <div className="max-w-4xl mx-auto px-4 pt-10 pb-20 text-center" dir="rtl">
+    <div className="max-w-4xl mx-auto px-4 pt-8 pb-20 text-center" dir="rtl">
       {/* بج تعاملی سربرگ */}
       <motion.div 
         initial={{ y: -10, opacity: 0 }}
@@ -15,7 +15,7 @@ export default function Dashboard({ onNavigate }) {
         <span>پلتفرم تخصصی مهندسی عمران، بینایی ماشین و هوش مصنوعی</span>
       </motion.div>
 
-      {/* عنوان فوق‌العاده بزرگ و چشم‌نواز */}
+      {/* عنوان اصلی */}
       <motion.h1 
         initial={{ scale: 0.96, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
@@ -33,8 +33,8 @@ export default function Dashboard({ onNavigate }) {
         </span>
       </motion.h1>
 
-      {/* متن معرفی با کپسول‌های تأکیدی تمیز */}
-      <p className="text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed mb-8">
+      {/* متن معرفی */}
+      <p className="text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed mb-8 font-normal">
         سلام، من <strong className="text-slate-900 font-bold">محمد تاجداری</strong> هستم. فعالیت‌های من بر تلفیق{' '}
         <span className="inline-block px-2.5 py-0.5 rounded-lg bg-amber-100/70 text-amber-900 font-bold border border-amber-200/80 text-xs sm:text-sm">
           نظارت زیرساخت و راه‌سازی
@@ -46,70 +46,63 @@ export default function Dashboard({ onNavigate }) {
         و سامانه‌های خودگردان تمرکز دارد.
       </p>
 
-      {/* دکمه‌های کپسولی شکیل */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-16 w-full max-w-xs sm:max-w-none mx-auto">
-        <motion.button 
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.96 }}
+      {/* دکمه‌های کپسولی Clay با بازخورد فشاری */}
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 w-full max-w-xs sm:max-w-none mx-auto">
+        <button 
           onClick={() => onNavigate('projects')}
-          className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#22c55e] hover:bg-[#16a34a] text-white font-bold text-xs sm:text-sm shadow-[0_8px_24px_rgba(34,197,94,0.35)] transition-all flex items-center justify-center gap-2"
+          className="clay-btn-emerald w-full sm:w-auto px-8 py-3.5 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2"
         >
           <span>مشاهده پروژه‌ها و مقالات فنی</span>
           <ArrowLeft className="w-4 h-4" />
-        </motion.button>
-        <motion.button 
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.96 }}
+        </button>
+        <button 
           onClick={() => onNavigate('profile')}
-          className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 font-bold text-xs sm:text-sm shadow-xs transition-all"
+          className="clay-btn-white w-full sm:w-auto px-7 py-3.5 text-slate-800 font-bold text-xs sm:text-sm"
         >
           سوابق تحصیلی و کارنامه معمار
-        </motion.button>
+        </button>
       </div>
 
-      {/* کارت‌های سه‌گانه */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 text-right">
-        <motion.div 
-          whileHover={{ y: -6 }}
+      {/* کارت‌های سه‌گانه Claymorphic با آیکون‌های بالشتکی برجسته */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-right">
+        <div 
           onClick={() => onNavigate('civil-tools')}
-          className="p-6 rounded-3xl bg-white/80 backdrop-blur-xl border border-white/80 shadow-xs hover:border-amber-400/80 transition-all cursor-pointer space-y-3"
+          className="clay-card p-6 cursor-pointer space-y-4"
         >
-          <div className="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200/80 flex items-center justify-center text-amber-600 shadow-xs">
-            <HardHat className="w-6 h-6" />
+          <div className="clay-icon-amber w-14 h-14 flex items-center justify-center text-amber-800">
+            <HardHat className="w-7 h-7" />
           </div>
-          <h3 className="font-bold text-slate-900 text-sm">نظارت و مدیریت پروژه‌های عمرانی</h3>
+          <h3 className="font-bold text-slate-900 text-sm sm:text-base">نظارت و مدیریت پروژه‌های عمرانی</h3>
           <p className="text-xs text-slate-500 leading-relaxed">
             هدایت میدانی عملیات خاکی، تراکم ژئوتکنیک بستر و روسازی معابر منطبق بر مشخصات نشریه ۱۰۱.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div 
-          whileHover={{ y: -6 }}
+        <div 
           onClick={() => onNavigate('ai-lab')}
-          className="p-6 rounded-3xl bg-white/80 backdrop-blur-xl border border-white/80 shadow-xs hover:border-sky-400/80 transition-all cursor-pointer space-y-3"
+          className="clay-card p-6 cursor-pointer space-y-4"
         >
-          <div className="w-12 h-12 rounded-2xl bg-sky-50 border border-sky-200/80 flex items-center justify-center text-sky-600 shadow-xs">
-            <Eye className="w-6 h-6" />
+          <div className="clay-icon-sky w-14 h-14 flex items-center justify-center text-sky-800">
+            <Eye className="w-7 h-7" />
           </div>
-          <h3 className="font-bold text-slate-900 text-sm">هوش مصنوعی و پردازش تصویر (SHM)</h3>
+          <h3 className="font-bold text-slate-900 text-sm sm:text-base">هوش مصنوعی و پردازش تصویر (SHM)</h3>
           <p className="text-xs text-slate-500 leading-relaxed">
             تشخیص خودکار و طبقه‌بندی ترک‌های بتن با شبکه‌های عصبی عمیق در پایتورچ با دقت بالای ۹۸٪.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div 
-          whileHover={{ y: -6 }}
+        <div 
           onClick={() => onNavigate('projects')}
-          className="p-6 rounded-3xl bg-white/80 backdrop-blur-xl border border-white/80 shadow-xs hover:border-emerald-400/80 transition-all cursor-pointer space-y-3"
+          className="clay-card p-6 cursor-pointer space-y-4"
         >
-          <div className="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center text-emerald-600 shadow-xs">
-            <Cpu className="w-6 h-6" />
+          <div className="clay-icon-emerald w-14 h-14 flex items-center justify-center text-emerald-800">
+            <Cpu className="w-7 h-7" />
           </div>
-          <h3 className="font-bold text-slate-900 text-sm">توسعه وب‌اپلیکیشن و سامانه PWA</h3>
+          <h3 className="font-bold text-slate-900 text-sm sm:text-base">توسعه وب‌اپلیکیشن و سامانه PWA</h3>
           <p className="text-xs text-slate-500 leading-relaxed">
             سامانه مهندسی همراه ناظر با کشینگ کامل آفلاین جهت استفاده در محیط‌های بدون آنتن‌دهی کارگاهی.
           </p>
-        </motion.div>
+        </div>
       </div>
     </div>
   );
