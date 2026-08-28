@@ -33,8 +33,9 @@ export default function ContactResumeSuite() {
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4 text-xs">
             <div>
-              <label className="text-slate-700 block mb-1 font-bold">نام شرکت / سازمان یا عنوان متقاضی:</label>
+              <label htmlFor="name" className="text-slate-700 block mb-1 font-bold">نام شرکت / سازمان یا عنوان متقاضی: <span className="text-red-500">*</span></label>
               <input
+                id="name"
                 type="text"
                 required
                 value={formData.name}
@@ -45,8 +46,9 @@ export default function ContactResumeSuite() {
             </div>
 
             <div>
-              <label className="text-slate-700 block mb-1 font-bold">ایمیل یا شماره تماس جهت ارتباط:</label>
+              <label htmlFor="email" className="text-slate-700 block mb-1 font-bold">ایمیل یا شماره تماس جهت ارتباط: <span className="text-red-500">*</span></label>
               <input
+                id="email"
                 type="text"
                 required
                 value={formData.email}
@@ -57,8 +59,9 @@ export default function ContactResumeSuite() {
             </div>
 
             <div>
-              <label className="text-slate-700 block mb-1 font-bold">حوزه خدمات مورد نظر:</label>
+              <label htmlFor="service" className="text-slate-700 block mb-1 font-bold">حوزه خدمات مورد نظر:</label>
               <select
+                id="service"
                 value={formData.service}
                 onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                 className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 focus:outline-none"
@@ -70,8 +73,9 @@ export default function ContactResumeSuite() {
             </div>
 
             <div>
-              <label className="text-slate-700 block mb-1 font-bold">شرح خلاصه نیاز یا مشخصات پروژه:</label>
+              <label htmlFor="message" className="text-slate-700 block mb-1 font-bold">شرح خلاصه نیاز یا مشخصات پروژه: <span className="text-red-500">*</span></label>
               <textarea
+                id="message"
                 rows={4}
                 required
                 value={formData.message}
