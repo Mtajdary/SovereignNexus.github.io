@@ -1,0 +1,26 @@
+{
+  "short_name": "PRIME CROWN",
+  "name": "PRIME CROWN | Sovereign Workspace",
+  "description": "سیستم‌عامل شخصی تمرکز، مهندسی و هوش مصنوعی",
+  "icons": [
+    {
+      "src": "icon-192.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "./",
+  "background_color": "#030712",
+  "theme_color": "#D4AF37",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "dir": "rtl",
+  "lang": "fa"
+}

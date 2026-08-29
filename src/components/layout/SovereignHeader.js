@@ -5,6 +5,27 @@ import { useSovereign } from '../../context/SovereignContext';
 import { liveSynth } from '../../core/audio/BinauralEngine';
 import { NAV_ITEMS } from './SovereignSidebar';
 
+// کامپوننت اختصاصی لوگوی ۴‌پر Google Labs
+const GoogleLabsLogo = () => (
+  <div className="relative w-8 h-8 flex items-center justify-center">
+    <svg viewBox="0 0 24 24" className="w-7 h-7 drop-shadow-[0_0_8px_rgba(212,175,55,0.6)]">
+      <defs>
+        <linearGradient id="headerGold" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FFF3C4" />
+          <stop offset="50%" stop-color="#D4AF37" />
+          <stop offset="100%" stop-color="#AA7C11" />
+        </linearGradient>
+      </defs>
+      <path 
+        d="M12 0 C12 6.627 6.627 12 0 12 C6.627 12 12 17.373 12 24 C12 17.373 17.373 12 24 12 C17.373 12 12 6.627 12 0 Z" 
+        fill="url(#headerGold)" 
+      />
+    </svg>
+    {/* ستاره کوچک متحرک در گوشه لوگو */}
+    <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-amber-300 animate-ping opacity-75" />
+  </div>
+);
+
 const SovereignHeader = ({ onToggleSidebar }) => {
   const location = useLocation();
   const { coins, theme, toggleTheme, isAudioPlaying, toggleAudio, soundMode } = useSovereign();
@@ -28,35 +49,35 @@ const SovereignHeader = ({ onToggleSidebar }) => {
   return (
     <>
       {/* هدر بالای صفحه */}
-      <header className="fixed top-0 left-0 right-0 z-40 glass border-b border-gold/15 px-4 sm:px-8 py-3 flex justify-between items-center transition-all">
-        {/* سمت راست: دکمه همبرگری دسکتاپ + عنوان برند */}
-        <div className="flex items-center gap-3">
-          {/* دکمه همبرگری منحصراً در دسکتاپ نمایش داده می‌شود */}
+      <header className="fixed top-0 left-0 right-0 z-40 glass border-b border-gold/15 px-3 sm:px-6 py-2.5 flex justify-between items-center transition-all">
+        {/* راست: لوگوی Google Labs + عنوان برند */}
+        <div className="flex items-center gap-2.5">
           <button
             onClick={() => {
               liveSynth.playClickSfx();
               onToggleSidebar();
             }}
-            className="hidden md:flex items-center gap-2 px-3 py-2 rounded-xl glass border border-gold/30 text-gold hover:bg-gold/10 transition-all active:scale-95"
-            title="باز کردن منوی ماژول‌ها"
+            className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass border border-gold/30 text-gold hover:bg-gold/10 transition-all active:scale-95"
+            title="باز کردن منو"
           >
             <Menu className="w-4 h-4" />
-            <span className="text-xs font-bold font-mono tracking-wider">منو</span>
+            <span className="text-xs font-bold font-mono">منو</span>
           </button>
 
           <Link
             to="/"
             onClick={() => liveSynth.playClickSfx()}
-            className="flex items-center cursor-pointer shrink-0"
+            className="flex items-center gap-2 cursor-pointer shrink-0"
           >
+            <GoogleLabsLogo />
             <span className="brand-title text-base sm:text-lg tracking-[0.2em] font-black gold-text uppercase">
               PRIME CROWN
             </span>
           </Link>
         </div>
 
-        {/* سمت چپ: ابزارهای کنترلی */}
-        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+        {/* چپ: ابزارهای کنترلی */}
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           <button
             onClick={handleThemeToggle}
             className="p-2 rounded-xl glass border border-gold/20 text-gold hover:border-gold/40 transition-all active:scale-95"
@@ -89,7 +110,7 @@ const SovereignHeader = ({ onToggleSidebar }) => {
         </div>
       </header>
 
-      {/* نوار پایینی: فقط در موبایل (md:hidden) و سبک */}
+      {/* نوار پایینی پرسرعت موبایل */}
       <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden glass border-t border-gold/20 px-1.5 py-1 flex items-center justify-between overflow-x-auto no-scrollbar gap-1 shadow-[0_-8px_20px_rgba(0,0,0,0.25)]">
         {NAV_ITEMS.map((tab) => {
           const Icon = tab.icon;
