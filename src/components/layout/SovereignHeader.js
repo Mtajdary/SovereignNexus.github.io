@@ -30,22 +30,22 @@ const PrimeAIEmlbem = () => (
         <path d="M50 18 C50 36 36 50 18 50 C36 50 50 64 50 82 C50 64 64 50 82 50 C64 50 50 36 50 18 Z" fill="#F43F5E"/>
       </g>
 
-      <!-- بدنه اصلی ستاره ۴‌پر سیال -->
+      {/* بدنه اصلی ستاره ۴‌پر سیال */}
       <path 
         d="M50 6 C50 30 30 50 6 50 C30 50 50 70 50 94 C50 70 70 50 94 50 C70 50 50 30 50 6 Z" 
         fill="url(#auroraGrad)" 
       />
 
-      <!-- خط درخشش کریستالی داخلی -->
+      {/* خط درخشش کریستالی داخلی */}
       <path 
         d="M50 15 C50 34 34 50 15 50 C34 50 50 66 50 85 C50 66 66 50 85 50 C66 50 50 34 50 15 Z" 
         fill="none" stroke="#FFFFFF" strokeWidth="1" strokeOpacity="0.5" 
       />
 
-      <!-- هسته نورانی مرکز -->
+      {/* هسته نورانی مرکز */}
       <circle cx="50" cy="50" r="20" fill="url(#hdrCore)"/>
       
-      <!-- جرقه مینیاتوری در گوشه بالا -->
+      {/* جرقه مینیاتوری در گوشه بالا */}
       <circle cx="78" cy="22" r="2" fill="#FFF" className="animate-pulse"/>
     </svg>
     <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-amber-300 animate-pulse opacity-90" />
