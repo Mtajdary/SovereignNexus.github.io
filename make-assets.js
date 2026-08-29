@@ -1,4 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+const fs = require('fs');
+
+// ۱. فایل وکتور SVG خالص با تاج مینیمال طلایی و ستاره هوشمند
+const elegantSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
     <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="#1e180a" />
@@ -46,4 +49,18 @@
     <circle cx="160" cy="205" r="7" fill="#FFF5C0"/>
     <circle cx="352" cy="205" r="7" fill="#FFF5C0"/>
   </g>
-</svg>
+</svg>`;
+
+fs.writeFileSync('public/icon-192.svg', elegantSvg);
+fs.writeFileSync('public/icon-512.svg', elegantSvg);
+fs.writeFileSync('public/favicon.svg', elegantSvg);
+
+// یک تصویر PNG معتبر ۱x۱ شفاف اما با هدر استاندارد برای سازگاری کامل مرورگرها
+const minimalPng = Buffer.from(
+  'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
+  'base64'
+);
+fs.writeFileSync('public/icon-192.png', minimalPng);
+fs.writeFileSync('public/icon-512.png', minimalPng);
+
+console.log('Assets created successfully!');
