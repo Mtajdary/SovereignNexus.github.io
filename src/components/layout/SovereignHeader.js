@@ -5,78 +5,48 @@ import { useSovereign } from '../../context/SovereignContext';
 import { liveSynth } from '../../core/audio/BinauralEngine';
 import { NAV_ITEMS } from './SovereignSidebar';
 
-// نشان اختصاصی الماس منشوری و درخشان PRIME CROWN
-const DiamondCrownEmblem = () => (
-  <div className="relative w-8 h-8 flex items-center justify-center shrink-0 group">
-    <svg viewBox="0 0 100 100" className="w-8 h-8 overflow-visible filter drop-shadow-[0_0_12px_rgba(245,158,11,0.65)]">
+// کامپوننت وکتور الماس سه‌بعدی گوگل در هدر
+const GooglePrismDiamond = () => (
+  <div className="relative w-8 h-8 flex items-center justify-center shrink-0">
+    <svg viewBox="0 0 100 100" className="w-7 h-7 drop-shadow-[0_0_10px_rgba(251,188,5,0.5)] overflow-visible">
       <defs>
-        {/* گرادیان الماس طلایی مرکزی */}
-        <linearGradient id="diamondGold" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#FFFFFF" />
-          <stop offset="20%" stopColor="#FEF08A" />
-          <stop offset="55%" stopColor="#F59E0B" />
-          <stop offset="100%" stopColor="#B45309" />
+        <linearGradient id="hBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#93C5FD" />
+          <stop offset="100%" stopColor="#2563EB" />
         </linearGradient>
-
-        {/* گرادیان بال کریستالی چپ (یاقوت کبود و فیروزه‌ای) */}
-        <linearGradient id="sapphireFacet" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#E0F2FE" />
-          <stop offset="30%" stopColor="#38BDF8" />
-          <stop offset="70%" stopColor="#2563EB" />
-          <stop offset="100%" stopColor="#1E3A8A" />
+        <linearGradient id="hYellow" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#FFFBEB" />
+          <stop offset="40%" stopColor="#FEF08A" />
+          <stop offset="100%" stopColor="#D97706" />
         </linearGradient>
-
-        {/* گرادیان بال کریستالی راست (زمرد درخشان) */}
-        <linearGradient id="emeraldFacet" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#ECFDF5" />
-          <stop offset="30%" stopColor="#34D399" />
-          <stop offset="70%" stopColor="#059669" />
-          <stop offset="100%" stopColor="#064E3B" />
+        <linearGradient id="hRed" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#FCA5A5" />
+          <stop offset="100%" stopColor="#DC2626" />
         </linearGradient>
-
-        {/* گرادیان پایه الماسی */}
-        <linearGradient id="diamondBase" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#38BDF8" />
-          <stop offset="50%" stopColor="#FDE047" />
-          <stop offset="100%" stopColor="#34D399" />
-        </linearGradient>
-
-        {/* بازتاب شیشه‌ای صیقلی */}
-        <linearGradient id="glassShine" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.8" />
-          <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0.0" />
+        <linearGradient id="hGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#A7F3D0" />
+          <stop offset="100%" stopColor="#059669" />
         </linearGradient>
       </defs>
 
-      {/* ۱. پایه و کمربند الماسی تاج */}
-      <polygon points="18,74 50,86 82,74 50,78" fill="url(#diamondBase)" />
+      {/* ۱. کلاهک بالا (آبی) */}
+      <polygon points="30,22 70,22 88,42 12,42" fill="url(#hBlue)" />
+      <polygon points="30,22 70,22 62,30 38,30" fill="#FFF" opacity="0.4" />
 
-      {/* ۲. بال چپ - برش‌های چندوجهی یاقوت کبود */}
-      <polygon points="18,40 36,60 18,74 10,54" fill="url(#sapphireFacet)" />
-      <polygon points="18,40 50,48 36,60" fill="#1D4ED8" />
-      <polygon points="18,40 28,52 18,74" fill="url(#glassShine)" opacity="0.6" />
+      {/* ۲. وجه چپ (قرمز) */}
+      <polygon points="12,42 50,86 34,42" fill="url(#hRed)" />
 
-      {/* ۳. بال راست - برش‌های چندوجهی زمرد */}
-      <polygon points="82,40 90,54 82,74 64,60" fill="url(#emeraldFacet)" />
-      <polygon points="82,40 64,60 50,48" fill="#047857" />
-      <polygon points="82,40 72,52 82,74" fill="url(#glassShine)" opacity="0.6" />
+      {/* ۳. وجه راست (سبز) */}
+      <polygon points="88,42 50,86 66,42" fill="url(#hGreen)" />
 
-      {/* ۴. قله مرکزی - الماس طلایی شاهانه */}
-      <polygon points="50,14 36,60 50,78 64,60" fill="url(#diamondGold)" />
-      {/* وجه بازتاب نور الماس مرکزی */}
-      <polygon points="50,14 50,78 36,60" fill="#FFFFFF" opacity="0.4" />
-      <polygon points="50,14 42,42 50,56" fill="url(#glassShine)" opacity="0.75" />
+      {/* ۴. وجه مرکز (طلایی کهربایی) */}
+      <polygon points="34,42 66,42 50,86" fill="url(#hYellow)" />
+      <polygon points="34,42 50,42 50,86" fill="#FFF" opacity="0.3" />
 
-      {/* ۵. جرقه ۴‌پر بر فراز الماس */}
-      <path 
-        d="M50 6 C50 10 47 13 43 13 C47 13 50 16 50 20 C50 16 53 13 57 13 C53 13 50 10 50 6 Z" 
-        fill="#FFFFFF" 
-        className="animate-pulse"
-      />
-      <circle cx="50" cy="13" r="1.5" fill="#FEF08A" />
+      {/* جرقه درخشان ۴‌پر بالای الماس */}
+      <path d="M72 14 C72 18 69 21 65 21 C69 21 72 24 72 28 C72 24 75 21 79 21 C75 21 72 18 72 14 Z" fill="#FFFFFF" />
     </svg>
-    {/* هاله چشمک‌زن الماسی */}
-    <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-amber-300 animate-ping opacity-75 pointer-events-none" />
+    <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-amber-300 animate-pulse opacity-90" />
   </div>
 );
 
@@ -120,7 +90,7 @@ const SovereignHeader = ({ onToggleSidebar }) => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-40 glass border-b border-gold/15 px-3 sm:px-6 py-2.5 flex justify-between items-center transition-all">
-        {/* راست: نشان الماس منشوری + عنوان برند */}
+        {/* راست: نشان الماس سه‌بعدی منشوری + عنوان برند */}
         <div className="flex items-center gap-2.5">
           <button
             onClick={() => {
@@ -137,9 +107,9 @@ const SovereignHeader = ({ onToggleSidebar }) => {
           <Link
             to="/"
             onClick={() => liveSynth.playClickSfx()}
-            className="flex items-center gap-2 cursor-pointer shrink-0"
+            className="flex items-center gap-2.5 cursor-pointer shrink-0"
           >
-            <DiamondCrownEmblem />
+            <GooglePrismDiamond />
             <span className="brand-title text-base sm:text-lg tracking-[0.18em] font-black gold-text uppercase whitespace-nowrap">
               PRIME CROWN
             </span>
