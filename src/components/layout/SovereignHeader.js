@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Wallet, Volume2, VolumeX, Sun, Moon } from 'lucide-react';
+import { Menu, Wallet, Volume2, VolumeX, Sun, Moon } from 'lucide-react';
 import { useSovereign } from '../../context/SovereignContext';
 import { liveSynth } from '../../core/audio/BinauralEngine';
 import { NAV_ITEMS } from './SovereignSidebar';
 
-const SovereignHeader = () => {
+const SovereignHeader = ({ onToggleSidebar }) => {
   const location = useLocation();
   const { coins, theme, toggleTheme, isAudioPlaying, toggleAudio, soundMode } = useSovereign();
 
@@ -27,19 +27,35 @@ const SovereignHeader = () => {
 
   return (
     <>
-      {/* هدر بالای صفحه (در دسکتاپ با احتساب سایدبار md:right-20 / در موبایل تمام‌عرض right-0) */}
-      <header className="fixed top-0 left-0 right-0 md:right-20 z-30 glass border-b border-gold/15 px-4 sm:px-8 py-3 flex justify-between items-center transition-all">
-        <Link
-          to="/"
-          onClick={() => liveSynth.playClickSfx()}
-          className="flex items-center cursor-pointer shrink-0"
-        >
-          <span className="brand-title text-base sm:text-lg tracking-[0.2em] font-black gold-text uppercase">
-            PRIME CROWN
-          </span>
-        </Link>
+      {/* هدر بالای صفحه */}
+      <header className="fixed top-0 left-0 right-0 z-40 glass border-b border-gold/15 px-4 sm:px-8 py-3 flex justify-between items-center transition-all">
+        {/* سمت راست: دکمه همبرگری دسکتاپ + عنوان برند */}
+        <div className="flex items-center gap-3">
+          {/* دکمه همبرگری منحصراً در دسکتاپ نمایش داده می‌شود */}
+          <button
+            onClick={() => {
+              liveSynth.playClickSfx();
+              onToggleSidebar();
+            }}
+            className="hidden md:flex items-center gap-2 px-3 py-2 rounded-xl glass border border-gold/30 text-gold hover:bg-gold/10 transition-all active:scale-95"
+            title="باز کردن منوی ماژول‌ها"
+          >
+            <Menu className="w-4 h-4" />
+            <span className="text-xs font-bold font-mono tracking-wider">منو</span>
+          </button>
 
-        {/* دکمه‌های کنترل */}
+          <Link
+            to="/"
+            onClick={() => liveSynth.playClickSfx()}
+            className="flex items-center cursor-pointer shrink-0"
+          >
+            <span className="brand-title text-base sm:text-lg tracking-[0.2em] font-black gold-text uppercase">
+              PRIME CROWN
+            </span>
+          </Link>
+        </div>
+
+        {/* سمت چپ: ابزارهای کنترلی */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <button
             onClick={handleThemeToggle}
@@ -73,7 +89,7 @@ const SovereignHeader = () => {
         </div>
       </header>
 
-      {/* نوار پایینی: فقط در موبایل (md:hidden) و در دسکتاپ ۱۰۰٪ حذف می‌شود */}
+      {/* نوار پایینی: فقط در موبایل (md:hidden) و سبک */}
       <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden glass border-t border-gold/20 px-1.5 py-1 flex items-center justify-between overflow-x-auto no-scrollbar gap-1 shadow-[0_-8px_20px_rgba(0,0,0,0.25)]">
         {NAV_ITEMS.map((tab) => {
           const Icon = tab.icon;

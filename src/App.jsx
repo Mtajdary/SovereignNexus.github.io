@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { SovereignProvider, useSovereign } from './context/SovereignContext';
 import SovereignHeader from './components/layout/SovereignHeader';
@@ -67,24 +67,30 @@ const PageWrap = ({ children }) => (
 
 const AppContent = () => {
   const { theme } = useSovereign();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <div className={`min-h-screen relative transition-colors duration-300 overflow-x-hidden ${theme === 'light' ? 'light-theme' : 'dark'}`}>
       <PageTitleUpdater />
       <DynamicBackground />
       
-      {/* سایدبار دسکتاپ (در موبایل کاملاً مخفی) */}
-      <SovereignSidebar />
+      {/* سایدبار کشویی دسکتاپ با کلیک روی همبرگری */}
+      <SovereignSidebar
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+      />
 
-      {/* هدر و نوار پایینی موبایل */}
-      <SovereignHeader />
+      {/* هدر بالای صفحه و کنترل باز و بسته شدن */}
+      <SovereignHeader
+        onToggleSidebar={() => setSidebarOpen(prev => !prev)}
+      />
 
-      {/* محتوای اصلی: در دسکتاپ فاصله از راست (md:mr-20)، در موبایل بدون فاصله جانبی و دارای پدینگ پایینی (pb-20 md:pb-12) */}
-      <main className="relative z-10 pt-16 sm:pt-20 pb-20 md:pb-12 md:mr-20 px-3 sm:px-6 max-w-5xl mx-auto">
+      {/* بدنه اصلی متوازن و بدون هیچ حاشیه چسبیده به کناره‌ها */}
+      <main className="relative z-10 pt-16 sm:pt-20 pb-20 md:pb-12 px-3 sm:px-6 max-w-5xl mx-auto">
         <AnimatedRoutes />
       </main>
 
-      <footer className="relative z-10 py-6 text-center opacity-40 text-[9px] tracking-[0.4em] uppercase font-mono border-t border-white/5 md:mr-20">
+      <footer className="relative z-10 py-6 text-center opacity-40 text-[9px] tracking-[0.4em] uppercase font-mono border-t border-white/5">
         PRIME CROWN © 2026 | ARCHITECT: MOHAMMAD TAJDARI
       </footer>
     </div>
