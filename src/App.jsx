@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { SovereignProvider, useSovereign } from './context/SovereignContext';
 import SovereignHeader from './components/layout/SovereignHeader';
@@ -59,7 +59,7 @@ const PageWrap = ({ children }) => (
     initial={{ opacity: 0, y: 6 }}
     animate={{ opacity: 1, y: 0 }}
     exit={{ opacity: 0, y: -6 }}
-    transition={{ duration: 0.2 }}
+    transition={{ duration: 0.15 }}
   >
     {children}
   </motion.div>
@@ -67,30 +67,24 @@ const PageWrap = ({ children }) => (
 
 const AppContent = () => {
   const { theme } = useSovereign();
-  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   return (
     <div className={`min-h-screen relative transition-colors duration-300 overflow-x-hidden ${theme === 'light' ? 'light-theme' : 'dark'}`}>
       <PageTitleUpdater />
       <DynamicBackground />
       
-      {/* ۱. سایدبار عمودی راست (ثابت در دسکتاپ، کشویی در موبایل) */}
-      <SovereignSidebar
-        isMobileOpen={mobileSidebarOpen}
-        onCloseMobile={() => setMobileSidebarOpen(false)}
-      />
+      {/* سایدبار عمودی ثابت سمت راست */}
+      <SovereignSidebar />
 
-      {/* ۲. هدر بالای صفحه با احتساب سایدبار راست */}
-      <SovereignHeader
-        onOpenMobileSidebar={() => setMobileSidebarOpen(true)}
-      />
+      {/* هدر بالای صفحه */}
+      <SovereignHeader />
 
-      {/* ۳. محتوای اصلی با حاشیه استاندارد از سمت راست در دسکتاپ (md:mr-20) */}
-      <main className="relative z-10 pt-20 sm:pt-24 pb-12 md:mr-20 px-3 sm:px-6">
+      {/* محتوای اصلی با فاصله استاندارد از سمت راست (mr-16 sm:mr-18) */}
+      <main className="relative z-10 pt-20 sm:pt-24 pb-12 mr-16 sm:mr-18 px-3 sm:px-6 max-w-5xl">
         <AnimatedRoutes />
       </main>
 
-      <footer className="relative z-10 py-6 text-center opacity-40 text-[9px] tracking-[0.4em] uppercase font-mono border-t border-white/5 md:mr-20">
+      <footer className="relative z-10 py-6 text-center opacity-40 text-[9px] tracking-[0.4em] uppercase font-mono border-t border-white/5 mr-16 sm:mr-18">
         PRIME CROWN © 2026 | ARCHITECT: MOHAMMAD TAJDARI
       </footer>
     </div>
