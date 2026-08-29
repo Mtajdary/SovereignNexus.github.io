@@ -10,11 +10,11 @@ root.render(
   </React.StrictMode>
 );
 
-// فعال‌سازی قابلیت PWA
-if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
+// ثبت قطعی سرویس‌ورکر برای فعال‌سازی کامل PWA
+if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch((err) => {
-      console.log('SW registration failed: ', err);
-    });
+    navigator.serviceWorker.register('./sw.js', { scope: './' })
+      .then((reg) => console.log('PWA ServiceWorker Active:', reg.scope))
+      .catch((err) => console.error('PWA SW Error:', err));
   });
 }

@@ -1,0 +1,11 @@
+const fs = require('fs');
+
+// ایجاد فایل‌های SVG با سایزبندی مشخص
+const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="128" fill="#030712"/>
+  <path d="M256 64 C256 169.9 169.9 256 64 256 C169.9 256 256 342.1 256 448 C256 342.1 342.1 256 448 256 C342.1 256 256 169.9 256 64 Z" fill="#D4AF37"/>
+  <circle cx="380" cy="130" r="28" fill="#FFF3C4"/>
+</svg>`;
+
+fs.writeFileSync('public/icon-192.svg', svgContent);
+fs.writeFileSync('public/icon-512.svg', svgContent);
