@@ -8,19 +8,19 @@
 :root {
   --bg-app: #030712;
   --text-app: #f8fafc;
-  --glass-bg: rgba(15, 23, 42, 0.65);
+  --glass-bg: rgba(15, 23, 42, 0.7);
   --glass-border: rgba(212, 175, 55, 0.2);
   --box-bg: rgba(0, 0, 0, 0.6);
   --gold-primary: #D4AF37;
 }
 
 .light-theme, html.light-theme, body.light-theme {
-  --bg-app: #f5f3eb !important;
+  --bg-app: #f6f4ee !important;
   --text-app: #0f172a !important;
-  --glass-bg: rgba(255, 255, 255, 0.82) !important;
-  --glass-border: rgba(212, 175, 55, 0.3) !important;
-  --box-bg: rgba(238, 235, 224, 0.95) !important;
-  --gold-primary: #996515 !important;
+  --glass-bg: rgba(255, 255, 255, 0.88) !important;
+  --glass-border: rgba(180, 130, 20, 0.25) !important;
+  --box-bg: rgba(240, 237, 226, 0.95) !important;
+  --gold-primary: #854d0e !important;
 }
 
 html, body, #root, * {
@@ -37,7 +37,7 @@ body {
   color: var(--text-app);
   direction: rtl;
   overflow-x: hidden;
-  transition: background-color 0.4s ease, color 0.4s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .font-mono, [class*="font-mono"] {
@@ -48,11 +48,10 @@ body {
   font-family: 'Playfair Display', Georgia, serif !important;
 }
 
-/* کارت‌های شیشه‌ای */
 .glass {
   background: var(--glass-bg) !important;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border) !important;
 }
 
@@ -62,54 +61,54 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+/* اصلاح کنتراست متون طلایی در حالت روز */
 .light-theme .gold-text {
-  background: linear-gradient(135deg, #996515 0%, #5e3c04 100%) !important;
+  background: linear-gradient(135deg, #92400e 0%, #78350f 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
-/* کلیدهای انیمیشن پس‌زمینه Google Labs */
-@keyframes floatOrb1 {
-  0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
-  50% { transform: translate3d(60px, 80px, 0) scale(1.3) rotate(180deg); }
-  100% { transform: translate3d(0, 0, 0) scale(1) rotate(360deg); }
+.light-theme .text-gold {
+  color: #854d0e !important;
 }
 
-@keyframes floatOrb2 {
-  0% { transform: translate3d(0, 0, 0) scale(1) rotate(360deg); }
-  50% { transform: translate3d(-70px, -60px, 0) scale(0.85) rotate(180deg); }
-  100% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
-}
-
-@keyframes floatOrb3 {
-  0% { transform: translate3d(0, 0, 0) scale(0.9); }
-  50% { transform: translate3d(50px, -70px, 0) scale(1.25); }
-  100% { transform: translate3d(0, 0, 0) scale(0.9); }
-}
-
-@keyframes pulseStar {
-  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; }
-  50% { transform: scale(1.35) rotate(45deg); opacity: 0.9; }
-}
-
-@keyframes spinSlow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.anim-orb-1 { animation: floatOrb1 16s ease-in-out infinite; will-change: transform; }
-.anim-orb-2 { animation: floatOrb2 22s ease-in-out infinite; will-change: transform; }
-.anim-orb-3 { animation: floatOrb3 18s ease-in-out infinite; will-change: transform; }
-.anim-star { animation: pulseStar 5s ease-in-out infinite; will-change: transform, opacity; }
-.anim-spin-slow { animation: spinSlow 30s linear infinite; will-change: transform; }
-
-/* تطبیق اجباری رنگ‌ها در تم روشن */
 .light-theme .text-white { color: #0f172a !important; }
 .light-theme .text-white\/80 { color: #1e293b !important; }
 .light-theme .text-white\/70 { color: #334155 !important; }
-.light-theme .text-white\/60 { color: #475569 !important; }
-.light-theme .text-white\/50 { color: #64748b !important; }
+.light-theme .text-white\/60,
+.light-theme .text-white\/50,
 .light-theme .text-white\/40 { color: #64748b !important; }
 .light-theme .bg-black\/60, .light-theme .bg-black\/50, .light-theme .bg-black\/40 {
   background-color: var(--box-bg) !important;
+}
+
+/* انیمیشن‌های پس‌زمینه */
+@keyframes floatOrb1 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(50px, 60px, 0) scale(1.2); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes floatOrb2 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-50px, -50px, 0) scale(0.9); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes pulseStar {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.3); opacity: 0.8; }
+}
+
+.anim-orb-1 { animation: floatOrb1 18s ease-in-out infinite; }
+.anim-orb-2 { animation: floatOrb2 22s ease-in-out infinite; }
+.anim-star { animation: pulseStar 5s ease-in-out infinite; }
+
+/* پنهان کردن اسکرول‌بار اما با حفظ قابلیت اسکرول نرم */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

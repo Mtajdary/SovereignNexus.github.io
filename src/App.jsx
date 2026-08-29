@@ -55,9 +55,9 @@ const AnimatedRoutes = () => {
 
 const PageWrap = ({ children }) => (
   <motion.div
-    initial={{ opacity: 0, y: 8 }}
+    initial={{ opacity: 0, y: 6 }}
     animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -8 }}
+    exit={{ opacity: 0, y: -6 }}
     transition={{ duration: 0.2 }}
   >
     {children}
@@ -68,12 +68,12 @@ const AppContent = () => {
   const { theme } = useSovereign();
 
   return (
-    <div className={`min-h-screen relative pb-28 sm:pb-32 transition-colors duration-500 overflow-x-hidden ${theme === 'light' ? 'light-theme' : 'dark'}`}>
+    <div className={`min-h-screen relative pb-20 lg:pb-8 transition-colors duration-300 overflow-x-hidden ${theme === 'light' ? 'light-theme' : 'dark'}`}>
       <PageTitleUpdater />
       <DynamicBackground />
       <SovereignHeader />
 
-      <main className="relative z-10 pt-16 sm:pt-24">
+      <main className="relative z-10 pt-16 sm:pt-20">
         <AnimatedRoutes />
       </main>
     </div>
