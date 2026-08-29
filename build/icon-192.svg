@@ -1,42 +1,31 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <!-- پس‌زمینه تاریک با عمق کیهانی -->
     <radialGradient id="nebulaBg" cx="50%" cy="38%" r="65%">
-      <stop offset="0%" stop-color="#131a2a" />
-      <stop offset="50%" stop-color="#080c14" />
+      <stop offset="0%" stop-color="#181308" />
+      <stop offset="50%" stop-color="#080705" />
       <stop offset="100%" stop-color="#020408" />
     </radialGradient>
 
-    <!-- کادر دور چندرنگ ظریف -->
-    <linearGradient id="rimStroke" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#60A5FA" stop-opacity="0.8"/>
-      <stop offset="30%" stop-color="#F43F5E" stop-opacity="0.6"/>
-      <stop offset="70%" stop-color="#FBBF24" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#34D399" stop-opacity="0.6"/>
+    <linearGradient id="goldRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FEF08A" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#F59E0B" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#78350F" stop-opacity="0.8"/>
     </linearGradient>
 
-    <!-- گرادیان اصلی طیف هوشمند پرایم -->
-    <linearGradient id="primeSpectrum" x1="15%" y1="10%" x2="85%" y2="90%">
-      <stop offset="0%" stop-color="#60A5FA"/>
-      <stop offset="28%" stop-color="#A855F7"/>
-      <stop offset="52%" stop-color="#F43F5E"/>
-      <stop offset="76%" stop-color="#FBBF24"/>
-      <stop offset="100%" stop-color="#10B981"/>
+    <linearGradient id="solarGoldGrad" x1="15%" y1="10%" x2="85%" y2="90%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="25%" stop-color="#FEF08A"/>
+      <stop offset="60%" stop-color="#F59E0B"/>
+      <stop offset="85%" stop-color="#D97706"/>
+      <stop offset="100%" stop-color="#78350F"/>
     </linearGradient>
 
-    <!-- گرادیان هسته درخشان مرکزی -->
     <radialGradient id="solarCore" cx="50%" cy="50%" r="45%">
       <stop offset="0%" stop-color="#FFFFFF"/>
-      <stop offset="40%" stop-color="#FFF3C4"/>
-      <stop offset="75%" stop-color="#F59E0B" stop-opacity="0.85"/>
+      <stop offset="45%" stop-color="#FEF08A"/>
+      <stop offset="75%" stop-color="#F59E0B" stop-opacity="0.9"/>
       <stop offset="100%" stop-color="#F59E0B" stop-opacity="0"/>
     </radialGradient>
-
-    <linearGradient id="flareGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FDE047"/>
-      <stop offset="50%" stop-color="#F43F5E"/>
-      <stop offset="100%" stop-color="#60A5FA"/>
-    </linearGradient>
 
     <filter id="ultraGlow" x="-25%" y="-25%" width="150%" height="150%">
       <feGaussianBlur stdDeviation="16" result="blur"/>
@@ -44,33 +33,19 @@
     </filter>
   </defs>
 
-  <rect width="512" height="512" rx="128" fill="url(#nebulaBg)" stroke="url(#rimStroke)" stroke-width="4"/>
+  <rect width="512" height="512" rx="128" fill="url(#nebulaBg)" stroke="url(#goldRim)" stroke-width="4"/>
 
-  <!-- هاله نوری در پس‌زمینه -->
-  <circle cx="256" cy="256" r="150" fill="#A855F7" opacity="0.18" filter="url(#ultraGlow)"/>
-  <circle cx="256" cy="256" r="90" fill="#FBBF24" opacity="0.22" filter="url(#ultraGlow)"/>
+  <circle cx="256" cy="256" r="140" fill="#F59E0B" opacity="0.18" filter="url(#ultraGlow)"/>
 
-  <!-- بال‌های زاویه‌دار کریستالی پشت ستاره -->
-  <g opacity="0.45" filter="url(#ultraGlow)" transform="rotate(45 256 256)">
-    <path d="M256 90 C256 185 185 256 90 256 C185 256 256 327 256 422 C256 327 327 256 422 256 C327 256 256 185 256 90 Z" 
-          fill="url(#flareGrad)"/>
+  <g opacity="0.35" filter="url(#ultraGlow)" transform="rotate(45 256 256)">
+    <path d="M256 90 C256 185 185 256 90 256 C185 256 256 327 256 422 C256 327 327 256 422 256 C327 256 256 185 256 90 Z" fill="url(#solarGoldGrad)"/>
   </g>
 
-  <!-- ستاره اصلی سیال و چشم‌نواز هوش مصنوعی -->
   <g filter="url(#ultraGlow)">
-    <path d="M256 42 C256 168 168 256 42 256 C168 256 256 344 256 470 C256 344 344 256 470 256 C344 256 256 168 256 42 Z" 
-          fill="url(#primeSpectrum)"/>
-    
-    <!-- خط بازتاب درخشان داخلی -->
-    <path d="M256 70 C256 180 180 256 70 256 C180 256 256 332 256 442 C256 332 332 256 442 256 C332 256 256 180 256 70 Z" 
-          fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-opacity="0.45"/>
-
-    <!-- هسته نورانی خورشیدی در مرکز -->
-    <circle cx="256" cy="256" r="110" fill="url(#solarCore)"/>
-
-    <!-- جرقه مینیاتوری ماهواره‌ای در گوشه بالا -->
-    <path d="M388 92 C388 116 368 136 344 136 C368 136 388 156 388 180 C388 156 408 136 432 136 C408 136 388 116 388 92 Z" 
-          fill="#FFFBEB" opacity="0.95"/>
+    <path d="M256 42 C256 168 168 256 42 256 C168 256 256 344 256 470 C256 344 344 256 470 256 C344 256 256 168 256 42 Z" fill="url(#solarGoldGrad)"/>
+    <path d="M256 70 C256 180 180 256 70 256 C180 256 256 332 256 442 C256 332 332 256 442 256 C332 256 256 180 256 70 Z" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-opacity="0.5"/>
+    <circle cx="256" cy="256" r="100" fill="url(#solarCore)"/>
+    <path d="M388 92 C388 116 368 136 344 136 C368 136 388 156 388 180 C388 156 408 136 432 136 C408 136 388 116 388 92 Z" fill="#FFF" opacity="0.95"/>
     <circle cx="388" cy="136" r="3" fill="#FFFFFF"/>
   </g>
 </svg>

@@ -5,47 +5,38 @@ import { useSovereign } from '../../context/SovereignContext';
 import { liveSynth } from '../../core/audio/BinauralEngine';
 import { NAV_ITEMS } from './SovereignSidebar';
 
-// نشان اختصاصی ستاره ۴‌پر سیال هوش مصنوعی PRIME CROWN
 const PrimeAIEmlbem = () => (
   <div className="relative w-8 h-8 flex items-center justify-center shrink-0">
-    <svg viewBox="0 0 100 100" className="w-7 h-7 drop-shadow-[0_0_10px_rgba(251,191,36,0.55)] overflow-visible">
+    <svg viewBox="0 0 100 100" className="w-7 h-7 drop-shadow-[0_0_10px_rgba(245,158,11,0.6)] overflow-visible">
       <defs>
-        <linearGradient id="auroraGrad" x1="10%" y1="10%" x2="90%" y2="90%">
-          <stop offset="0%" stopColor="#60A5FA"/>
-          <stop offset="30%" stopColor="#A855F7"/>
-          <stop offset="55%" stopColor="#F43F5E"/>
-          <stop offset="80%" stopColor="#FBBF24"/>
-          <stop offset="100%" stopColor="#10B981"/>
+        <linearGradient id="hdrGoldStar" x1="10%" y1="10%" x2="90%" y2="90%">
+          <stop offset="0%" stopColor="#FFFFFF"/>
+          <stop offset="25%" stopColor="#FEF08A"/>
+          <stop offset="60%" stopColor="#F59E0B"/>
+          <stop offset="100%" stopColor="#78350F"/>
         </linearGradient>
-        <radialGradient id="hdrCore" cx="50%" cy="50%" r="45%">
+        <radialGradient id="hdrSolarCore" cx="50%" cy="50%" r="45%">
           <stop offset="0%" stopColor="#FFFFFF"/>
           <stop offset="45%" stopColor="#FEF08A"/>
-          <stop offset="80%" stopColor="#F59E0B" stopOpacity="0.8"/>
           <stop offset="100%" stopColor="#F59E0B" stopOpacity="0"/>
         </radialGradient>
       </defs>
 
-      {/* ستاره پس‌زمینه با زاویه ۴۵ درجه */}
-      <g opacity="0.35" transform="rotate(45 50 50)">
-        <path d="M50 18 C50 36 36 50 18 50 C36 50 50 64 50 82 C50 64 64 50 82 50 C64 50 50 36 50 18 Z" fill="#F43F5E"/>
+      <g opacity="0.3" transform="rotate(45 50 50)">
+        <path d="M50 18 C50 36 36 50 18 50 C36 50 50 64 50 82 C50 64 64 50 82 50 C64 50 50 36 50 18 Z" fill="url(#hdrGoldStar)"/>
       </g>
 
-      {/* بدنه اصلی ستاره ۴‌پر سیال */}
       <path 
         d="M50 6 C50 30 30 50 6 50 C30 50 50 70 50 94 C50 70 70 50 94 50 C70 50 50 30 50 6 Z" 
-        fill="url(#auroraGrad)" 
+        fill="url(#hdrGoldStar)" 
       />
 
-      {/* خط درخشش کریستالی داخلی */}
       <path 
         d="M50 15 C50 34 34 50 15 50 C34 50 50 66 50 85 C50 66 66 50 85 50 C66 50 50 34 50 15 Z" 
         fill="none" stroke="#FFFFFF" strokeWidth="1" strokeOpacity="0.5" 
       />
 
-      {/* هسته نورانی مرکز */}
-      <circle cx="50" cy="50" r="20" fill="url(#hdrCore)"/>
-      
-      {/* جرقه مینیاتوری در گوشه بالا */}
+      <circle cx="50" cy="50" r="18" fill="url(#hdrSolarCore)"/>
       <circle cx="78" cy="22" r="2" fill="#FFF" className="animate-pulse"/>
     </svg>
     <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-amber-300 animate-pulse opacity-90" />
@@ -92,7 +83,6 @@ const SovereignHeader = ({ onToggleSidebar }) => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-40 glass border-b border-gold/15 px-3 sm:px-6 py-2.5 flex justify-between items-center transition-all">
-        {/* راست: آیکون ستاره + عنوان برند کاملاً مرتب و تفکیک‌شده */}
         <div className="flex items-center gap-2">
           <button
             onClick={() => {
@@ -118,7 +108,6 @@ const SovereignHeader = ({ onToggleSidebar }) => {
           </Link>
         </div>
 
-        {/* چپ: دکمه‌های کنترل و دکمه نصب */}
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           {deferredPrompt && (
             <button
@@ -156,7 +145,6 @@ const SovereignHeader = ({ onToggleSidebar }) => {
         </div>
       </header>
 
-      {/* نوار پایینی موبایل */}
       <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden glass border-t border-gold/20 px-1.5 py-1 flex items-center justify-between overflow-x-auto no-scrollbar gap-1 shadow-[0_-8px_20px_rgba(0,0,0,0.25)]">
         {NAV_ITEMS.map((tab) => {
           const Icon = tab.icon;
