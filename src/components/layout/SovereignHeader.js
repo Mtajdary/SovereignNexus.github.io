@@ -5,41 +5,51 @@ import { useSovereign } from '../../context/SovereignContext';
 import { liveSynth } from '../../core/audio/BinauralEngine';
 import { NAV_ITEMS } from './SovereignSidebar';
 
-// لوگوی اصیل و همگون تاج طلایی
-const SovereignCrownLogo = () => (
+// کامپوننت اختصاصی لوگوی تاج نئونی PRIME CROWN
+const PrismaticCrownLogo = () => (
   <div className="relative w-8 h-8 flex items-center justify-center shrink-0">
-    <svg viewBox="0 0 100 100" className="w-7 h-7 drop-shadow-[0_0_10px_rgba(245,158,11,0.5)]">
+    <svg viewBox="0 0 100 100" className="w-8 h-8 drop-shadow-[0_0_10px_rgba(245,158,11,0.6)]">
       <defs>
-        <linearGradient id="headerGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#FFFBEB" />
-          <stop offset="40%" stopColor="#F59E0B" />
-          <stop offset="80%" stopColor="#D4AF37" />
-          <stop offset="100%" stopColor="#92400E" />
+        <linearGradient id="hdrLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#7DD3FC" />
+          <stop offset="100%" stopColor="#1D4ED8" />
+        </linearGradient>
+        <linearGradient id="hdrCenter" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#FFFFFF" />
+          <stop offset="35%" stopColor="#FDE047" />
+          <stop offset="100%" stopColor="#B45309" />
+        </linearGradient>
+        <linearGradient id="hdrRight" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#6EE7B7" />
+          <stop offset="100%" stopColor="#047857" />
         </linearGradient>
       </defs>
-      
-      <path 
-        d="M20 70 L28 42 L42 56 L50 28 L58 56 L72 42 L80 70 Z" 
-        fill="url(#headerGoldGrad)" 
-        stroke="#FFF"
-        strokeWidth="1.2"
-        strokeOpacity="0.4"
-      />
-      
-      <rect x="20" y="73" width="60" height="6" rx="3" fill="url(#headerGoldGrad)" />
 
-      <path 
-        d="M50 16 C50 20 48 22 44 22 C48 22 50 24 50 28 C50 24 52 22 56 22 C52 22 50 20 50 16 Z" 
-        fill="#FFFFFF" 
-      />
+      {/* بال چپ (آبی) */}
+      <polygon points="18,42 36,60 18,74 12,56" fill="url(#hdrLeft)" />
+      <polygon points="18,42 50,48 36,60" fill="#2563EB" opacity="0.75" />
+
+      {/* بال راست (سبز زمردی) */}
+      <polygon points="82,42 88,56 82,74 64,60" fill="url(#hdrRight)" />
+      <polygon points="82,42 64,60 50,48" fill="#059669" opacity="0.75" />
+
+      {/* پایه تاج */}
+      <path d="M18 74 Q 50 84 82 74 L80 77 Q 50 87 20 77 Z" fill="#F59E0B" opacity="0.9" />
+
+      {/* قله مرکزی طلایی درخشان */}
+      <polygon points="50,20 36,60 50,76 64,60" fill="url(#hdrCenter)" />
+      <polygon points="50,20 50,76 36,60" fill="#FFF" opacity="0.35" />
+
+      {/* جرقه ۴‌پر بر فراز تاج */}
+      <path d="M50 12 C50 16 47 19 43 19 C47 19 50 22 50 26 C50 22 53 19 57 19 C53 19 50 16 50 12 Z" fill="#FFFFFF" />
     </svg>
-    <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-amber-300 animate-pulse opacity-80" />
+    <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-amber-300 animate-pulse opacity-85" />
   </div>
 );
 
 const SovereignHeader = ({ onToggleSidebar }) => {
   const location = useLocation();
-  const { coins, theme, toggleTheme, isAudioPlaying, toggleAudio, soundMode } = useSovereign();
+  const { coins, theme, toggleTheme, isAudioPlaying, toggleAudio } = useSovereign();
   const [deferredPrompt, setDeferredPrompt] = useState(null);
 
   useEffect(() => {
@@ -77,8 +87,8 @@ const SovereignHeader = ({ onToggleSidebar }) => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-40 glass border-b border-gold/15 px-3 sm:px-6 py-2.5 flex justify-between items-center transition-all">
-        {/* راست: لوگو و نام برند بدون هیچ همپوشانی */}
-        <div className="flex items-center gap-2">
+        {/* راست: لوگو و نام برند */}
+        <div className="flex items-center gap-2.5">
           <button
             onClick={() => {
               liveSynth.playClickSfx();
@@ -94,22 +104,22 @@ const SovereignHeader = ({ onToggleSidebar }) => {
           <Link
             to="/"
             onClick={() => liveSynth.playClickSfx()}
-            className="flex items-center gap-2 cursor-pointer shrink-0"
+            className="flex items-center gap-2.5 cursor-pointer shrink-0"
           >
-            <SovereignCrownLogo />
+            <PrismaticCrownLogo />
             <span className="brand-title text-sm sm:text-lg tracking-[0.18em] font-black gold-text uppercase whitespace-nowrap">
               PRIME CROWN
             </span>
           </Link>
         </div>
 
-        {/* چپ: دکمه‌ها و وضعیت‌ها به ترتیب منظم */}
+        {/* چپ: دکمه‌های کنترل */}
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           {deferredPrompt && (
             <button
               onClick={handleInstallClick}
               className="p-2 rounded-xl bg-gold/20 border border-gold text-gold hover:bg-gold hover:text-black transition-all active:scale-95 flex items-center justify-center shadow-[0_0_10px_rgba(212,175,55,0.3)]"
-              title="نصب نسخه اپلیکیشن روی گوشی"
+              title="نصب اپلیکیشن"
             >
               <Download className="w-4 h-4" />
             </button>

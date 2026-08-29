@@ -1,49 +1,84 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#1e180a" />
-      <stop offset="70%" stop-color="#080705" />
-      <stop offset="100%" stop-color="#030712" />
+    <!-- پس‌زمینه صیقلی آبسیدین با هاله نوری داخلی -->
+    <radialGradient id="iconBaseBg" cx="50%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#111827" />
+      <stop offset="60%" stop-color="#070b14" />
+      <stop offset="100%" stop-color="#020408" />
     </radialGradient>
-    <linearGradient id="goldLinear" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFF5C0" />
-      <stop offset="35%" stop-color="#F59E0B" />
-      <stop offset="70%" stop-color="#D4AF37" />
-      <stop offset="100%" stop-color="#78350F" />
+
+    <!-- کادر حاشیه باریک طلایی-آبی -->
+    <linearGradient id="iconRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE047" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#38BDF8" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#34D399" stop-opacity="0.8" />
     </linearGradient>
-    <linearGradient id="glowLine" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.8"/>
-      <stop offset="50%" stop-color="#FFF" stop-opacity="0.9"/>
-      <stop offset="100%" stop-color="#F59E0B" stop-opacity="0.8"/>
+
+    <!-- گرادیان بال چپ (آبی کوبالت نئونی) -->
+    <linearGradient id="spireLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#BAE6FD" />
+      <stop offset="30%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#1D4ED8" />
     </linearGradient>
+
+    <!-- گرادیان قله اصلی وسط (طلایی خورشیدی امپراتوری) -->
+    <linearGradient id="spireCenter" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="25%" stop-color="#FEF08A" />
+      <stop offset="60%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#92400E" />
+    </linearGradient>
+
+    <!-- گرادیان بال راست (زمردی درخشان) -->
+    <linearGradient id="spireRight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D1FAE5" />
+      <stop offset="30%" stop-color="#34D399" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+
+    <!-- گرادیان پایه تاج -->
+    <linearGradient id="crownBaseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1D4ED8" />
+      <stop offset="50%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+
+    <!-- افکت بلور نوری ملایم برای درخشش آیکون روی صفحه گوشی -->
+    <filter id="neonAura" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="18" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
   </defs>
 
-  <rect width="512" height="512" rx="120" fill="url(#bgGlow)" stroke="#D4AF37" stroke-width="4" stroke-opacity="0.4"/>
+  <!-- کادر آیکون اپلیکیشن -->
+  <rect width="512" height="512" rx="124" fill="url(#iconBaseBg)" stroke="url(#iconRim)" stroke-width="4" />
 
-  <!-- هاله درخشان پشت تاج -->
-  <circle cx="256" cy="256" r="130" fill="#F59E0B" opacity="0.12"/>
+  <!-- هاله نورانی طلایی در مرکز -->
+  <circle cx="256" cy="270" r="130" fill="#F59E0B" opacity="0.16" filter="url(#neonAura)" />
 
-  <!-- هندسه اصیل و مینیمال تاج PRIME CROWN -->
-  <g transform="translate(0, 15)">
-    <!-- بدنه اصلی تاج -->
-    <path d="M120 340 L160 210 L220 280 L256 150 L292 280 L352 210 L392 340 Z" 
-          fill="url(#goldLinear)" 
-          stroke="#FFF" 
-          stroke-width="2" 
-          stroke-opacity="0.4"/>
+  <!-- وکتور اصلی تاج ۳بعدی -->
+  <g filter="url(#neonAura)" transform="translate(0, 10)">
+    <!-- پایه منحنی پایین تاج -->
+    <path d="M120 350 Q 256 385 392 350 L382 368 Q 256 405 130 368 Z" fill="url(#crownBaseGrad)" />
 
-    <!-- پایه زیرین تاج -->
-    <rect x="120" y="352" width="272" height="24" rx="12" fill="url(#goldLinear)"/>
-    
-    <!-- خط نوری بازتاب روی پایه -->
-    <line x1="140" y1="364" x2="372" y2="364" stroke="url(#glowLine)" stroke-width="3" stroke-linecap="round"/>
+    <!-- بال چپ تاج -->
+    <path d="M130 340 L160 190 Q 185 245 220 280 L180 340 Z" fill="url(#spireLeft)" opacity="0.95" />
+    <path d="M160 190 L220 280 L256 240 Z" fill="#2563EB" opacity="0.7" />
 
-    <!-- ستاره درخشان ۴‌پر در راس قله اصلی -->
-    <path d="M256 100 C256 122 244 134 222 134 C244 134 256 146 256 168 C256 146 268 134 290 134 C268 134 256 122 256 100 Z" fill="#FFFFFF"/>
-    <circle cx="256" cy="134" r="3" fill="#FFE082"/>
+    <!-- بال راست تاج -->
+    <path d="M382 340 L352 190 Q 327 245 292 280 L332 340 Z" fill="url(#spireRight)" opacity="0.95" />
+    <path d="M352 190 L292 280 L256 240 Z" fill="#059669" opacity="0.7" />
 
-    <!-- نگین‌های مینیمال قله‌های چپ و راست -->
-    <circle cx="160" cy="205" r="7" fill="#FFF5C0"/>
-    <circle cx="352" cy="205" r="7" fill="#FFF5C0"/>
+    <!-- قله مرکزی شاهانه (بلندتر و پرکنتراست) -->
+    <path d="M256 105 L205 285 Q 256 320 307 285 Z" fill="url(#spireCenter)" />
+    <!-- خط بازتاب نوری کریستالی روی قله وسط -->
+    <path d="M256 105 L256 305 L205 285 Z" fill="#FFFFFF" opacity="0.3" />
+
+    <!-- ستاره درخشان ۴‌پر در قله وسط -->
+    <path d="M256 75 C256 93 247 102 229 102 C247 102 256 111 256 129 C256 111 265 102 283 102 C265 102 256 93 256 75 Z" fill="#FFFFFF" />
+
+    <!-- جرقه‌های الماسی در قله چپ و راست -->
+    <circle cx="160" cy="188" r="6" fill="#BAE6FD" />
+    <circle cx="352" cy="188" r="6" fill="#D1FAE5" />
   </g>
 </svg>
