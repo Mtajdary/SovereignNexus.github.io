@@ -7,18 +7,18 @@
     <!-- Primary Meta Tags -->
     <title>PRIME CROWN | سیستم‌عامل معماری ذهن برتر و هوش استراتژیک</title>
     <meta name="title" content="PRIME CROWN | سیستم‌عامل معماری ذهن برتر و هوش استراتژیک" />
-    <meta name="description" content="سامانه حاکمیتی فرماندهی ذهن، افزایش بهره‌وری، پروتکل‌های بیولوژیک و یادگیری عمیق مهندسی نرم‌افزار و هوش مصنوعی. معمار: محمد تاجداری." />
-    <meta name="keywords" content="Prime Crown, هوش استراتژیک, معماری ذهن, تمرکز عمیق, پروتکل بیولوژیک, هوش مصنوعی, محمد تاجداری, مهندسی سیستم, deep work, sovereign mind" />
+    <meta name="description" content="سامانه حاکمیتی فرماندهی ذهن، جعبه‌ابزار مهندسی عمران، آزمایشگاه بینایی ماشین و هوش مصنوعی. معمار: محمد تاجداری." />
+    <meta name="keywords" content="Prime Crown, هوش استراتژیک, معماری ذهن, مهندسی عمران, بینایی ماشین, محمد تاجداری, deep work, sovereign mind, Civil Toolkit" />
     <meta name="author" content="Mohammad Tajdari" />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#000000" />
     <link rel="canonical" href="https://primecrown-co.github.io/" />
 
-    <!-- Open Graph / Facebook / LinkedIn -->
+    <!-- Open Graph / Social SEO -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://primecrown-co.github.io/" />
-    <meta property="og:title" content="PRIME CROWN | Sovereign Mind Architecture" />
-    <meta property="og:description" content="سامانه تعاملی و ابزار یکپارچه فرماندهی ذهن، بهینه‌سازی ریتم شناختی و توسعه دارایی‌های دیجیتال." />
+    <meta property="og:title" content="PRIME CROWN | Sovereign Mind & Engineering OS" />
+    <meta property="og:description" content="سامانه یکپارچه فرماندهی ذهن، جعبه‌ابزار محاسبات مهندسی و بینایی ماشین." />
     <meta property="og:site_name" content="PRIME CROWN" />
     <meta property="og:locale" content="fa_IR" />
 
@@ -26,7 +26,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://primecrown-co.github.io/" />
     <meta name="twitter:title" content="PRIME CROWN | Sovereign Mind Architecture" />
-    <meta name="twitter:description" content="سامانه حاکمیتی فرماندهی ذهن و سیستم‌عامل استراتژیک." />
+    <meta name="twitter:description" content="سیستم‌عامل حاکمیتی و جعبه‌ابزار مهندسی عمران." />
 
     <!-- Structured Data (JSON-LD SEO Schema) -->
     <script type="application/ld+json">
@@ -35,8 +35,8 @@
       "@type": "WebApplication",
       "name": "PRIME CROWN",
       "url": "https://primecrown-co.github.io/",
-      "description": "سیستم‌عامل جامع خودکنترلی، انضباط بیولوژیک و مهندسی تفکر استراتژیک",
-      "applicationCategory": "ProductivityApplication",
+      "description": "سیستم‌عامل جامع خودکنترلی، محاسبات مهندسی عمران و پایش هوشمند سازه با بینایی ماشین",
+      "applicationCategory": "EngineeringApplication",
       "operatingSystem": "All",
       "author": {
         "@type": "Person",
@@ -46,13 +46,27 @@
     }
     </script>
 
-    <!-- Web Fonts -->
+    <!-- SPA Clean URL Handler for GitHub Pages -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&') 
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:wght@600;800&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   </head>
   <body class="bg-black text-slate-100 antialiased selection:bg-amber-500/30 selection:text-amber-200">
-    <noscript>برای دسترسی کامل به ابزارها و ماژول‌های تحلیلی، باید جاوااسکریپت فعال باشد.</noscript>
+    <noscript>برای دسترسی به موتورهای تحلیلی و ابزارهای مهندسی، جاوااسکریپت باید فعال باشد.</noscript>
     <div id="root"></div>
   </body>
 </html>

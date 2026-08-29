@@ -1,5 +1,5 @@
-import React from 'react';
-import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { SovereignProvider, useSovereign } from './context/SovereignContext';
 import SovereignHeader from './components/layout/SovereignHeader';
 import DynamicBackground from './components/layout/DynamicBackground';
@@ -11,6 +11,27 @@ import FocusEngine from './modules/Focus/FocusEngine';
 import TacticalJournal from './modules/Journal/TacticalJournal';
 import ArchitectProfile from './modules/Profile/ArchitectProfile';
 import { motion, AnimatePresence } from 'framer-motion';
+
+// به‌روزرسانی خودکار عنوان صفحه برای خزشگرهای سئو
+const PageTitleUpdater = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const titles = {
+      '/': 'فرماندهی و داشبورد | PRIME CROWN',
+      '/civil': 'جعبه‌ابزار مهندسی عمران و ژئوتکنیک | PRIME CROWN',
+      '/vision': 'آزمایشگاه بینایی ماشین و پردازش تصویر | PRIME CROWN',
+      '/vault': 'گاوصندوق اسناد استراتژیک | PRIME CROWN',
+      '/focus': 'اتاق تمرکز و غرقگی عمیق | PRIME CROWN',
+      '/journal': 'ژورنال تاکتیکی و بصیرت‌ها | PRIME CROWN',
+      '/profile': 'پروفایل معمار ارشد سیستم | PRIME CROWN'
+    };
+
+    document.title = titles[location.pathname] || 'PRIME CROWN | سیستم‌عامل معماری ذهن برتر';
+  }, [location]);
+
+  return null;
+};
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -46,18 +67,14 @@ const AppContent = () => {
 
   return (
     <div className={`min-h-screen relative pb-24 md:pb-0 transition-colors duration-500 overflow-x-hidden ${theme === 'light' ? 'light-theme' : 'dark'}`}>
-      {/* Dynamic Animated Ambient Labs Background */}
+      <PageTitleUpdater />
       <DynamicBackground />
-
-      {/* Top Header */}
       <SovereignHeader />
 
-      {/* Content Viewport */}
       <main className="relative z-10 pt-16 md:pt-24 pb-12">
         <AnimatedRoutes />
       </main>
 
-      {/* Footer */}
       <footer className="relative z-10 hidden md:block py-6 text-center opacity-40 text-[9px] tracking-[0.4em] uppercase font-mono border-t border-white/5">
         PRIME CROWN © 2026 | ARCHITECT: MOHAMMAD TAJDARI
       </footer>
