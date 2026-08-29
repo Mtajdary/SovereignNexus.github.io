@@ -68,18 +68,14 @@ const AppContent = () => {
   const { theme } = useSovereign();
 
   return (
-    <div className={`min-h-screen relative pb-24 md:pb-0 transition-colors duration-500 overflow-x-hidden ${theme === 'light' ? 'light-theme' : 'dark'}`}>
+    <div className={`min-h-screen relative pb-28 sm:pb-32 transition-colors duration-500 overflow-x-hidden ${theme === 'light' ? 'light-theme' : 'dark'}`}>
       <PageTitleUpdater />
       <DynamicBackground />
       <SovereignHeader />
 
-      <main className="relative z-10 pt-16 md:pt-24 pb-12">
+      <main className="relative z-10 pt-16 sm:pt-24">
         <AnimatedRoutes />
       </main>
-
-      <footer className="relative z-10 hidden md:block py-6 text-center opacity-40 text-[9px] tracking-[0.4em] uppercase font-mono border-t border-white/5">
-        PRIME CROWN © 2026 | ARCHITECT: MOHAMMAD TAJDARI
-      </footer>
     </div>
   );
 };
