@@ -68,12 +68,12 @@ const AppContent = () => {
   const { theme } = useSovereign();
 
   return (
-    <div className={`min-h-screen relative pb-20 lg:pb-8 transition-colors duration-300 overflow-x-hidden ${theme === 'light' ? 'light-theme' : 'dark'}`}>
+    <div className={`min-h-screen relative pb-20 md:pb-6 transition-colors duration-300 overflow-x-hidden ${theme === 'light' ? 'light-theme' : 'dark'}`}>
       <PageTitleUpdater />
       <DynamicBackground />
       <SovereignHeader />
 
-      <main className="relative z-10 pt-16 sm:pt-20">
+      <main className="relative z-10 pt-16 md:pt-20">
         <AnimatedRoutes />
       </main>
     </div>

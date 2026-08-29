@@ -37,20 +37,21 @@ const SovereignHeader = () => {
 
   return (
     <>
-      {/* هدر بالای صفحه */}
-      <header className="fixed top-0 left-0 right-0 z-40 glass border-b border-gold/15 px-4 sm:px-8 py-2.5 flex justify-between items-center transition-all">
+      {/* 1. هدر اصلی (مخصوص دسکتاپ و تبلت با ساختار ۳ بخشی متوازن) */}
+      <header className="fixed top-0 left-0 right-0 z-40 glass border-b border-gold/15 px-4 sm:px-6 md:px-8 py-2.5 flex justify-between items-center transition-all">
+        {/* راست: برند و لوگو */}
         <Link
           to="/"
           onClick={() => liveSynth.playClickSfx()}
           className="flex items-center cursor-pointer shrink-0"
         >
-          <span className="brand-title text-base sm:text-lg tracking-[0.2em] font-bold gold-text uppercase">
+          <span className="brand-title text-base md:text-lg tracking-[0.2em] font-bold gold-text uppercase">
             PRIME CROWN
           </span>
         </Link>
 
-        {/* منوی تمیز دسکتاپ (فقط در نمایشگرهای عریض نمایش داده می‌شود) */}
-        <nav className="hidden lg:flex items-center gap-1.5">
+        {/* مرکز: کپسول ناوبری اختصاصی دسکتاپ (کاملاً فعال در رایانه / مخفی در موبایل) */}
+        <nav className="hidden md:flex items-center gap-1 bg-black/30 light-theme:bg-white/50 p-1 rounded-2xl border border-white/10">
           {NAV_ITEMS.map((tab) => {
             const Icon = tab.icon;
             const isActive = location.pathname === tab.path;
@@ -59,7 +60,7 @@ const SovereignHeader = () => {
                 key={tab.path}
                 to={tab.path}
                 onClick={() => liveSynth.playClickSfx()}
-                className={`text-xs px-3.5 py-1.5 rounded-xl font-medium transition-all flex items-center gap-1.5 ${
+                className={`text-xs px-3 py-1.5 rounded-xl font-medium transition-all flex items-center gap-1.5 ${
                   isActive
                     ? 'text-black bg-gold font-bold shadow-[0_0_12px_rgba(212,175,55,0.4)]'
                     : 'text-white/70 hover:text-white hover:bg-white/5'
@@ -72,8 +73,8 @@ const SovereignHeader = () => {
           })}
         </nav>
 
-        {/* دکمه‌های کنترل و سکه */}
-        <div className="flex items-center gap-2 shrink-0">
+        {/* چپ: دکمه‌های کنترل، تم و کیف پول */}
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           <button
             onClick={handleThemeToggle}
             className="p-2 rounded-xl glass border border-gold/20 text-gold hover:border-gold/40 transition-all active:scale-95"
@@ -106,8 +107,8 @@ const SovereignHeader = () => {
         </div>
       </header>
 
-      {/* منوی لبه‌به‌لبه و یکپارچه موبایل (کاملاً چسبیده و بدون معلق بودن) */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 lg:hidden glass border-t border-gold/20 px-2 py-1.5 flex items-center justify-between overflow-x-auto no-scrollbar gap-1 shadow-[0_-8px_25px_rgba(0,0,0,0.2)]">
+      {/* 2. نوار پایین (صرفاً در موبایل: md:hidden — در دسکتاپ ۱۰۰٪ حذف می‌شود) */}
+      <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden glass border-t border-gold/20 px-2 py-1.5 flex items-center justify-between overflow-x-auto no-scrollbar gap-1 shadow-[0_-8px_25px_rgba(0,0,0,0.2)]">
         {NAV_ITEMS.map((tab) => {
           const Icon = tab.icon;
           const isActive = location.pathname === tab.path;
