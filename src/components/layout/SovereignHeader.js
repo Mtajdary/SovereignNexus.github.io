@@ -5,7 +5,7 @@ import { useSovereign } from '../../context/SovereignContext';
 import { liveSynth } from '../../core/audio/BinauralEngine';
 import { NAV_ITEMS } from './SovereignSidebar';
 
-// نشان اختصاصی Sovereign Apex Crown
+// نشان وکتور اختصاصی Sovereign Apex Crown
 const SovereignCrownEmblem = () => (
   <div className="relative w-8 h-8 flex items-center justify-center shrink-0">
     <svg viewBox="0 0 100 100" className="w-7 h-7 drop-shadow-[0_0_10px_rgba(245,158,11,0.6)] overflow-visible">
@@ -18,17 +18,20 @@ const SovereignCrownEmblem = () => (
         </linearGradient>
       </defs>
 
+      {/* پره چپ و راست تاج */}
       <path d="M22 36 L36 68 L50 78 L38 50 Z" fill="url(#hdrCrownGold)" opacity="0.9"/>
       <path d="M78 36 L64 68 L50 78 L62 50 Z" fill="url(#hdrCrownGold)" opacity="0.9"/>
+      {/* قله اصلی تاج */}
       <path d="M50 18 L60 50 L50 78 L40 50 Z" fill="url(#hdrCrownGold)"/>
       <path d="M50 18 L40 50 L50 78 Z" fill="#FFF" opacity="0.3"/>
+      {/* پایه منحنی تاج */}
       <path d="M30 72 Q50 84 70 72 L66 77 Q50 89 34 77 Z" fill="url(#hdrCrownGold)"/>
 
-      {/* نگین و هسته هوش مصنوعی */}
+      {/* هسته الماس هوش مصنوعی */}
       <circle cx="50" cy="50" r="10" fill="#FEF08A" opacity="0.4"/>
       <path d="M50 42 C50 47 46 50 41 50 C46 50 50 53 50 58 C50 53 54 50 59 50 C54 50 50 47 50 42 Z" fill="#FFF"/>
 
-      {/* نگین‌های سه‌گانه بالا */}
+      {/* نگین‌های سه‌گانه راس‌ها */}
       <circle cx="50" cy="18" r="1.8" fill="#FFF"/>
       <circle cx="22" cy="36" r="1.4" fill="#FFF"/>
       <circle cx="78" cy="36" r="1.4" fill="#FFF"/>
@@ -77,6 +80,7 @@ const SovereignHeader = ({ onToggleSidebar }) => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-40 glass border-b border-gold/15 px-3 sm:px-6 py-2.5 flex justify-between items-center transition-all">
+        {/* راست: آیکون تاج شاهانه + نام برند */}
         <div className="flex items-center gap-2">
           <button
             onClick={() => {
@@ -102,6 +106,7 @@ const SovereignHeader = ({ onToggleSidebar }) => {
           </Link>
         </div>
 
+        {/* چپ: دکمه‌های کنترل */}
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           {deferredPrompt && (
             <button
@@ -139,6 +144,7 @@ const SovereignHeader = ({ onToggleSidebar }) => {
         </div>
       </header>
 
+      {/* نوار پایینی موبایل */}
       <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden glass border-t border-gold/20 px-1.5 py-1 flex items-center justify-between overflow-x-auto no-scrollbar gap-1 shadow-[0_-8px_20px_rgba(0,0,0,0.25)]">
         {NAV_ITEMS.map((tab) => {
           const Icon = tab.icon;
