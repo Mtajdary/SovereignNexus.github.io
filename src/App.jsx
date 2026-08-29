@@ -73,18 +73,18 @@ const AppContent = () => {
       <PageTitleUpdater />
       <DynamicBackground />
       
-      {/* سایدبار عمودی ثابت سمت راست */}
+      {/* سایدبار دسکتاپ (در موبایل کاملاً مخفی) */}
       <SovereignSidebar />
 
-      {/* هدر بالای صفحه */}
+      {/* هدر و نوار پایینی موبایل */}
       <SovereignHeader />
 
-      {/* محتوای اصلی با فاصله استاندارد از سمت راست (mr-16 sm:mr-18) */}
-      <main className="relative z-10 pt-20 sm:pt-24 pb-12 mr-16 sm:mr-18 px-3 sm:px-6 max-w-5xl">
+      {/* محتوای اصلی: در دسکتاپ فاصله از راست (md:mr-20)، در موبایل بدون فاصله جانبی و دارای پدینگ پایینی (pb-20 md:pb-12) */}
+      <main className="relative z-10 pt-16 sm:pt-20 pb-20 md:pb-12 md:mr-20 px-3 sm:px-6 max-w-5xl mx-auto">
         <AnimatedRoutes />
       </main>
 
-      <footer className="relative z-10 py-6 text-center opacity-40 text-[9px] tracking-[0.4em] uppercase font-mono border-t border-white/5 mr-16 sm:mr-18">
+      <footer className="relative z-10 py-6 text-center opacity-40 text-[9px] tracking-[0.4em] uppercase font-mono border-t border-white/5 md:mr-20">
         PRIME CROWN © 2026 | ARCHITECT: MOHAMMAD TAJDARI
       </footer>
     </div>

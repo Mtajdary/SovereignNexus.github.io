@@ -21,8 +21,9 @@ export const SovereignSidebar = () => {
   const location = useLocation();
 
   return (
-    <aside className="fixed top-0 right-0 bottom-0 z-40 w-16 sm:w-18 glass border-l border-gold/20 flex flex-col items-center py-4 justify-between select-none">
-      {/* نشان کوچک لوگو در بالای سایدبار */}
+    // مخفی در موبایل (hidden) و ظاهر شدن فقط در دسکتاپ (md:flex)
+    <aside className="hidden md:flex fixed top-0 right-0 bottom-0 z-40 w-16 md:w-20 glass border-l border-gold/20 flex-col items-center py-5 justify-between select-none">
+      {/* نشان لوگو */}
       <Link
         to="/"
         onClick={() => liveSynth.playClickSfx()}
@@ -33,7 +34,7 @@ export const SovereignSidebar = () => {
       </Link>
 
       {/* لیست آیکون‌های عمودی */}
-      <nav className="flex flex-col items-center gap-2 sm:gap-2.5 my-auto">
+      <nav className="flex flex-col items-center gap-2.5 my-auto">
         {NAV_ITEMS.map((item) => {
           const Icon = item.icon;
           const isActive = location.pathname === item.path;
@@ -43,7 +44,7 @@ export const SovereignSidebar = () => {
               key={item.path}
               to={item.path}
               onClick={() => liveSynth.playClickSfx()}
-              className={`relative p-2.5 rounded-2xl transition-all flex items-center justify-center ${
+              className={`p-2.5 rounded-2xl transition-all flex items-center justify-center ${
                 isActive
                   ? 'bg-gold text-black shadow-[0_0_15px_rgba(212,175,55,0.4)] scale-105'
                   : 'text-white/60 hover:text-white hover:bg-white/5'
@@ -56,7 +57,7 @@ export const SovereignSidebar = () => {
         })}
       </nav>
 
-      {/* نقطه وضعیت سبز سیستم در پایین سایدبار */}
+      {/* وضعیت سیستم */}
       <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]" title="SYS: ONLINE" />
     </aside>
   );

@@ -1,10 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Wallet, Volume2, VolumeX, Sun, Moon } from 'lucide-react';
 import { useSovereign } from '../../context/SovereignContext';
 import { liveSynth } from '../../core/audio/BinauralEngine';
+import { NAV_ITEMS } from './SovereignSidebar';
 
 const SovereignHeader = () => {
+  const location = useLocation();
   const { coins, theme, toggleTheme, isAudioPlaying, toggleAudio, soundMode } = useSovereign();
 
   const handleSoundToggle = () => {
@@ -24,51 +26,76 @@ const SovereignHeader = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-16 sm:right-18 z-30 glass border-b border-gold/15 px-4 sm:px-8 py-3 flex justify-between items-center transition-all">
-      {/* عنوان برند */}
-      <Link
-        to="/"
-        onClick={() => liveSynth.playClickSfx()}
-        className="flex items-center cursor-pointer shrink-0"
-      >
-        <span className="brand-title text-base sm:text-lg tracking-[0.2em] font-black gold-text uppercase">
-          PRIME CROWN
-        </span>
-      </Link>
-
-      {/* ابزارهای کنترلی بالای صفحه */}
-      <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-        <button
-          onClick={handleThemeToggle}
-          className="p-2 rounded-xl glass border border-gold/20 text-gold hover:border-gold/40 transition-all active:scale-95"
-          title={theme === 'dark' ? 'تغییر به حالت روز' : 'تغییر به حالت شب'}
+    <>
+      {/* هدر بالای صفحه (در دسکتاپ با احتساب سایدبار md:right-20 / در موبایل تمام‌عرض right-0) */}
+      <header className="fixed top-0 left-0 right-0 md:right-20 z-30 glass border-b border-gold/15 px-4 sm:px-8 py-3 flex justify-between items-center transition-all">
+        <Link
+          to="/"
+          onClick={() => liveSynth.playClickSfx()}
+          className="flex items-center cursor-pointer shrink-0"
         >
-          {theme === 'dark' ? (
-            <Sun className="w-4 h-4 text-amber-300" />
-          ) : (
-            <Moon className="w-4 h-4 text-amber-600" />
-          )}
-        </button>
+          <span className="brand-title text-base sm:text-lg tracking-[0.2em] font-black gold-text uppercase">
+            PRIME CROWN
+          </span>
+        </Link>
 
-        <button
-          onClick={handleSoundToggle}
-          className={`p-2 sm:px-2.5 sm:py-1.5 rounded-xl border text-[10px] font-mono transition-all flex items-center gap-1.5 active:scale-95 ${
-            isAudioPlaying
-              ? 'border-gold bg-gold/10 text-gold shadow-[0_0_10px_rgba(212,175,55,0.3)]'
-              : 'glass border-white/10 text-white/40 hover:text-white'
-          }`}
-          title="امواج صوتی مغزی"
-        >
-          {isAudioPlaying ? <Volume2 className="w-4 h-4 text-gold animate-bounce" /> : <VolumeX className="w-4 h-4" />}
-          <span className="hidden sm:inline font-medium">{isAudioPlaying ? soundMode : 'امواج'}</span>
-        </button>
+        {/* دکمه‌های کنترل */}
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <button
+            onClick={handleThemeToggle}
+            className="p-2 rounded-xl glass border border-gold/20 text-gold hover:border-gold/40 transition-all active:scale-95"
+            title={theme === 'dark' ? 'تغییر به حالت روز' : 'تغییر به حالت شب'}
+          >
+            {theme === 'dark' ? (
+              <Sun className="w-4 h-4 text-amber-300" />
+            ) : (
+              <Moon className="w-4 h-4 text-amber-600" />
+            )}
+          </button>
 
-        <div className="flex items-center gap-1.5 glass border border-gold/20 px-2.5 py-1.5 rounded-xl">
-          <Wallet className="w-3.5 h-3.5 text-gold" />
-          <span className="font-mono text-xs font-bold gold-text">{coins.toLocaleString()} SC</span>
+          <button
+            onClick={handleSoundToggle}
+            className={`p-2 sm:px-2.5 sm:py-1.5 rounded-xl border text-[10px] font-mono transition-all flex items-center gap-1.5 active:scale-95 ${
+              isAudioPlaying
+                ? 'border-gold bg-gold/10 text-gold shadow-[0_0_10px_rgba(212,175,55,0.3)]'
+                : 'glass border-white/10 text-white/40 hover:text-white'
+            }`}
+            title="امواج مغزی"
+          >
+            {isAudioPlaying ? <Volume2 className="w-4 h-4 text-gold animate-bounce" /> : <VolumeX className="w-4 h-4" />}
+            <span className="hidden sm:inline font-medium">{isAudioPlaying ? soundMode : 'امواج'}</span>
+          </button>
+
+          <div className="flex items-center gap-1.5 glass border border-gold/20 px-2.5 py-1.5 rounded-xl">
+            <Wallet className="w-3.5 h-3.5 text-gold" />
+            <span className="font-mono text-xs font-bold gold-text">{coins.toLocaleString()} SC</span>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {/* نوار پایینی: فقط در موبایل (md:hidden) و در دسکتاپ ۱۰۰٪ حذف می‌شود */}
+      <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden glass border-t border-gold/20 px-1.5 py-1 flex items-center justify-between overflow-x-auto no-scrollbar gap-1 shadow-[0_-8px_20px_rgba(0,0,0,0.25)]">
+        {NAV_ITEMS.map((tab) => {
+          const Icon = tab.icon;
+          const isActive = location.pathname === tab.path;
+          return (
+            <Link
+              key={tab.path}
+              to={tab.path}
+              onClick={() => liveSynth.playClickSfx()}
+              className={`flex flex-col items-center justify-center py-1 px-2.5 min-w-[58px] shrink-0 rounded-xl transition-all ${
+                isActive
+                  ? 'text-gold font-black bg-gold/10 border border-gold/30'
+                  : 'text-white/50 hover:text-white/80'
+              }`}
+            >
+              <Icon className={`w-4 h-4 mb-0.5 ${isActive ? 'text-gold drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]' : 'text-white/50'}`} />
+              <span className="text-[10px] tracking-tight whitespace-nowrap">{tab.label}</span>
+            </Link>
+          );
+        })}
+      </nav>
+    </>
   );
 };
 
