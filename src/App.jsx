@@ -2,6 +2,7 @@ import React from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { SovereignProvider, useSovereign } from './context/SovereignContext';
 import SovereignHeader from './components/layout/SovereignHeader';
+import DynamicBackground from './components/layout/DynamicBackground';
 import Dashboard from './modules/Dashboard/Dashboard';
 import CivilToolkit from './modules/CivilEngine/CivilToolkit';
 import VisionLab from './modules/VisionLab/VisionLab';
@@ -44,12 +45,20 @@ const AppContent = () => {
   const { theme } = useSovereign();
 
   return (
-    <div className={`min-h-screen relative pb-24 md:pb-0 transition-colors duration-300 ${theme === 'light' ? 'light-theme' : 'dark'}`}>
+    <div className={`min-h-screen relative pb-24 md:pb-0 transition-colors duration-500 overflow-x-hidden ${theme === 'light' ? 'light-theme' : 'dark'}`}>
+      {/* Dynamic Animated Ambient Labs Background */}
+      <DynamicBackground />
+
+      {/* Top Header */}
       <SovereignHeader />
+
+      {/* Content Viewport */}
       <main className="relative z-10 pt-16 md:pt-24 pb-12">
         <AnimatedRoutes />
       </main>
-      <footer className="hidden md:block py-6 text-center opacity-40 text-[9px] tracking-[0.4em] uppercase font-mono border-t border-white/5">
+
+      {/* Footer */}
+      <footer className="relative z-10 hidden md:block py-6 text-center opacity-40 text-[9px] tracking-[0.4em] uppercase font-mono border-t border-white/5">
         PRIME CROWN © 2026 | ARCHITECT: MOHAMMAD TAJDARI
       </footer>
     </div>
