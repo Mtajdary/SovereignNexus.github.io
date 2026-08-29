@@ -5,48 +5,52 @@ import { useSovereign } from '../../context/SovereignContext';
 import { liveSynth } from '../../core/audio/BinauralEngine';
 import { NAV_ITEMS } from './SovereignSidebar';
 
-// کامپوننت وکتور الماس سه‌بعدی گوگل در هدر
-const GooglePrismDiamond = () => (
+// الماس تراش‌خورده و لوکس با پالت سنگین و همخوان سایت
+const ImperialDiamondEmblem = () => (
   <div className="relative w-8 h-8 flex items-center justify-center shrink-0">
-    <svg viewBox="0 0 100 100" className="w-7 h-7 drop-shadow-[0_0_10px_rgba(251,188,5,0.5)] overflow-visible">
+    <svg viewBox="0 0 100 100" className="w-7 h-7 drop-shadow-[0_0_8px_rgba(212,175,55,0.45)] overflow-visible">
       <defs>
-        <linearGradient id="hBlue" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#93C5FD" />
-          <stop offset="100%" stopColor="#2563EB" />
-        </linearGradient>
-        <linearGradient id="hYellow" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id="dTop" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#FFFBEB" />
-          <stop offset="40%" stopColor="#FEF08A" />
-          <stop offset="100%" stopColor="#D97706" />
+          <stop offset="40%" stopColor="#FDE047" />
+          <stop offset="100%" stopColor="#B45309" />
         </linearGradient>
-        <linearGradient id="hRed" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#FCA5A5" />
-          <stop offset="100%" stopColor="#DC2626" />
+        <linearGradient id="dLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#D4AF37" />
+          <stop offset="50%" stopColor="#5B3E12" />
+          <stop offset="100%" stopColor="#181207" />
         </linearGradient>
-        <linearGradient id="hGreen" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#A7F3D0" />
-          <stop offset="100%" stopColor="#059669" />
+        <linearGradient id="dRight" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#F59E0B" />
+          <stop offset="50%" stopColor="#78350F" />
+          <stop offset="100%" stopColor="#241708" />
+        </linearGradient>
+        <linearGradient id="dCenter" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#FFFFFF" />
+          <stop offset="30%" stopColor="#FEF08A" />
+          <stop offset="70%" stopColor="#D4AF37" />
+          <stop offset="100%" stopColor="#854D0E" />
         </linearGradient>
       </defs>
 
-      {/* ۱. کلاهک بالا (آبی) */}
-      <polygon points="30,22 70,22 88,42 12,42" fill="url(#hBlue)" />
-      <polygon points="30,22 70,22 62,30 38,30" fill="#FFF" opacity="0.4" />
+      {/* ۱. کلاهک بالایی */}
+      <polygon points="30,22 70,22 88,42 12,42" fill="url(#dTop)" />
+      <polygon points="30,22 70,22 62,30 38,30" fill="#FFF" opacity="0.45" />
 
-      {/* ۲. وجه چپ (قرمز) */}
-      <polygon points="12,42 50,86 34,42" fill="url(#hRed)" />
+      {/* ۲. وجه چپ (دودی طلایی) */}
+      <polygon points="12,42 50,86 34,42" fill="url(#dLeft)" />
 
-      {/* ۳. وجه راست (سبز) */}
-      <polygon points="88,42 50,86 66,42" fill="url(#hGreen)" />
+      {/* ۳. وجه راست (کهربایی عمیق) */}
+      <polygon points="88,42 50,86 66,42" fill="url(#dRight)" />
 
-      {/* ۴. وجه مرکز (طلایی کهربایی) */}
-      <polygon points="34,42 66,42 50,86" fill="url(#hYellow)" />
-      <polygon points="34,42 50,42 50,86" fill="#FFF" opacity="0.3" />
+      {/* ۴. وجه مرکز (طلایی براق) */}
+      <polygon points="34,42 66,42 50,86" fill="url(#dCenter)" />
+      <polygon points="34,42 50,42 50,86" fill="#FFF" opacity="0.35" />
 
-      {/* جرقه درخشان ۴‌پر بالای الماس */}
+      {/* جرقه ۴‌پر الماسی */}
       <path d="M72 14 C72 18 69 21 65 21 C69 21 72 24 72 28 C72 24 75 21 79 21 C75 21 72 18 72 14 Z" fill="#FFFFFF" />
     </svg>
-    <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-amber-300 animate-pulse opacity-90" />
+    <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-amber-300 animate-pulse opacity-85" />
   </div>
 );
 
@@ -90,7 +94,7 @@ const SovereignHeader = ({ onToggleSidebar }) => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-40 glass border-b border-gold/15 px-3 sm:px-6 py-2.5 flex justify-between items-center transition-all">
-        {/* راست: نشان الماس سه‌بعدی منشوری + عنوان برند */}
+        {/* راست: نشان الماس سنگین و طلایی + عنوان برند */}
         <div className="flex items-center gap-2.5">
           <button
             onClick={() => {
@@ -109,14 +113,14 @@ const SovereignHeader = ({ onToggleSidebar }) => {
             onClick={() => liveSynth.playClickSfx()}
             className="flex items-center gap-2.5 cursor-pointer shrink-0"
           >
-            <GooglePrismDiamond />
+            <ImperialDiamondEmblem />
             <span className="brand-title text-base sm:text-lg tracking-[0.18em] font-black gold-text uppercase whitespace-nowrap">
               PRIME CROWN
             </span>
           </Link>
         </div>
 
-        {/* چپ: دکمه‌های کنترل */}
+        {/* چپ: ابزارهای کنترلی */}
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           {deferredPrompt && (
             <button
