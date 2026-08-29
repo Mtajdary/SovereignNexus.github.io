@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { SovereignProvider, useSovereign } from './context/SovereignContext';
 import SovereignHeader from './components/layout/SovereignHeader';
+import { SovereignSidebar } from './components/layout/SovereignSidebar';
 import DynamicBackground from './components/layout/DynamicBackground';
 import Dashboard from './modules/Dashboard/Dashboard';
 import DecisionMatrix from './modules/DecisionMatrix/DecisionMatrix';
@@ -66,16 +67,32 @@ const PageWrap = ({ children }) => (
 
 const AppContent = () => {
   const { theme } = useSovereign();
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   return (
-    <div className={`min-h-screen relative pb-20 md:pb-6 transition-colors duration-300 overflow-x-hidden ${theme === 'light' ? 'light-theme' : 'dark'}`}>
+    <div className={`min-h-screen relative transition-colors duration-300 overflow-x-hidden ${theme === 'light' ? 'light-theme' : 'dark'}`}>
       <PageTitleUpdater />
       <DynamicBackground />
-      <SovereignHeader />
+      
+      {/* ۱. سایدبار عمودی راست (ثابت در دسکتاپ، کشویی در موبایل) */}
+      <SovereignSidebar
+        isMobileOpen={mobileSidebarOpen}
+        onCloseMobile={() => setMobileSidebarOpen(false)}
+      />
 
-      <main className="relative z-10 pt-16 md:pt-20">
+      {/* ۲. هدر بالای صفحه با احتساب سایدبار راست */}
+      <SovereignHeader
+        onOpenMobileSidebar={() => setMobileSidebarOpen(true)}
+      />
+
+      {/* ۳. محتوای اصلی با حاشیه استاندارد از سمت راست در دسکتاپ (md:mr-20) */}
+      <main className="relative z-10 pt-20 sm:pt-24 pb-12 md:mr-20 px-3 sm:px-6">
         <AnimatedRoutes />
       </main>
+
+      <footer className="relative z-10 py-6 text-center opacity-40 text-[9px] tracking-[0.4em] uppercase font-mono border-t border-white/5 md:mr-20">
+        PRIME CROWN © 2026 | ARCHITECT: MOHAMMAD TAJDARI
+      </footer>
     </div>
   );
 };
