@@ -1,136 +1,102 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { audioEngine } from '../services/audioEngine';
 
 const SovereignContext = createContext();
 
 export const SovereignProvider = ({ children }) => {
-  const [coins, setCoins] = useState(() => Number(localStorage.getItem('pc_coins')) || 750);
-  const [rank, setRank] = useState('STRATEGIST');
+  const [coins, setCoins] = useState(() => {
+    const saved = localStorage.getItem('pc_coins');
+    return saved ? parseInt(saved, 10) : 500;
+  });
+
   const [unlockedItems, setUnlockedItems] = useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem('pc_vault')) || ['v1'];
-    } catch {
-      return ['v1'];
-    }
+    const saved = localStorage.getItem('pc_unlocked_items');
+    return saved ? JSON.parse(saved) : ['v1'];
   });
-  const [transactions, setTransactions] = useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem('pc_txs')) || [
-        { id: 1, type: 'EARNED', amount: 750, title: 'پاداش ایجاد حساب حاکمیتی اولیه', date: new Date().toLocaleDateString('fa-IR') }
-      ];
-    } catch {
-      return [];
-    }
+
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('pc_theme') || 'dark';
   });
-  const [focusStats, setFocusStats] = useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem('pc_focus_stats')) || { sessions: 14, totalMinutes: 350 };
-    } catch {
-      return { sessions: 14, totalMinutes: 350 };
-    }
-  });
-  const [soundMode, setSoundMode] = useState('ALPHA');
+
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
-  const [audioVolume, setAudioVolume] = useState(0.25);
+  const [soundMode, setSoundMode] = useState('گاما ۴۰Hz');
 
   useEffect(() => {
-    localStorage.setItem('pc_coins', coins);
-    localStorage.setItem('pc_vault', JSON.stringify(unlockedItems));
-    localStorage.setItem('pc_txs', JSON.stringify(transactions));
-    localStorage.setItem('pc_focus_stats', JSON.stringify(focusStats));
+    localStorage.setItem('pc_coins', coins.toString());
+  }, [coins]);
 
-    if (coins >= 5000) setRank('SOVEREIGN');
-    else if (coins >= 2500) setRank('ARCHITECT');
-    else if (coins >= 1000) setRank('STRATEGIST');
-    else setRank('NOVICE');
-  }, [coins, unlockedItems, transactions, focusStats]);
+  useEffect(() => {
+    localStorage.setItem('pc_unlocked_items', JSON.stringify(unlockedItems));
+  }, [unlockedItems]);
 
-  const awardCoins = (amount, title = 'پاداش پروتکل تمرکز') => {
-    setCoins(prev => prev + amount);
-    const newTx = {
-      id: Date.now(),
-      type: 'EARNED',
-      amount,
-      title,
-      date: new Date().toLocaleDateString('fa-IR') + ' - ' + new Date().toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' })
-    };
-    setTransactions(prev => [newTx, ...prev]);
-    audioEngine.playSfx('reward');
+  useEffect(() => {
+    localStorage.setItem('pc_theme', theme);
+    const root = document.documentElement;
+    const body = document.body;
+    if (theme === 'light') {
+      root.classList.add('light-theme');
+      root.classList.remove('dark');
+      body.classList.add('light-theme');
+      body.classList.remove('dark');
+    } else {
+      root.classList.remove('light-theme');
+      root.classList.add('dark');
+      body.classList.remove('light-theme');
+      body.classList.add('dark');
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
   };
 
-  const spendCoins = (amount, title = 'دسترسی به اسناد گاوصندوق') => {
+  const addCoins = (amount) => {
+    setCoins((prev) => prev + amount);
+  };
+
+  const spendCoins = (amount) => {
     if (coins >= amount) {
-      setCoins(prev => prev - amount);
-      const newTx = {
-        id: Date.now(),
-        type: 'SPENT',
-        amount,
-        title,
-        date: new Date().toLocaleDateString('fa-IR') + ' - ' + new Date().toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' })
-      };
-      setTransactions(prev => [newTx, ...prev]);
-      audioEngine.playSfx('unlock');
+      setCoins((prev) => prev - amount);
       return true;
     }
     return false;
   };
 
-  const recordFocusSession = (minutes = 25) => {
-    setFocusStats(prev => ({
-      sessions: prev.sessions + 1,
-      totalMinutes: prev.totalMinutes + minutes
-    }));
-    awardCoins(minutes * 2, `تکمیل ${minutes} دقیقه پروتکل تمرکز عصبی`);
+  const toggleAudio = () => {
+    setIsAudioPlaying((prev) => !prev);
   };
 
-  const toggleAudio = (preset = soundMode) => {
-    if (isAudioPlaying) {
-      audioEngine.stop();
-      setIsAudioPlaying(false);
-    } else {
-      audioEngine.startPreset(preset, audioVolume);
-      setIsAudioPlaying(true);
-      setSoundMode(preset);
-    }
-  };
-
-  const changeVolume = (v) => {
-    setAudioVolume(v);
-    audioEngine.setVolume(v);
-  };
-
-  const exportState = () => {
-    const data = { coins, rank, unlockedItems, transactions, focusStats, exportDate: new Date().toISOString() };
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `prime-crown-backup-${Date.now()}.json`;
-    a.click();
+  const getRank = () => {
+    if (coins >= 2500) return 'SOVEREIGN';
+    if (coins >= 1200) return 'ARCHITECT';
+    if (coins >= 500) return 'STRATEGIST';
+    return 'INITIATE';
   };
 
   return (
-    <SovereignContext.Provider value={{
-      coins,
-      rank,
-      unlockedItems,
-      setUnlockedItems,
-      transactions,
-      focusStats,
-      awardCoins,
-      spendCoins,
-      recordFocusSession,
-      soundMode,
-      setSoundMode,
-      isAudioPlaying,
-      toggleAudio,
-      audioVolume,
-      changeVolume,
-      exportState
-    }}>
+    <SovereignContext.Provider
+      value={{
+        coins,
+        addCoins,
+        spendCoins,
+        unlockedItems,
+        setUnlockedItems,
+        rank: getRank(),
+        theme,
+        toggleTheme,
+        isAudioPlaying,
+        toggleAudio,
+        soundMode
+      }}
+    >
       {children}
     </SovereignContext.Provider>
   );
 };
 
-export const useSovereign = () => useContext(SovereignContext);
+export const useSovereign = () => {
+  const context = useContext(SovereignContext);
+  if (!context) {
+    throw new Error('useSovereign must be used within a SovereignProvider');
+  }
+  return context;
+};

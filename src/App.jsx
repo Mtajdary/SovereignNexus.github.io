@@ -1,8 +1,10 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { SovereignProvider } from './context/SovereignContext';
+import { SovereignProvider, useSovereign } from './context/SovereignContext';
 import SovereignHeader from './components/layout/SovereignHeader';
 import Dashboard from './modules/Dashboard/Dashboard';
+import CivilToolkit from './modules/CivilEngine/CivilToolkit';
+import VisionLab from './modules/VisionLab/VisionLab';
 import VaultEngine from './modules/Vault/VaultEngine';
 import FocusEngine from './modules/Focus/FocusEngine';
 import TacticalJournal from './modules/Journal/TacticalJournal';
@@ -15,73 +17,42 @@ const AnimatedRoutes = () => {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route
-          path="/"
-          element={
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.25 }}
-            >
-              <Dashboard />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/vault"
-          element={
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.25 }}
-            >
-              <VaultEngine />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/focus"
-          element={
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.25 }}
-            >
-              <FocusEngine />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/journal"
-          element={
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.25 }}
-            >
-              <TacticalJournal />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.25 }}
-            >
-              <ArchitectProfile />
-            </motion.div>
-          }
-        />
+        <Route path="/" element={<PageWrap><Dashboard /></PageWrap>} />
+        <Route path="/civil" element={<PageWrap><CivilToolkit /></PageWrap>} />
+        <Route path="/vision" element={<PageWrap><VisionLab /></PageWrap>} />
+        <Route path="/vault" element={<PageWrap><VaultEngine /></PageWrap>} />
+        <Route path="/focus" element={<PageWrap><FocusEngine /></PageWrap>} />
+        <Route path="/journal" element={<PageWrap><TacticalJournal /></PageWrap>} />
+        <Route path="/profile" element={<PageWrap><ArchitectProfile /></PageWrap>} />
       </Routes>
     </AnimatePresence>
+  );
+};
+
+const PageWrap = ({ children }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 8 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -8 }}
+    transition={{ duration: 0.2 }}
+  >
+    {children}
+  </motion.div>
+);
+
+const AppContent = () => {
+  const { theme } = useSovereign();
+
+  return (
+    <div className={`min-h-screen relative pb-24 md:pb-0 transition-colors duration-300 ${theme === 'light' ? 'light-theme' : 'dark'}`}>
+      <SovereignHeader />
+      <main className="relative z-10 pt-16 md:pt-24 pb-12">
+        <AnimatedRoutes />
+      </main>
+      <footer className="hidden md:block py-6 text-center opacity-40 text-[9px] tracking-[0.4em] uppercase font-mono border-t border-white/5">
+        PRIME CROWN © 2026 | ARCHITECT: MOHAMMAD TAJDARI
+      </footer>
+    </div>
   );
 };
 
@@ -89,17 +60,7 @@ function App() {
   return (
     <SovereignProvider>
       <Router>
-        <div className="min-h-screen relative pb-24 md:pb-0 transition-colors duration-300">
-          <SovereignHeader />
-
-          <main className="relative z-10 pt-20 md:pt-28 pb-12">
-            <AnimatedRoutes />
-          </main>
-
-          <footer className="hidden md:block py-8 text-center opacity-30 text-[9px] tracking-[0.5em] uppercase font-mono border-t border-white/5">
-            PRIME CROWN © 2026 | ARCHITECT: MOHAMMAD TAJDARI
-          </footer>
-        </div>
+        <AppContent />
       </Router>
     </SovereignProvider>
   );

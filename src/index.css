@@ -6,27 +6,26 @@
 @tailwind utilities;
 
 :root {
-  --bg-main: #000000;
-  --text-main: #f8fafc;
-  --card-bg: rgba(18, 22, 34, 0.65);
-  --card-border: rgba(255, 255, 255, 0.08);
-  --header-bg: rgba(0, 0, 0, 0.85);
-  --input-bg: rgba(0, 0, 0, 0.6);
+  --bg-app: #000000;
+  --text-app: #f8fafc;
+  --glass-bg: rgba(18, 22, 34, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --box-bg: rgba(0, 0, 0, 0.5);
+  --gold-primary: #D4AF37;
 }
 
-.light-theme {
-  --bg-main: #f5f4ef;
-  --text-main: #141414;
-  --card-bg: rgba(255, 255, 255, 0.85);
-  --card-border: rgba(212, 175, 55, 0.25);
-  --header-bg: rgba(245, 244, 239, 0.9);
-  --input-bg: rgba(240, 238, 230, 0.9);
+.light-theme, html.light-theme, body.light-theme {
+  --bg-app: #f4f3ec !important;
+  --text-app: #0f172a !important;
+  --glass-bg: rgba(255, 255, 255, 0.85) !important;
+  --glass-border: rgba(212, 175, 55, 0.25) !important;
+  --box-bg: rgba(240, 238, 230, 0.95) !important;
+  --gold-primary: #996515 !important;
 }
 
 html, body, #root, * {
   font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   box-sizing: border-box;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 body {
@@ -34,76 +33,73 @@ body {
   padding: 0;
   width: 100%;
   min-height: 100vh;
-  background-color: var(--bg-main);
-  color: var(--text-main);
+  background-color: var(--bg-app);
+  color: var(--text-app);
   direction: rtl;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* فونت‌های اختصاصی */
 .font-mono, [class*="font-mono"] {
   font-family: 'JetBrains Mono', monospace !important;
 }
 
-.font-serif {
+.brand-title {
   font-family: 'Playfair Display', Georgia, serif !important;
 }
 
-/* افکت‌های اختصاصی شیشه‌ای */
+/* کارت‌های شیشه‌ای داینامیک بر اساس تم */
 .glass {
-  background: var(--card-bg);
+  background: var(--glass-bg) !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--card-border);
+  border: 1px solid var(--glass-border) !important;
 }
 
-/* استایل گرادیان طلایی */
 .gold-text {
-  background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%);
+  background: linear-gradient(135deg, #FFF0B3 0%, #D4AF37 50%, #AA7C11 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .light-theme .gold-text {
-  background: linear-gradient(135deg, #996515 0%, #704b10 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: linear-gradient(135deg, #996515 0%, #633f06 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
 }
 
-.gold-glow {
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
-}
-
-/* سازگاری رنگ متن‌های کمکی با تم روشن */
+/* تطبیق اجباری رنگ‌ها در تم روشن */
 .light-theme .text-white {
-  color: #141414 !important;
+  color: #0f172a !important;
 }
 
 .light-theme .text-white\/80 {
-  color: rgba(20, 20, 20, 0.85) !important;
+  color: #1e293b !important;
 }
 
 .light-theme .text-white\/70 {
-  color: rgba(20, 20, 20, 0.75) !important;
+  color: #334155 !important;
 }
 
-.light-theme .text-white\/60 {
-  color: rgba(20, 20, 20, 0.65) !important;
-}
-
+.light-theme .text-white\/60,
 .light-theme .text-white\/50 {
-  color: rgba(20, 20, 20, 0.55) !important;
+  color: #475569 !important;
 }
 
-.light-theme .text-white\/40 {
-  color: rgba(20, 20, 20, 0.45) !important;
-}
-
+.light-theme .text-white\/40,
 .light-theme .text-white\/30 {
-  color: rgba(20, 20, 20, 0.35) !important;
+  color: #64748b !important;
 }
 
 .light-theme .bg-black\/60,
 .light-theme .bg-black\/50,
 .light-theme .bg-black\/40 {
-  background-color: var(--input-bg) !important;
+  background-color: var(--box-bg) !important;
+}
+
+.light-theme input,
+.light-theme textarea,
+.light-theme select {
+  background-color: var(--box-bg) !important;
+  color: #0f172a !important;
+  border-color: rgba(212, 175, 55, 0.3) !important;
 }
