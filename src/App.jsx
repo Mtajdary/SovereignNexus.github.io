@@ -4,6 +4,7 @@ import { SovereignProvider, useSovereign } from './context/SovereignContext';
 import SovereignHeader from './components/layout/SovereignHeader';
 import DynamicBackground from './components/layout/DynamicBackground';
 import Dashboard from './modules/Dashboard/Dashboard';
+import DecisionMatrix from './modules/DecisionMatrix/DecisionMatrix';
 import CivilToolkit from './modules/CivilEngine/CivilToolkit';
 import VisionLab from './modules/VisionLab/VisionLab';
 import VaultEngine from './modules/Vault/VaultEngine';
@@ -12,15 +13,15 @@ import TacticalJournal from './modules/Journal/TacticalJournal';
 import ArchitectProfile from './modules/Profile/ArchitectProfile';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// به‌روزرسانی خودکار عنوان صفحه برای خزشگرهای سئو
 const PageTitleUpdater = () => {
   const location = useLocation();
 
   useEffect(() => {
     const titles = {
       '/': 'فرماندهی و داشبورد | PRIME CROWN',
+      '/matrix': 'ماتریس تصمیم‌گیری استراتژیک ۸۰/۲۰ | PRIME CROWN',
       '/civil': 'جعبه‌ابزار مهندسی عمران و ژئوتکنیک | PRIME CROWN',
-      '/vision': 'آزمایشگاه بینایی ماشین و پردازش تصویر | PRIME CROWN',
+      '/vision': 'آزمایشگاه بینایی ماشین و هوش مصنوعی | PRIME CROWN',
       '/vault': 'گاوصندوق اسناد استراتژیک | PRIME CROWN',
       '/focus': 'اتاق تمرکز و غرقگی عمیق | PRIME CROWN',
       '/journal': 'ژورنال تاکتیکی و بصیرت‌ها | PRIME CROWN',
@@ -40,6 +41,7 @@ const AnimatedRoutes = () => {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageWrap><Dashboard /></PageWrap>} />
+        <Route path="/matrix" element={<PageWrap><DecisionMatrix /></PageWrap>} />
         <Route path="/civil" element={<PageWrap><CivilToolkit /></PageWrap>} />
         <Route path="/vision" element={<PageWrap><VisionLab /></PageWrap>} />
         <Route path="/vault" element={<PageWrap><VaultEngine /></PageWrap>} />
