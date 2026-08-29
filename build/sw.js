@@ -1,4 +1,4 @@
-const CACHE_NAME = 'prime-crown-v7-imperial-gold';
+const CACHE_NAME = 'prime-crown-v8-fullhd-star';
 const ASSETS = [
   './',
   './index.html',
