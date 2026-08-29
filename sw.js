@@ -1,4 +1,4 @@
-const CACHE_NAME = 'prime-crown-v3';
+const CACHE_NAME = 'prime-crown-v4';
 const ASSETS = [
   './',
   './index.html',
