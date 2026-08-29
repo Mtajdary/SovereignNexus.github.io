@@ -6,27 +6,65 @@
 @tailwind utilities;
 
 :root {
-  --bg-dark: #000000;
-  --text-dark: #f8fafc;
+  --bg-main: #000000;
+  --text-main: #f8fafc;
+  --card-bg: rgba(18, 22, 34, 0.65);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --header-bg: rgba(0, 0, 0, 0.85);
+  --input-bg: rgba(0, 0, 0, 0.6);
+}
+
+.light-theme {
+  --bg-main: #f5f4ef;
+  --text-main: #141414;
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-border: rgba(212, 175, 55, 0.25);
+  --header-bg: rgba(245, 244, 239, 0.9);
+  --input-bg: rgba(240, 238, 230, 0.9);
 }
 
 html, body, #root, * {
   font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-/* برای اعداد انگلیسی یا کدهای باینری اختصاصی */
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  direction: rtl;
+}
+
+/* فونت‌های اختصاصی */
 .font-mono, [class*="font-mono"] {
   font-family: 'JetBrains Mono', monospace !important;
 }
 
-/* برند PRIME CROWN فقط با فونت انگلیسی سریف */
-.brand-title {
+.font-serif {
   font-family: 'Playfair Display', Georgia, serif !important;
 }
 
-/* افکت‌های اختصاصی */
+/* افکت‌های اختصاصی شیشه‌ای */
+.glass {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+}
+
+/* استایل گرادیان طلایی */
 .gold-text {
-  background: linear-gradient(135deg, #FFF0B3 0%, #D4AF37 50%, #AA7C11 100%);
+  background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.light-theme .gold-text {
+  background: linear-gradient(135deg, #996515 0%, #704b10 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -35,9 +73,37 @@ html, body, #root, * {
   box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
 }
 
-.glass {
-  background: rgba(18, 22, 34, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* سازگاری رنگ متن‌های کمکی با تم روشن */
+.light-theme .text-white {
+  color: #141414 !important;
+}
+
+.light-theme .text-white\/80 {
+  color: rgba(20, 20, 20, 0.85) !important;
+}
+
+.light-theme .text-white\/70 {
+  color: rgba(20, 20, 20, 0.75) !important;
+}
+
+.light-theme .text-white\/60 {
+  color: rgba(20, 20, 20, 0.65) !important;
+}
+
+.light-theme .text-white\/50 {
+  color: rgba(20, 20, 20, 0.55) !important;
+}
+
+.light-theme .text-white\/40 {
+  color: rgba(20, 20, 20, 0.45) !important;
+}
+
+.light-theme .text-white\/30 {
+  color: rgba(20, 20, 20, 0.35) !important;
+}
+
+.light-theme .bg-black\/60,
+.light-theme .bg-black\/50,
+.light-theme .bg-black\/40 {
+  background-color: var(--input-bg) !important;
 }
