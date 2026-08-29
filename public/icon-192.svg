@@ -1,51 +1,75 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <radialGradient id="nebulaBg" cx="50%" cy="38%" r="65%">
-      <stop offset="0%" stop-color="#181308" />
-      <stop offset="50%" stop-color="#080705" />
-      <stop offset="100%" stop-color="#020408" />
+    <radialGradient id="sovereignBg" cx="50%" cy="38%" r="65%">
+      <stop offset="0%" stop-color="#191308"/>
+      <stop offset="50%" stop-color="#080705"/>
+      <stop offset="100%" stop-color="#020306"/>
     </radialGradient>
 
-    <linearGradient id="goldRim" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FEF08A" stop-opacity="0.9"/>
-      <stop offset="50%" stop-color="#F59E0B" stop-opacity="0.5"/>
-      <stop offset="100%" stop-color="#78350F" stop-opacity="0.8"/>
-    </linearGradient>
-
-    <linearGradient id="solarGoldGrad" x1="15%" y1="10%" x2="85%" y2="90%">
+    <linearGradient id="goldFacetLeft" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#FFFFFF"/>
-      <stop offset="25%" stop-color="#FEF08A"/>
-      <stop offset="60%" stop-color="#F59E0B"/>
-      <stop offset="85%" stop-color="#D97706"/>
+      <stop offset="25%" stop-color="#FDE047"/>
+      <stop offset="70%" stop-color="#D97706"/>
       <stop offset="100%" stop-color="#78350F"/>
     </linearGradient>
 
-    <radialGradient id="solarCore" cx="50%" cy="50%" r="45%">
+    <linearGradient id="goldFacetRight" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FEF08A"/>
+      <stop offset="40%" stop-color="#F59E0B"/>
+      <stop offset="85%" stop-color="#B45309"/>
+      <stop offset="100%" stop-color="#451A03"/>
+    </linearGradient>
+
+    <linearGradient id="goldPeakCenter" x1="50%" y1="0%" x2="50%" y2="100%">
       <stop offset="0%" stop-color="#FFFFFF"/>
-      <stop offset="45%" stop-color="#FEF08A"/>
-      <stop offset="75%" stop-color="#F59E0B" stop-opacity="0.9"/>
+      <stop offset="30%" stop-color="#FEF08A"/>
+      <stop offset="70%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#92400E"/>
+    </linearGradient>
+
+    <radialGradient id="coreDiamond" cx="50%" cy="50%" r="48%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="30%" stop-color="#FEF08A"/>
+      <stop offset="70%" stop-color="#F59E0B" stop-opacity="0.9"/>
       <stop offset="100%" stop-color="#F59E0B" stop-opacity="0"/>
     </radialGradient>
 
-    <filter id="ultraGlow" x="-25%" y="-25%" width="150%" height="150%">
-      <feGaussianBlur stdDeviation="16" result="blur"/>
+    <linearGradient id="crownRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FEF08A" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#F59E0B" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#78350F" stop-opacity="0.7"/>
+    </linearGradient>
+
+    <filter id="royalGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="14" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
   </defs>
 
-  <rect width="512" height="512" rx="128" fill="url(#nebulaBg)" stroke="url(#goldRim)" stroke-width="4"/>
+  <rect width="512" height="512" rx="128" fill="url(#sovereignBg)" stroke="url(#crownRim)" stroke-width="4"/>
+  <circle cx="256" cy="245" r="140" fill="#F59E0B" opacity="0.16" filter="url(#royalGlow)"/>
+  <circle cx="256" cy="256" r="192" fill="none" stroke="url(#crownRim)" stroke-width="1.5" stroke-dasharray="6 6" opacity="0.5"/>
 
-  <circle cx="256" cy="256" r="140" fill="#F59E0B" opacity="0.18" filter="url(#ultraGlow)"/>
+  <g filter="url(#royalGlow)">
+    <path d="M120 180 L180 320 L256 370 L195 240 Z" fill="url(#goldFacetLeft)" opacity="0.92"/>
+    <path d="M120 180 L195 240 L180 320 Z" fill="#D97706" opacity="0.4"/>
 
-  <g opacity="0.35" filter="url(#ultraGlow)" transform="rotate(45 256 256)">
-    <path d="M256 90 C256 185 185 256 90 256 C185 256 256 327 256 422 C256 327 327 256 422 256 C327 256 256 185 256 90 Z" fill="url(#solarGoldGrad)"/>
-  </g>
+    <path d="M392 180 L332 320 L256 370 L317 240 Z" fill="url(#goldFacetRight)" opacity="0.92"/>
+    <path d="M392 180 L317 240 L332 320 Z" fill="#92400E" opacity="0.4"/>
 
-  <g filter="url(#ultraGlow)">
-    <path d="M256 42 C256 168 168 256 42 256 C168 256 256 344 256 470 C256 344 344 256 470 256 C344 256 256 168 256 42 Z" fill="url(#solarGoldGrad)"/>
-    <path d="M256 70 C256 180 180 256 70 256 C180 256 256 332 256 442 C256 332 332 256 442 256 C332 256 256 180 256 70 Z" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-opacity="0.5"/>
-    <circle cx="256" cy="256" r="100" fill="url(#solarCore)"/>
-    <path d="M388 92 C388 116 368 136 344 136 C368 136 388 156 388 180 C388 156 408 136 432 136 C408 136 388 116 388 92 Z" fill="#FFF" opacity="0.95"/>
-    <circle cx="388" cy="136" r="3" fill="#FFFFFF"/>
+    <path d="M256 95 L300 240 L256 370 L212 240 Z" fill="url(#goldPeakCenter)"/>
+    <path d="M256 95 L212 240 L256 370 Z" fill="#FFFFFF" opacity="0.25"/>
+    <path d="M256 95 L300 240 L256 370 Z" fill="#000000" opacity="0.2"/>
+
+    <path d="M165 340 Q256 400 347 340 L330 365 Q256 425 182 365 Z" fill="url(#goldPeakCenter)"/>
+
+    <circle cx="256" cy="240" r="58" fill="url(#coreDiamond)"/>
+    <path d="M256 195 C256 220 240 240 215 240 C240 240 256 260 256 285 C256 260 272 240 297 240 C272 240 256 220 256 195 Z" fill="#FFFFFF"/>
+
+    <circle cx="256" cy="95" r="7" fill="#FFFFFF"/>
+    <circle cx="120" cy="180" r="5.5" fill="#FFFFFF"/>
+    <circle cx="392" cy="180" r="5.5" fill="#FFFFFF"/>
+
+    <path d="M390 100 C390 115 378 127 363 127 C378 127 390 139 390 154 C390 139 402 127 417 127 C402 127 390 115 390 100 Z" fill="#FFFDF0" opacity="0.95"/>
   </g>
 </svg>

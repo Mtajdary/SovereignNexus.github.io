@@ -5,39 +5,33 @@ import { useSovereign } from '../../context/SovereignContext';
 import { liveSynth } from '../../core/audio/BinauralEngine';
 import { NAV_ITEMS } from './SovereignSidebar';
 
-const PrimeAIEmlbem = () => (
+// نشان اختصاصی Sovereign Apex Crown
+const SovereignCrownEmblem = () => (
   <div className="relative w-8 h-8 flex items-center justify-center shrink-0">
     <svg viewBox="0 0 100 100" className="w-7 h-7 drop-shadow-[0_0_10px_rgba(245,158,11,0.6)] overflow-visible">
       <defs>
-        <linearGradient id="hdrGoldStar" x1="10%" y1="10%" x2="90%" y2="90%">
+        <linearGradient id="hdrCrownGold" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#FFFFFF"/>
-          <stop offset="25%" stopColor="#FEF08A"/>
-          <stop offset="60%" stopColor="#F59E0B"/>
+          <stop offset="30%" stopColor="#FEF08A"/>
+          <stop offset="70%" stopColor="#F59E0B"/>
           <stop offset="100%" stopColor="#78350F"/>
         </linearGradient>
-        <radialGradient id="hdrSolarCore" cx="50%" cy="50%" r="45%">
-          <stop offset="0%" stopColor="#FFFFFF"/>
-          <stop offset="45%" stopColor="#FEF08A"/>
-          <stop offset="100%" stopColor="#F59E0B" stopOpacity="0"/>
-        </radialGradient>
       </defs>
 
-      <g opacity="0.3" transform="rotate(45 50 50)">
-        <path d="M50 18 C50 36 36 50 18 50 C36 50 50 64 50 82 C50 64 64 50 82 50 C64 50 50 36 50 18 Z" fill="url(#hdrGoldStar)"/>
-      </g>
+      <path d="M22 36 L36 68 L50 78 L38 50 Z" fill="url(#hdrCrownGold)" opacity="0.9"/>
+      <path d="M78 36 L64 68 L50 78 L62 50 Z" fill="url(#hdrCrownGold)" opacity="0.9"/>
+      <path d="M50 18 L60 50 L50 78 L40 50 Z" fill="url(#hdrCrownGold)"/>
+      <path d="M50 18 L40 50 L50 78 Z" fill="#FFF" opacity="0.3"/>
+      <path d="M30 72 Q50 84 70 72 L66 77 Q50 89 34 77 Z" fill="url(#hdrCrownGold)"/>
 
-      <path 
-        d="M50 6 C50 30 30 50 6 50 C30 50 50 70 50 94 C50 70 70 50 94 50 C70 50 50 30 50 6 Z" 
-        fill="url(#hdrGoldStar)" 
-      />
+      {/* نگین و هسته هوش مصنوعی */}
+      <circle cx="50" cy="50" r="10" fill="#FEF08A" opacity="0.4"/>
+      <path d="M50 42 C50 47 46 50 41 50 C46 50 50 53 50 58 C50 53 54 50 59 50 C54 50 50 47 50 42 Z" fill="#FFF"/>
 
-      <path 
-        d="M50 15 C50 34 34 50 15 50 C34 50 50 66 50 85 C50 66 66 50 85 50 C66 50 50 34 50 15 Z" 
-        fill="none" stroke="#FFFFFF" strokeWidth="1" strokeOpacity="0.5" 
-      />
-
-      <circle cx="50" cy="50" r="18" fill="url(#hdrSolarCore)"/>
-      <circle cx="78" cy="22" r="2" fill="#FFF" className="animate-pulse"/>
+      {/* نگین‌های سه‌گانه بالا */}
+      <circle cx="50" cy="18" r="1.8" fill="#FFF"/>
+      <circle cx="22" cy="36" r="1.4" fill="#FFF"/>
+      <circle cx="78" cy="36" r="1.4" fill="#FFF"/>
     </svg>
     <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-amber-300 animate-pulse opacity-90" />
   </div>
@@ -101,7 +95,7 @@ const SovereignHeader = ({ onToggleSidebar }) => {
             onClick={() => liveSynth.playClickSfx()}
             className="flex items-center gap-2 cursor-pointer shrink-0"
           >
-            <PrimeAIEmlbem />
+            <SovereignCrownEmblem />
             <span className="brand-title text-sm sm:text-base md:text-lg tracking-[0.16em] font-black gold-text uppercase whitespace-nowrap">
               PRIME CROWN
             </span>
