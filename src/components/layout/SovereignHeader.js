@@ -1,11 +1,11 @@
 import React from 'react';
-import { Wallet, Volume2, VolumeX, Shield, LayoutDashboard, Vault, Flame, BookOpen, User } from 'lucide-react';
+import { Wallet, Volume2, VolumeX, Shield, LayoutDashboard, Lock, Flame, BookOpen, User } from 'lucide-react';
 import { useSovereign } from '../../context/SovereignContext';
 import { audioEngine } from '../../services/audioEngine';
 
 const NAV_ITEMS = [
   { id: 'dashboard', label: 'فرماندهی', icon: LayoutDashboard },
-  { id: 'vault', label: 'گاوصندوق', icon: Vault },
+  { id: 'vault', label: 'گاوصندوق', icon: Lock },
   { id: 'focus', label: 'تمرکز', icon: Flame },
   { id: 'journal', label: 'ژورنال', icon: BookOpen },
   { id: 'profile', label: 'معمار', icon: User }

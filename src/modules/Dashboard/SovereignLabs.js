@@ -83,7 +83,11 @@ const SovereignLabs = () => {
               exit={{ opacity: 0, scale: 0.95 }}
               className="glass p-8 md:p-10 rounded-[36px] max-w-lg w-full border border-gold/30 relative text-right"
             >
-              <button onClick={() => setActiveTool(null)} className="absolute top-6 left-6 text-white/40 hover:text-white">
+              <button
+                onClick={() => setActiveTool(null)}
+                className="absolute top-6 left-6 text-white/40 hover:text-white focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none"
+                aria-label="بستن"
+              >
                 <X className="w-6 h-6" />
               </button>
 

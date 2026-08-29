@@ -137,7 +137,11 @@ const VaultEngine = () => {
               exit={{ opacity: 0, scale: 0.95 }}
               className="glass p-8 md:p-12 rounded-[36px] max-w-2xl w-full border border-gold/40 relative text-right"
             >
-              <button onClick={() => setSelectedAsset(null)} className="absolute top-6 left-6 text-white/40 hover:text-white">
+              <button
+                onClick={() => setSelectedAsset(null)}
+                className="absolute top-6 left-6 text-white/40 hover:text-white focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none"
+                aria-label="بستن"
+              >
                 <X className="w-6 h-6" />
               </button>
 

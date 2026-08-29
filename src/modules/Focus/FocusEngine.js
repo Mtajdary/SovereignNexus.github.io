@@ -111,8 +111,9 @@ const FocusEngine = () => {
 
         <button
           onClick={() => handleReset()}
-          className="p-4 bg-white/5 border border-white/10 text-white/60 hover:text-white rounded-2xl transition-all"
+          className="p-4 bg-white/5 border border-white/10 text-white/60 hover:text-white rounded-2xl transition-all focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none"
           title="بازنشانی"
+          aria-label="بازنشانی"
         >
           <RotateCcw className="w-5 h-5" />
         </button>

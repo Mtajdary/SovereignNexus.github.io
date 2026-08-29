@@ -120,8 +120,9 @@ const TacticalJournal = () => {
 
             <button
               onClick={() => delNote(n.id)}
-              className="text-white/20 group-hover:text-red-400 p-2 transition-colors"
+              className="text-white/20 group-hover:text-red-400 p-2 transition-colors focus-visible:ring-2 focus-visible:ring-red-400 focus-visible:outline-none"
               title="حذف"
+              aria-label="حذف یادداشت"
             >
               <Trash2 className="w-4 h-4" />
             </button>
