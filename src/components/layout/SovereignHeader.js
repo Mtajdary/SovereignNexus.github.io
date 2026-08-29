@@ -5,25 +5,79 @@ import { useSovereign } from '../../context/SovereignContext';
 import { liveSynth } from '../../core/audio/BinauralEngine';
 import { NAV_ITEMS } from './SovereignSidebar';
 
-// نشان اختصاصی، طلایی و فوق‌العاده لوکس هماهنگ با تایپوگرافی هدر
-const HeaderCrownEmblem = () => (
-  <svg viewBox="0 0 40 32" className="w-6 h-5 drop-shadow-[0_0_8px_rgba(212,175,55,0.4)] shrink-0">
-    <defs>
-      <linearGradient id="headerGoldExact" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#FFF0B3" />
-        <stop offset="50%" stopColor="#D4AF37" />
-        <stop offset="100%" stopColor="#AA7C11" />
-      </linearGradient>
-    </defs>
-    {/* فرم متقارن، شارپ و مقتدر تاج ۳ قله */}
-    <path 
-      d="M3 26 L8 12 L15 19 L20 6 L25 19 L32 12 L37 26 Z" 
-      fill="url(#headerGoldExact)" 
-    />
-    <rect x="3" y="28" width="34" height="2.5" rx="1.25" fill="url(#headerGoldExact)" />
-    {/* نگین الماس مرکزی */}
-    <circle cx="20" cy="5" r="1.5" fill="#FFF" />
-  </svg>
+// نشان اختصاصی الماس منشوری و درخشان PRIME CROWN
+const DiamondCrownEmblem = () => (
+  <div className="relative w-8 h-8 flex items-center justify-center shrink-0 group">
+    <svg viewBox="0 0 100 100" className="w-8 h-8 overflow-visible filter drop-shadow-[0_0_12px_rgba(245,158,11,0.65)]">
+      <defs>
+        {/* گرادیان الماس طلایی مرکزی */}
+        <linearGradient id="diamondGold" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#FFFFFF" />
+          <stop offset="20%" stopColor="#FEF08A" />
+          <stop offset="55%" stopColor="#F59E0B" />
+          <stop offset="100%" stopColor="#B45309" />
+        </linearGradient>
+
+        {/* گرادیان بال کریستالی چپ (یاقوت کبود و فیروزه‌ای) */}
+        <linearGradient id="sapphireFacet" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#E0F2FE" />
+          <stop offset="30%" stopColor="#38BDF8" />
+          <stop offset="70%" stopColor="#2563EB" />
+          <stop offset="100%" stopColor="#1E3A8A" />
+        </linearGradient>
+
+        {/* گرادیان بال کریستالی راست (زمرد درخشان) */}
+        <linearGradient id="emeraldFacet" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#ECFDF5" />
+          <stop offset="30%" stopColor="#34D399" />
+          <stop offset="70%" stopColor="#059669" />
+          <stop offset="100%" stopColor="#064E3B" />
+        </linearGradient>
+
+        {/* گرادیان پایه الماسی */}
+        <linearGradient id="diamondBase" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#38BDF8" />
+          <stop offset="50%" stopColor="#FDE047" />
+          <stop offset="100%" stopColor="#34D399" />
+        </linearGradient>
+
+        {/* بازتاب شیشه‌ای صیقلی */}
+        <linearGradient id="glassShine" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.8" />
+          <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0.0" />
+        </linearGradient>
+      </defs>
+
+      {/* ۱. پایه و کمربند الماسی تاج */}
+      <polygon points="18,74 50,86 82,74 50,78" fill="url(#diamondBase)" />
+
+      {/* ۲. بال چپ - برش‌های چندوجهی یاقوت کبود */}
+      <polygon points="18,40 36,60 18,74 10,54" fill="url(#sapphireFacet)" />
+      <polygon points="18,40 50,48 36,60" fill="#1D4ED8" />
+      <polygon points="18,40 28,52 18,74" fill="url(#glassShine)" opacity="0.6" />
+
+      {/* ۳. بال راست - برش‌های چندوجهی زمرد */}
+      <polygon points="82,40 90,54 82,74 64,60" fill="url(#emeraldFacet)" />
+      <polygon points="82,40 64,60 50,48" fill="#047857" />
+      <polygon points="82,40 72,52 82,74" fill="url(#glassShine)" opacity="0.6" />
+
+      {/* ۴. قله مرکزی - الماس طلایی شاهانه */}
+      <polygon points="50,14 36,60 50,78 64,60" fill="url(#diamondGold)" />
+      {/* وجه بازتاب نور الماس مرکزی */}
+      <polygon points="50,14 50,78 36,60" fill="#FFFFFF" opacity="0.4" />
+      <polygon points="50,14 42,42 50,56" fill="url(#glassShine)" opacity="0.75" />
+
+      {/* ۵. جرقه ۴‌پر بر فراز الماس */}
+      <path 
+        d="M50 6 C50 10 47 13 43 13 C47 13 50 16 50 20 C50 16 53 13 57 13 C53 13 50 10 50 6 Z" 
+        fill="#FFFFFF" 
+        className="animate-pulse"
+      />
+      <circle cx="50" cy="13" r="1.5" fill="#FEF08A" />
+    </svg>
+    {/* هاله چشمک‌زن الماسی */}
+    <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-amber-300 animate-ping opacity-75 pointer-events-none" />
+  </div>
 );
 
 const SovereignHeader = ({ onToggleSidebar }) => {
@@ -66,7 +120,7 @@ const SovereignHeader = ({ onToggleSidebar }) => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-40 glass border-b border-gold/15 px-3 sm:px-6 py-2.5 flex justify-between items-center transition-all">
-        {/* راست: نشان تاج طلایی + عنوان برند کاملاً در یک راستا */}
+        {/* راست: نشان الماس منشوری + عنوان برند */}
         <div className="flex items-center gap-2.5">
           <button
             onClick={() => {
@@ -83,16 +137,16 @@ const SovereignHeader = ({ onToggleSidebar }) => {
           <Link
             to="/"
             onClick={() => liveSynth.playClickSfx()}
-            className="flex items-center gap-2 cursor-pointer shrink-0 group"
+            className="flex items-center gap-2 cursor-pointer shrink-0"
           >
-            <HeaderCrownEmblem />
-            <span className="brand-title text-base sm:text-lg tracking-[0.2em] font-black gold-text uppercase whitespace-nowrap group-hover:opacity-90 transition-opacity">
+            <DiamondCrownEmblem />
+            <span className="brand-title text-base sm:text-lg tracking-[0.18em] font-black gold-text uppercase whitespace-nowrap">
               PRIME CROWN
             </span>
           </Link>
         </div>
 
-        {/* چپ: ابزارهای کنترلی */}
+        {/* چپ: دکمه‌های کنترل */}
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           {deferredPrompt && (
             <button
@@ -115,7 +169,7 @@ const SovereignHeader = ({ onToggleSidebar }) => {
           <button
             onClick={handleSoundToggle}
             className={`p-2 sm:px-2.5 sm:py-1.5 rounded-xl border text-[10px] font-mono transition-all flex items-center gap-1.5 ${
-              isAudioPlaying ? 'border-gold bg-gold/10 text-gold' : 'glass border-white/10 text-white/40'
+              isAudioPlaying ? 'border-gold bg-gold/10 text-gold shadow-[0_0_10px_rgba(212,175,55,0.3)]' : 'glass border-white/10 text-white/40'
             }`}
             title="صدای تمرکز"
           >
