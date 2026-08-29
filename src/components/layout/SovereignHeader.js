@@ -5,32 +5,25 @@ import { useSovereign } from '../../context/SovereignContext';
 import { liveSynth } from '../../core/audio/BinauralEngine';
 import { NAV_ITEMS } from './SovereignSidebar';
 
-const SovereignLogo = () => (
-  <div className="relative w-8 h-8 flex items-center justify-center shrink-0">
-    <svg viewBox="0 0 100 100" className="w-8 h-8 drop-shadow-[0_0_10px_rgba(212,175,55,0.6)]">
-      <defs>
-        <linearGradient id="logoGold" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#FFFDF0" />
-          <stop offset="35%" stopColor="#FDE047" />
-          <stop offset="100%" stopColor="#B45309" />
-        </linearGradient>
-      </defs>
-      {/* بال چپ */}
-      <polygon points="18,44 36,62 18,74 12,58" fill="#3B82F6" />
-      <polygon points="18,44 50,50 36,62" fill="#1D4ED8" opacity="0.85" />
-      {/* بال راست */}
-      <polygon points="82,44 88,58 82,74 64,62" fill="#10B981" />
-      <polygon points="82,44 64,62 50,50" fill="#047857" opacity="0.85" />
-      {/* پایه */}
-      <rect x="18" y="74" width="64" height="5" rx="2.5" fill="#D4AF37" />
-      {/* قله مرکزی */}
-      <polygon points="50,22 36,62 50,76 64,62" fill="url(#logoGold)" />
-      <polygon points="50,22 50,76 36,62" fill="#FFF" opacity="0.4" />
-      {/* ستاره */}
-      <path d="M50 14 C50 18 47 21 43 21 C47 21 50 24 50 28 C50 24 53 21 57 21 C53 21 50 18 50 14 Z" fill="#FFFFFF" />
-    </svg>
-    <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-amber-300 animate-pulse opacity-90" />
-  </div>
+// نشان اختصاصی، طلایی و فوق‌العاده لوکس هماهنگ با تایپوگرافی هدر
+const HeaderCrownEmblem = () => (
+  <svg viewBox="0 0 40 32" className="w-6 h-5 drop-shadow-[0_0_8px_rgba(212,175,55,0.4)] shrink-0">
+    <defs>
+      <linearGradient id="headerGoldExact" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#FFF0B3" />
+        <stop offset="50%" stopColor="#D4AF37" />
+        <stop offset="100%" stopColor="#AA7C11" />
+      </linearGradient>
+    </defs>
+    {/* فرم متقارن، شارپ و مقتدر تاج ۳ قله */}
+    <path 
+      d="M3 26 L8 12 L15 19 L20 6 L25 19 L32 12 L37 26 Z" 
+      fill="url(#headerGoldExact)" 
+    />
+    <rect x="3" y="28" width="34" height="2.5" rx="1.25" fill="url(#headerGoldExact)" />
+    {/* نگین الماس مرکزی */}
+    <circle cx="20" cy="5" r="1.5" fill="#FFF" />
+  </svg>
 );
 
 const SovereignHeader = ({ onToggleSidebar }) => {
@@ -73,7 +66,7 @@ const SovereignHeader = ({ onToggleSidebar }) => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-40 glass border-b border-gold/15 px-3 sm:px-6 py-2.5 flex justify-between items-center transition-all">
-        {/* راست: لوگو و نام برند */}
+        {/* راست: نشان تاج طلایی + عنوان برند کاملاً در یک راستا */}
         <div className="flex items-center gap-2.5">
           <button
             onClick={() => {
@@ -90,16 +83,16 @@ const SovereignHeader = ({ onToggleSidebar }) => {
           <Link
             to="/"
             onClick={() => liveSynth.playClickSfx()}
-            className="flex items-center gap-2 cursor-pointer shrink-0"
+            className="flex items-center gap-2 cursor-pointer shrink-0 group"
           >
-            <SovereignLogo />
-            <span className="brand-title text-sm sm:text-lg tracking-[0.18em] font-black gold-text uppercase whitespace-nowrap">
+            <HeaderCrownEmblem />
+            <span className="brand-title text-base sm:text-lg tracking-[0.2em] font-black gold-text uppercase whitespace-nowrap group-hover:opacity-90 transition-opacity">
               PRIME CROWN
             </span>
           </Link>
         </div>
 
-        {/* چپ: دکمه‌های کنترل */}
+        {/* چپ: ابزارهای کنترلی */}
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           {deferredPrompt && (
             <button
