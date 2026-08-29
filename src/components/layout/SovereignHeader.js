@@ -92,8 +92,8 @@ const SovereignHeader = ({ onToggleSidebar }) => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-40 glass border-b border-gold/15 px-3 sm:px-6 py-2.5 flex justify-between items-center transition-all">
-        {/* راست: نشان ستاره هوشمند + عنوان برند */}
-        <div className="flex items-center gap-2.5">
+        {/* راست: آیکون ستاره + عنوان برند کاملاً مرتب و تفکیک‌شده */}
+        <div className="flex items-center gap-2">
           <button
             onClick={() => {
               liveSynth.playClickSfx();
@@ -109,16 +109,16 @@ const SovereignHeader = ({ onToggleSidebar }) => {
           <Link
             to="/"
             onClick={() => liveSynth.playClickSfx()}
-            className="flex items-center gap-2.5 cursor-pointer shrink-0"
+            className="flex items-center gap-2 cursor-pointer shrink-0"
           >
             <PrimeAIEmlbem />
-            <span className="brand-title text-sm sm:text-lg tracking-[0.18em] font-black gold-text uppercase whitespace-nowrap">
+            <span className="brand-title text-sm sm:text-base md:text-lg tracking-[0.16em] font-black gold-text uppercase whitespace-nowrap">
               PRIME CROWN
             </span>
           </Link>
         </div>
 
-        {/* چپ: دکمه‌های کنترل */}
+        {/* چپ: دکمه‌های کنترل و دکمه نصب */}
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           {deferredPrompt && (
             <button
