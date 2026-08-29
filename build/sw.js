@@ -1,10 +1,11 @@
-const CACHE_NAME = 'prime-crown-v1';
+const CACHE_NAME = 'prime-crown-v2';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
   './icon-192.svg',
-  './icon-512.svg'
+  './icon-512.svg',
+  './favicon.svg'
 ];
 
 self.addEventListener('install', (e) => {

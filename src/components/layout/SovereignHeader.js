@@ -18,7 +18,6 @@ const SovereignCrownLogo = () => (
         </linearGradient>
       </defs>
       
-      {/* فرم هندسی و لوکس تاج */}
       <path 
         d="M20 70 L28 42 L42 56 L50 28 L58 56 L72 42 L80 70 Z" 
         fill="url(#headerGoldGrad)" 
@@ -27,10 +26,8 @@ const SovereignCrownLogo = () => (
         strokeOpacity="0.4"
       />
       
-      {/* پایه تاج */}
       <rect x="20" y="73" width="60" height="6" rx="3" fill="url(#headerGoldGrad)" />
 
-      {/* جرقه ۴‌پر بر فراز قله تاج */}
       <path 
         d="M50 16 C50 20 48 22 44 22 C48 22 50 24 50 28 C50 24 52 22 56 22 C52 22 50 20 50 16 Z" 
         fill="#FFFFFF" 
@@ -80,8 +77,8 @@ const SovereignHeader = ({ onToggleSidebar }) => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-40 glass border-b border-gold/15 px-3 sm:px-6 py-2.5 flex justify-between items-center transition-all">
-        {/* راست: لوگو و نام برند */}
-        <div className="flex items-center gap-2.5">
+        {/* راست: لوگو و نام برند بدون هیچ همپوشانی */}
+        <div className="flex items-center gap-2">
           <button
             onClick={() => {
               liveSynth.playClickSfx();
@@ -97,25 +94,24 @@ const SovereignHeader = ({ onToggleSidebar }) => {
           <Link
             to="/"
             onClick={() => liveSynth.playClickSfx()}
-            className="flex items-center gap-2.5 cursor-pointer shrink-0"
+            className="flex items-center gap-2 cursor-pointer shrink-0"
           >
             <SovereignCrownLogo />
-            <span className="brand-title text-base sm:text-lg tracking-[0.2em] font-black gold-text uppercase">
+            <span className="brand-title text-sm sm:text-lg tracking-[0.18em] font-black gold-text uppercase whitespace-nowrap">
               PRIME CROWN
             </span>
           </Link>
         </div>
 
-        {/* چپ: دکمه‌ها و وضعیت‌ها */}
+        {/* چپ: دکمه‌ها و وضعیت‌ها به ترتیب منظم */}
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           {deferredPrompt && (
             <button
               onClick={handleInstallClick}
-              className="py-1.5 px-2.5 rounded-xl bg-gold text-black font-bold text-xs flex items-center gap-1 shadow-[0_0_10px_rgba(212,175,55,0.4)] animate-pulse"
-              title="نصب وب‌اپلیکیشن"
+              className="p-2 rounded-xl bg-gold/20 border border-gold text-gold hover:bg-gold hover:text-black transition-all active:scale-95 flex items-center justify-center shadow-[0_0_10px_rgba(212,175,55,0.3)]"
+              title="نصب نسخه اپلیکیشن روی گوشی"
             >
-              <Download className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">نصب اپ</span>
+              <Download className="w-4 h-4" />
             </button>
           )}
 
@@ -132,7 +128,7 @@ const SovereignHeader = ({ onToggleSidebar }) => {
             className={`p-2 sm:px-2.5 sm:py-1.5 rounded-xl border text-[10px] font-mono transition-all flex items-center gap-1.5 ${
               isAudioPlaying ? 'border-gold bg-gold/10 text-gold' : 'glass border-white/10 text-white/40'
             }`}
-            title="صدای آرامش‌بخش تمرکز"
+            title="صدای تمرکز"
           >
             {isAudioPlaying ? <Volume2 className="w-4 h-4 text-gold animate-bounce" /> : <VolumeX className="w-4 h-4" />}
             <span className="hidden sm:inline font-medium">صدای تمرکز</span>
