@@ -58,6 +58,7 @@ export const SovereignSidebar = ({ isOpen, onClose }) => {
                   onClick={onClose}
                   className="p-1.5 rounded-lg text-white/50 hover:text-white hover:bg-white/5 transition-colors"
                   title="بستن منو"
+                  aria-label="بستن منو"
                 >
                   <X className="w-5 h-5" />
                 </button>

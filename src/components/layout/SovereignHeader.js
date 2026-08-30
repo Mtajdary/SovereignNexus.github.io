@@ -113,6 +113,7 @@ const SovereignHeader = ({ onToggleSidebar }) => {
               onClick={handleInstallClick}
               className="p-2 rounded-xl bg-gold/15 border border-gold/40 text-gold hover:bg-gold hover:text-black transition-all active:scale-95 flex items-center justify-center shadow-[0_0_10px_rgba(212,175,55,0.25)]"
               title="نصب اپلیکیشن"
+              aria-label="نصب اپلیکیشن"
             >
               <Download className="w-4 h-4" />
             </button>
@@ -122,6 +123,7 @@ const SovereignHeader = ({ onToggleSidebar }) => {
             onClick={handleThemeToggle}
             className="p-2 rounded-xl glass border border-gold/20 text-gold hover:border-gold/40 transition-all active:scale-95"
             title={theme === 'dark' ? 'حالت روز' : 'حالت شب'}
+            aria-label={theme === 'dark' ? 'تغییر به حالت روز' : 'تغییر به حالت شب'}
           >
             {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-300" /> : <Moon className="w-4 h-4 text-amber-600" />}
           </button>
@@ -132,6 +134,7 @@ const SovereignHeader = ({ onToggleSidebar }) => {
               isAudioPlaying ? 'border-gold bg-gold/10 text-gold shadow-[0_0_10px_rgba(212,175,55,0.3)]' : 'glass border-white/10 text-white/40'
             }`}
             title="صدای تمرکز"
+            aria-label={isAudioPlaying ? 'توقف صدای تمرکز' : 'پخش صدای تمرکز'}
           >
             {isAudioPlaying ? <Volume2 className="w-4 h-4 text-gold animate-bounce" /> : <VolumeX className="w-4 h-4" />}
             <span className="hidden sm:inline font-medium">تمرکز</span>
