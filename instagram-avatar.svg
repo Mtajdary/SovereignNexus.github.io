@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080">
+  <defs>
+    <radialGradient id="igBg" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#2a1f0f"/>
+      <stop offset="40%" stop-color="#120e07"/>
+      <stop offset="85%" stop-color="#050406"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </radialGradient>
+
+    <linearGradient id="igGoldRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFDF0"/>
+      <stop offset="25%" stop-color="#FDE047"/>
+      <stop offset="60%" stop-color="#D97706"/>
+      <stop offset="100%" stop-color="#78350F"/>
+    </linearGradient>
+
+    <linearGradient id="goldLit" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="15%" stop-color="#FFFBEB"/>
+      <stop offset="40%" stop-color="#FDE047"/>
+      <stop offset="75%" stop-color="#D97706"/>
+      <stop offset="100%" stop-color="#78350F"/>
+    </linearGradient>
+
+    <linearGradient id="goldShade" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBBF24"/>
+      <stop offset="35%" stop-color="#D97706"/>
+      <stop offset="70%" stop-color="#854D0E"/>
+      <stop offset="100%" stop-color="#3B1702"/>
+    </linearGradient>
+
+    <linearGradient id="deepShadowFacet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#92400E"/>
+      <stop offset="50%" stop-color="#451A03"/>
+      <stop offset="100%" stop-color="#180701"/>
+    </linearGradient>
+
+    <linearGradient id="basePedestal" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#78350F"/>
+      <stop offset="25%" stop-color="#FDE047"/>
+      <stop offset="50%" stop-color="#FFFFFF"/>
+      <stop offset="75%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#451A03"/>
+    </linearGradient>
+
+    <radialGradient id="igCoreGlow" cx="45%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="25%" stop-color="#FEF08A"/>
+      <stop offset="60%" stop-color="#F59E0B" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#F59E0B" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="igDropShadow" x="-30%" y="-20%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="36" stdDeviation="28" flood-color="#000000" flood-opacity="0.9"/>
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#000000" flood-opacity="0.95"/>
+    </filter>
+
+    <filter id="igBloom" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="25" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <circle cx="540" cy="540" r="540" fill="url(#igBg)"/>
+  <circle cx="540" cy="540" r="518" fill="none" stroke="url(#igGoldRim)" stroke-width="4" stroke-opacity="0.8"/>
+  <circle cx="540" cy="540" r="480" fill="none" stroke="url(#igGoldRim)" stroke-width="2" stroke-dasharray="10 10" stroke-opacity="0.4"/>
+  <circle cx="540" cy="510" r="300" fill="#F59E0B" opacity="0.18" filter="url(#igBloom)"/>
+
+  <g filter="url(#igDropShadow)" transform="translate(540, 520) scale(1.85) translate(-256, -250)">
+    <path d="M160 348 Q256 415 352 348 L334 376 Q256 442 178 376 Z" fill="url(#basePedestal)"/>
+    <path d="M162 349 Q256 414 350 349" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-opacity="0.8"/>
+    <path d="M178 376 Q256 442 334 376" fill="none" stroke="#2A0F02" stroke-width="2.5" stroke-opacity="0.9"/>
+
+    <polygon points="120,180 195,240 180,328" fill="url(#deepShadowFacet)"/>
+    <polygon points="120,180 180,328 256,375 195,240" fill="url(#goldLit)"/>
+    <line x1="120" y1="180" x2="195" y2="240" stroke="#FFFFFF" stroke-width="2.5" stroke-opacity="0.9"/>
+    <line x1="120" y1="180" x2="180" y2="328" stroke="#FFFFFF" stroke-width="2" stroke-opacity="0.65"/>
+
+    <polygon points="392,180 317,240 332,328" fill="url(#deepShadowFacet)"/>
+    <polygon points="392,180 332,328 256,375 317,240" fill="url(#goldShade)"/>
+    <line x1="392" y1="180" x2="317" y2="240" stroke="#3D1502" stroke-width="2" stroke-opacity="0.8"/>
+    <line x1="317" y1="240" x2="256" y2="375" stroke="#FFFFFF" stroke-width="1.5" stroke-opacity="0.45"/>
+
+    <polygon points="256,92 212,240 256,375" fill="url(#goldLit)"/>
+    <polygon points="256,92 300,240 256,375" fill="url(#goldShade)"/>
+    <line x1="256" y1="92" x2="256" y2="375" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round"/>
+    <line x1="256" y1="92" x2="212" y2="240" stroke="#FFFFFF" stroke-width="2" stroke-opacity="0.85"/>
+    <line x1="256" y1="92" x2="300" y2="240" stroke="#3D1502" stroke-width="2" stroke-opacity="0.9"/>
+
+    <circle cx="256" cy="238" r="62" fill="url(#igCoreGlow)"/>
+    <g filter="url(#igDropShadow)">
+      <path d="M256 190 C256 216 238 238 210 238 C238 238 256 260 256 286 C256 260 274 238 302 238 C274 238 256 216 256 190 Z" fill="#FFFFFF"/>
+      <circle cx="256" cy="238" r="5" fill="#FEF08A"/>
+    </g>
+
+    <circle cx="256" cy="92" r="8.5" fill="#FDE047"/>
+    <circle cx="254" cy="89" r="3.8" fill="#FFFFFF"/>
+    
+    <circle cx="120" cy="180" r="7" fill="#FDE047"/>
+    <circle cx="118" cy="178" r="3" fill="#FFFFFF"/>
+
+    <circle cx="392" cy="180" r="7" fill="#F59E0B"/>
+    <circle cx="390" cy="178" r="3" fill="#FFFFFF"/>
+
+    <path d="M390 98 C390 114 377 127 361 127 C377 127 390 140 390 156 C390 140 403 127 419 127 C403 127 390 114 390 98 Z" fill="#FFFDF0" opacity="0.95"/>
+    <circle cx="390" cy="127" r="2.5" fill="#FFFFFF"/>
+  </g>
+</svg>

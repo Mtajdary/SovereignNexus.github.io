@@ -1,0 +1,20 @@
+{
+  "short_name": "Civil Nexus",
+  "name": "Civil Nexus",
+  "description": "پلتفرم جامع مهندسی عمران، متره و برآورد، پردازش اسناد کارگاهی و هوش مصنوعی",
+  "icons": [
+    {
+      "src": "/nexus_logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192 512x512 any",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#090D16",
+  "theme_color": "#090D16",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "dir": "rtl",
+  "lang": "fa"
+}
